@@ -1,0 +1,309 @@
+std::string filename_bin(filename)
+filename_bin+=".bin"
+sBinHeader header;
+
+normales ya vienen descomprimidas
+
+mesh_facenormal no lo usamos
+coordenadas de textura vienen comprimidas
+
+ 
+colors.push_back(Vector)
+
+FRAPS install
+mesh_ase->uploadToVRAM();
+
+clase que defina una objeto3d
+
+SceneGraph objetos en el punto del mapa
+class Entity
+error: no meter dentro de la clase mesh
+Entity{
+	
+	Mesh*
+	Texture*
+	Shader*
+	Matriz model; //apuntes infografia, guarda pos, rot, dir
+	int uid; //id para cada objeto
+	string name;//p.e. player, boss,etc.
+
+
+}
+
+subclases como entity_mesh
+necesitamos un contenedor para estas identidades
+
+clase world que contiene todos los elementos de nuestra escene,
+crear singleton para acceder todos al mismo
+
+dif entre entity y entity_mesh
+entity no tiene porque tener mesh,texture,shader
+
+siguiente clase tema managers
+
+formato dds para guardar texturas cubemaps,mipmaps,etc
+crear manager en la misma clase que vamos a usar
+si el metodo es estatido empezar por mayuscula
+para liberar un objeto a eliminar al cual puede apuntar un puntero, es util utilizar identificadores a traves de strings referenciados
+
+
+class Airplane:public entitymesh{
+	
+}
+
+metodo shoot en airplane
+nuevo misil
+missil->model = this getglobalmatrix
+game::ubstabce->root->addChild
+
+clase misil carga mesh, textura, ttl
+
+en update 
+model.traslatelocal
+ttl=seconds elapsed
+if (ttl<0)
+	destroy();
+
+	void Entity::destroy()
+		to_destroy.pushback(this);
+		recorrer hijos y aplicar destroy
+
+	destroy_pending_entities
+		recorremos vector to_destroy
+		eliminamos esa entity y ponemos su entity a null  si tiene
+
+en entitymesh creas un pool EntityMesh entities_pool[1000];
+//no haremos esto en este proyecto
+
+en game al final de update Entity::destroy_pending_entities();
+
+em entity tenemos un last id long y un map que los guarde
+en el cpp en el constructor uid=last_id++
+en el destroy hacemos un iterator sobre s_entities
+
+clase camera funcion testSphereInFrustum
+solo pintar lo que hay dentro del frustum
+
+en render de entitymesh despues de getGlobalMatrix
+
+Vector3 pos = getGlobalMatrix*Vector3
+if (!camera->testSphereInFrustum){
+	return;
+}
+
+si tenemos una bounding box que se inclina hacemos la bounding de la bounding
+
+necesitmaos una info de cada mesh  dentro de un struct
+
+creamos dos vector3 para min_vertex y max_vertex cpn valores muy pequeños y muuy grandes
+en mesh_vertex calculamos el máximo y el mínimo
+if(v.x<min_vertex)
+	min_vertex.x=v.x
+replicar para todos
+
+struct mesh{
+	int num_faces, char_has_normals, min, max,center,halfsize,
+}
+
+antes de escribir en el archivo guardamos la info
+inf.center, info.halfsize,etc
+
+ahora en entitymesh en el render 
+pido la mesh con Load despues de getGlobalMatrix
+if (!camera->testSphereInFrustum(pos,radio)){
+	return;
+}
+
+float distance = pos.distance(camera->eye)
+if distance>radio mesh*10
+	return;
+
+tenemos una clase game_entities donde creamos clases como airplane, missil,etc
+
+en tender si la distancia es grande la mesh=meshlow
+
+en clase airplane crear metodo addCockpit y cargar cabina, textur mesh
+y añadirlo como child
+
+ene entity un flag visible y si no es visible no pinte el avion
+
+if(color.a<0.1)
+	discard;
+
+
+crear clase levele.h y creamos level.txt
+
+class Level
+	public:
+		Level();
+		std::string name;
+		std::map<std::strign,EntityMesh*> s_templates;//cuando quiera instanciarlos creo una nueva entidad hacemos uso de factory
+		bool load(const char* filename);
+
+Level cpp
+	bool Level::load(const char* filename, Entity* root){
+		Textoarse t;
+		if(!it.create(data/level.txt))
+			exit(0)
+
+		t.seek("*entities")
+
+		int num_entities = t.getInt()
+		for (int i=0;i<num:entities;i++){
+			...
+			s_templates[name] = e;
+		}
+
+		t.seek("scene")
+		asignamos valores que leemos
+
+	}
+
+	en entity si la entidad ya tiene padre
+
+	if(entity->parent){
+		std::cout ya atiene padre manito
+		reutrn;
+	}
+
+
+	typedef unsigned long ENTITY ID;
+	static ENTITY_ID alog;
+
+	para la posicion de la camara
+
+	eye = player_camera->eye*0.75+eye*0.25;
+
+	model * center (en bounding box)
+	
+	PARA HACER UPDATE DE TODOS LOS RECURSOS DEL ARBOL
+
+	tener un vector de entities vector <Entity> updatable
+
+	de entitymesh podemos heredar entitycollider 
+	metodos especificar tipo de colision y metodos en caso de colision avisame
+	problema de la bounding con el terreno
+	lanzar un rayo si la pos_actual esta dentro de la mesh
+
+	Dividir bounding por octree
+
+	meshes rotadas podemos rotar el rayo por lo que hacemos la inversa de la model
+	vector director origen-destino
+
+	Coldet library
+
+	crear estructura de datos de grupo de colisiones
+	static_colliders y dynamic_colliders
+	testeamos las colisiones de dynamic con dynamic y de dynamic con static
+
+	entity collider con metodo virtual virtual onCollision que es un entity collider(es un ent coll)
+
+	getColissionOnPoint si pones false coordenadas de mundo y si pones true coordenadas locales
+
+	BulletManager se ocupa de kas balas como pintarlas
+	meter balas en la mesh y pintarla
+	estructura para cada bala
+	creamos clase bullet
+	cada bala tenga un puntero a entity para que no te haga daño tu propia bala(entity* author)
+	creamos una mesh con todas las posiciones de las balas y la pintamos cada vez
+	shoot(todo lo necesario para procesar la bala)
+
+	guardar en una pool
+	Bullet bullet[100] ponemos todoas a 0
+	cada vez que disparamos miramos si está libre, si el ttl  es 0 o menor está libre
+	render recorre la pool y la rellena de balas
+	optimizar, cuando llego a uno que no tiene ttl paro/ guardar puntero a posición disponible final
+	metodo update que se encarga de mover cada bala
+	cuando queremos iterar sobre las balas lo hacemos doblemente, para cada bala y para cada entity
+	for bullets y for entity
+	setTransform es muy costosa
+	mundo a objeto por la inversa de la model para poder testear con la entity
+
+	MATRICES
+
+	cualquier coord en coord loc y la queremos en world necesitamos mult por la model del objeot
+	 p1 = p0 + V*t
+	 v1 = v0 +g
+	 Fricción  v = v*0.999
+
+	 FÍSICAS AVIONES
+	 para cada objeto tenemos su posición y un vector velocidad
+	 a cada update la posición se incrementa + la velocidad
+	 al vector velocidad le sumamos la aceleración
+	 si vas horizontal vas más rápido
+	 si caes en barrena te frena más
+	 /*****EntityPhysics*****/
+	 jsbsim lib en c++ 
+	 PhysX, Bullet, Havok, Box2D
+	 libs de fisica, le pasas la model y las formas de las meshes
+	 una vez hecho los cálculos devuelveme la model //no está vinculado al render
+	 un fucnión para la forma y otra para la model
+	 los que no se mueven RigidBodies o Colliders
+	 también le puedes pasar las energías, impulsos
+
+	 BLENDING
+
+	 glEnable(GL_BLEND) //activar blending
+	 tenemos source y destination
+	 glBlendFunc(_______,_______)
+	 interpolacion lineal de alpha (s*(1-a)+D*a)
+	 glDisable
+
+	 GL_ONE_MINUS_ALPHA
+	 GL_SRC_ALPHA
+
+	 fuego, holograma GL_ONE_SRC_ALPHA  GL_ONE 
+
+	 Aplicar textura a mesh por materiales
+
+	 meshInfo
+	 	long mat_groups [5];
+
+	 10-15 lineas de codigo para implementarlo
+	 parsear última columna de tfaces del .ASE
+	 	
+	 Tenemos clase entity de la cual hereda airplane que controla player controlles o AI controller 
+	 que heredan de controller
+
+	 /********INTELIGENCIA ARTIFICIAL********/
+
+	-Decidir 
+	-Realizar acción
+
+	1a opcion: Se modela con máquinas de estado pero es complicado de programar
+	2a opcion: Behauvior tree
+
+		Las cosas más importantes esten a la izquierda
+		Se recorre de izquierda a derecha hacia arriba
+
+											Vacío
+
+						Si muriendo			Si veo enemigo		....
+						huir				
+											/			\
+										   /			 \
+
+	Para saber si el avion esta alineado con otro avion
+	Vector entre A y B, comparamos el angulo del front con AB haciendo el dot product
+
+	Para decidir como girar cuando 1-cos(alpha)
+	Para saber el eje hacemos el cross product del vector front con AB
+
+	rotateLocal rota respecto a los ejes del vector
+	para rotateLocal y pasar de global a local multiplicar por la inversa de la model
+
+	/***********AI Controller**************/
+		-En AIControllers tenemos un array de waypoints que va siguiendo el avion
+		-Cada avion de la ia tiene un target para el objetivo al que persigue 
+		-Lo metemos todo dentro de la funcion update
+		-Funcion rotateToPoint
+		-Para evitar choques controlar en el behaviour tree la distancia entre aviones
+		-Altura mínima del avión igual a la montaña de máxima altura
+		-Tambien podemos hacer que la IA sea de nuestro equipo
+		-Asignarle un target de equipo
+		-Algoritmo blackboard en la que las entidades se pueden comunicar entre ellas
+		 a traves de mensajes
+		-Podemos hacer un bombardero que vaya a un punto y lance las bombas
+		 Escoltas que tienen un radio de acción que se resume en defender al bombardero
+	AICOntroller para cada avión
+	De cara a hacer la IA tenerlos doble enlazados

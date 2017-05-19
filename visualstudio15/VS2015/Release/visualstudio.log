@@ -1,0 +1,37 @@
+﻿  bullet.cpp
+  bulletmanager.cpp
+  camera.cpp
+  box.cpp
+  box_bld.cpp
+..\..\src\coldet\box_bld.cpp(134): warning C4018: '<': signed/unsigned mismatch
+  coldet.cpp
+  coldet_bld.cpp
+  math3d.cpp
+  mytritri.cpp
+  sysdep.cpp
+  entity.cpp
+  entitycollider.cpp
+  entitymesh.cpp
+  textparser.cpp
+  framework.cpp
+  game.cpp
+..\..\src\game.cpp(92): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+  main.cpp
+  mesh.cpp
+..\..\src\mesh.cpp(512): warning C4552: '+': operator has no effect; expected operator with side-effect
+  playercontroller.cpp
+..\..\src\playercontroller.cpp(101): warning C4305: 'argument': truncation from 'double' to 'float'
+  rendertotexture.cpp
+  Compiling...
+  scene.cpp
+  shader.cpp
+  texture.cpp
+  utils.cpp
+  tritri.c
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+c:\users\alexis\desktop\tje\src\entitycollider.cpp(99): warning C4715: 'EntityCollider::testRay': not all control paths return a value
+  All 1805 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Alexis\Desktop\tje\vc120.pdb'; linking object as if no debug info
+  visualstudio.vcxproj -> C:\Users\Alexis\Desktop\tje\visualstudio15\VS2015\..\..\visualstudio.exe
