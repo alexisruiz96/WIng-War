@@ -17,8 +17,8 @@ public:
 	static std::vector<EntityCollider*> dynamic_colliders;
 
 
-	//bool is_static;
-	//bool is_dynamic;
+	bool is_static;
+	bool is_dynamic;
 
 	EntityCollider();
 	virtual ~EntityCollider();
@@ -30,9 +30,13 @@ public:
 	void setDynamic();
 	
 	//getters
+	bool isStatic();
+	bool isDynamic();
 	Vector3 getCenter();
 	float getRadius();
 	Mesh* getMesh();
+
+	bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
 
 };
 

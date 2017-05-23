@@ -60,22 +60,37 @@ void BulletManager::update(float elapsed_time)
 	//comprobar colisiones 
 
 	std::vector<EntityCollider *> colliders;
-	colliders = EntityCollider::dynamic_colliders;
+	colliders = EntityCollider::static_colliders;
+	colliders.insert(colliders.end(), EntityCollider::dynamic_colliders.begin(), EntityCollider::dynamic_colliders.end());
 
-	//all_colliders.insert(all_colliders.end(), EntityCollider::dynamic_colliders.begin(), EntityCollider::dynamic_colliders.end());
-
+	
 	for (int i = 0; i < last_pos; i++)
 	{
 		Bullet &bull = bullets[i];
 		for (int j = 0; j < colliders.size();j++)
 		{
-			Vector3 center = colliders[j]->getCenter();
-			Matrix44 model = colliders[j]->model;
-			float radius = colliders[j]->getRadius();
-			if ((model*center).distance(bull.position) <= radius) //distance between bullet and center less than the sphereCollision
-			{
-				std::cout << "bullet collision" << std::endl;
+			if (colliders[j]->isDynamic()) {
+				Vector3 center = colliders[j]->getCenter();
+				Matrix44 model = colliders[j]->model;
+				float radius = colliders[j]->getRadius();
+				if ((model*center).distance(bull.position) <= radius) //distance between bullet and center less than the sphereCollision
+				{
+					std::cout << "bullet collision" << std::endl;
+				}
 			}
+			/*else if (colliders[i]->isStatic()) {
+				Vector3 or = bull.position;
+				Vector3 dir = (bull.last_position - bull.position).normalize();
+				Vector3 coll;
+				float max = dir.length();
+
+				if (colliders[j]->colVSStatics(or, dir, coll, 0, max)) {
+					std::cout << "Colision con statico" << std::endl;
+				}
+				
+				
+			}*/
+			
 		}
 
 	}

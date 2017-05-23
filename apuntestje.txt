@@ -307,3 +307,29 @@ Level cpp
 		 Escoltas que tienen un radio de acción que se resume en defender al bombardero
 	AICOntroller para cada avión
 	De cara a hacer la IA tenerlos doble enlazados
+
+	/************GUI para juego******************/
+
+	V->V' pasarlo a espacio de pantalla
+	setOrtographic para pasar a espacio de pantalla
+	CULL_FACE a false
+	desactivar el DEPTH_TEST
+
+	INMEDIATE GUI
+
+	renderGUI(){...}
+	crear clase GUI con métodos para pintar
+	BLEND activado
+	para la cámara que siga los misiles, etc
+
+	PARA TENER FASES
+
+	main
+		-Loading_Stage
+		-Menu_Stage
+		-Play_Stage
+		-Ending_Stage
+		-Map_Stage //muestra mapa
+	Game tiene un puntero current_stage que va cambiando en función de lo que sucede
+	Se pueden llamar a otros stages
+	

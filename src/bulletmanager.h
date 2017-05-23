@@ -6,7 +6,7 @@
 #include "includes.h"
 #include "bullet.h"
 #include "mesh.h"
-#include "entitycollider.h"
+#include "game_entities.h"
 typedef int MAX_BULLETS_CAP;
 
 
@@ -21,8 +21,7 @@ public:
 	BulletManager();
 	virtual ~BulletManager();
 
-	//std::vector<Bullet> bullets_vector;
-	//POOL mejor que vector
+	//POOL balas
 	Bullet bullets[1000];
 	int last_pos;
 

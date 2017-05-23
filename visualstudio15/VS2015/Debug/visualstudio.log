@@ -1,14 +1,14 @@
-﻿  game_entities.cpp
-  Generating Code...
-  Compiling...
-  scene.cpp
+﻿  scene.cpp
+  game_entities.cpp
+  entitycollider.cpp
   Generating Code...
   Skipping... (no relevant changes detected)
   utils.cpp
   playercontroller.cpp
   main.cpp
   game.cpp
+  bulletmanager.cpp
 bullet.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Alexis\Desktop\tje\vc120.pdb'; linking object as if no debug info
-  visualstudio.vcxproj -> C:\Users\Alexis\Desktop\tje\visualstudio15\VS2015\..\..\visualstudio_debug.exe
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Alexis\Documents\GitHub\jocs_e\vc120.pdb'; linking object as if no debug info
+  visualstudio.vcxproj -> C:\Users\Alexis\Documents\GitHub\jocs_e\visualstudio15\VS2015\..\..\visualstudio_debug.exe
