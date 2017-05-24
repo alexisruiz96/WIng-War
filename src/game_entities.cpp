@@ -57,33 +57,7 @@ void AirPlane::colEsferas()
 	}
 }
 
-bool AirPlane::colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance)
-{
-	std::vector<EntityCollider *> colliders;
-	colliders = static_colliders;
 
-	for (int i = 0; i < colliders.size(); i++)
-	{
-		EntityCollider* collider = colliders[i];
-		Mesh* mesh = collider->getMesh(); //if the mesh is not found jump
-		if (!mesh) {
-			continue;
-		}
-
-		CollisionModel3D* collision_model = collider->mesh->getCollisionModel3D();
-		collision_model->setTransform(collider->model.m);
-
-		if (!collision_model->rayCollision(origin.v, direction.v, true, 0.0, max_distance)) //if there is not any ray collision jump
-		{
-			continue;
-		}
-
-		collision_model->getCollisionPoint(collision.v, true);
-		return true;
-	}
-	return false;
-
-}
 
 void AirPlane::shoot(BulletManager* bm) {
 

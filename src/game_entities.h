@@ -4,6 +4,7 @@
 #include "entitycollider.h"
 #include "bulletmanager.h"
 
+class BulletManager;
 
 class AirPlane : public EntityCollider
 {
@@ -25,7 +26,7 @@ public:
 	void update(double seconds_elapsed);
 
 	void colEsferas();
-	bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
+	//bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
 
 	void shoot(BulletManager* bm);
 };

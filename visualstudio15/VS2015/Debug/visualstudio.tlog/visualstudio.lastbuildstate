@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
+<<<<<<< HEAD
 Debug|Win32|C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\visualstudio15\|
+=======
+Debug|Win32|C:\Users\Alexis\Documents\GitHub\jocs_e\visualstudio15\|
+>>>>>>> e2e473113da084c2a52e06af7601fdd8bfb3a331
