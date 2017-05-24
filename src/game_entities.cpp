@@ -91,8 +91,8 @@ void AirPlane::shoot(BulletManager* bm) {
 	if (getTime() > last_shot) {
 
 		Vector3 v = this->model.rotateVector(Vector3(0, 0, 1000));
-		bm->shoot(model * Vector3(2, 0.25, 0.25), v, 0.50, 5.00,this, 1);
-		bm->shoot(model * Vector3(-2, 0.25, 0.25), v, 0.50, 5.00,this, 1);
+		bm->shoot(model * Vector3(2, 0.25, 0.25), v, 1.0, 5.00,this, 1);
+		bm->shoot(model * Vector3(-2, 0.25, 0.25), v, 1.0, 5.00,this, 1);
 		last_shot = getTime() + 200;
 	}
 }
