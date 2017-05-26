@@ -49,7 +49,7 @@ void Scene::createScene() {
 	cielo->config("data/meshes/cielo.tga", "data/meshes/cielo.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	//root->addChild(cielo);
 
-	for (int i = 1; i < 3; ++i) {
+	/*for (int i = 1; i < 3; ++i) {
 		for (int j = 0; j < 2; ++j) {
 			bomber = new AirPlane();
 			bomber->setDynamic();
@@ -69,7 +69,7 @@ void Scene::createScene() {
 			p38a->model.traslate(-40, i*750, j*190);
 			root->addChild(p38a);
 		}
-	}
+	}*/
 
 
 	

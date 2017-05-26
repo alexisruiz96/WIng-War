@@ -49,6 +49,7 @@ void BulletManager::update(float elapsed_time)
 		if (bull.ttl <= 0.0) {
 			bull = bullets[last_pos];
 			last_pos -= 1;
+			i--;
 		}
 
 		bull.last_position = bull.position;

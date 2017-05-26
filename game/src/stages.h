@@ -1,14 +1,30 @@
 #pragma once
 
 #include "includes.h"
+#include <map>
+#include "utils.h"
+#include "mesh.h"
+#include "texture.h"
+#include "rendertotexture.h"
+#include "shader.h"
+#include "entitymesh.h"
+#include "scene.h"
+#include <math.h>
+#include <cmath>
+#include "utils.h"
+#include "bulletmanager.h"
+#include "camera.h"
+#include "playercontroller.h"
+#include "game.h"
 
 class Stage
 {
 public:
 
+	static std::map<std::string, Stage*> s_Stages;
 	static Stage* current;
 
-	static void changeStage(const char* name);
+	static void onChange(const char* stagename);
 
 	virtual void init() {}
 	virtual void render() {}
@@ -22,9 +38,8 @@ public:
 class MenuStage : public Stage
 {
 public:
-	MenuStage(SDL_Window* window);
+	MenuStage();
 
-	SDL_Window* window;
 
 	virtual void init();
 	virtual void render();
@@ -37,9 +52,17 @@ public:
 class GameStage : public Stage
 {
 public:
-	GameStage(SDL_Window* window);
+	static GameStage* instance;
 
-	SDL_Window* window;
+	static GameStage* getInstance() {
+		return instance;
+	}
+	GameStage();
+
+	const Uint8* keystate;
+
+	Camera* camera;
+	PlayerController* pc;
 
 	virtual void init();
 	virtual void render();

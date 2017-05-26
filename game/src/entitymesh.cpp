@@ -24,7 +24,10 @@ void EntityMesh::render(Camera* camera, Shader* s)
 	shader->setMatrix44("u_model", model);
 	shader->setMatrix44("u_mvp", mvp);
 	shader->setTexture("u_texture", texture);
-	mesh->render(GL_TRIANGLES, shader);
+	//if (!camera->testSphereInFrustum(this->mesh->header.center, this->mesh->header.radius))
+		mesh->render(GL_TRIANGLES, shader);
+	
+	
 	shader->disable();
 
 	for (int i = 0; i < children.size(); i++) {

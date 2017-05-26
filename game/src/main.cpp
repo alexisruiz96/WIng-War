@@ -83,14 +83,15 @@ void mainLoop()
 
 	while (1)
 	{
-		Stage* stage = Stage::current;
+		//Stage* stage = Stage::current;
 		//read keyboard state and stored in keystate
 		game->keystate = SDL_GetKeyboardState(NULL);
 
 		//render frame
-		checkGLErrors();
-		stage->render();
-		checkGLErrors();
+
+		//checkGLErrors();
+		game->render();
+		
 		//update events
 		while(SDL_PollEvent(&sdlEvent))
 		{
@@ -98,13 +99,13 @@ void mainLoop()
 				{
 					case SDL_QUIT: return; break; //EVENT for when the user clicks the [x] in the corner
 					case SDL_MOUSEBUTTONDOWN: //EXAMPLE OF sync mouse input
-						stage->onMouseButton( sdlEvent.button );
+						game->onMouseButton( sdlEvent.button );
 						break;
 					case SDL_MOUSEBUTTONUP:
 						//...
 						break;
 					case SDL_KEYDOWN: //EXAMPLE OF sync keyboard input
-						stage->onKeyPressed( sdlEvent.key );
+						game->onKeyPressed( sdlEvent.key );
 						break;
 					case SDL_WINDOWEVENT:
 						switch (sdlEvent.window.event) {
@@ -130,7 +131,7 @@ void mainLoop()
 		game->frame++;
 		if((game->frame%10) == 0)
 			game->fps = 1.0 / elapsed_time;
-		stage->update(elapsed_time); 
+		game->update(elapsed_time); 
 
 		//check errors in opengl only when working in debug
 		#ifdef _DEBUG
@@ -161,13 +162,13 @@ int main(int argc, char **argv)
 
 	//launch the game (game is a global variable)
 	game = new Game(window);
-	MenuStage* menu = new MenuStage(window);
-	GameStage* gamestage = new GameStage(window);
+	//MenuStage* menu = new MenuStage(window);
+	//GameStage* gamestage = new GameStage(window);
 
-	Stage::current = menu;
+	//Stage::current = menu;
 
-	menu->init();
-	gamestage->init();
+	//menu->init();
+	//gamestage->init();
 	game->init();
 
 	//main loop, application gets inside here till user closes it
