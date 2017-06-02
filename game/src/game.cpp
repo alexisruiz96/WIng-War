@@ -10,6 +10,7 @@
 #include <cmath>
 #include "utils.h"
 #include "bulletmanager.h"
+#include "bass.h"
 
 //some globals
 
@@ -63,6 +64,10 @@ void Game::init(void)
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
+
+
+	 //Inicializamos BASS  (id_del_device, muestras por segundo, ...)
+	BASS_Init(1, 44100, 0, 0, NULL);
 }
 
 //what to do when the image has to be draw
@@ -85,6 +90,7 @@ void Game::update(double seconds_elapsed)
 //Keyboard event handler (sync input)
 void Game::onKeyPressed( SDL_KeyboardEvent event )
 {
+	Stage::current->onKeyPressed(event);
 	switch (event.keysym.sym)
 	{
 	case SDLK_ESCAPE: exit(0); //ESC key, kill the app

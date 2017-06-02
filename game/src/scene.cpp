@@ -49,27 +49,24 @@ void Scene::createScene() {
 	cielo->config("data/meshes/cielo.tga", "data/meshes/cielo.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	//root->addChild(cielo);
 
-	/*for (int i = 1; i < 3; ++i) {
-		for (int j = 0; j < 2; ++j) {
-			bomber = new AirPlane();
+			bomber = new AirPlane(true);
 			bomber->setDynamic();
 			bomber->config("data/meshes/bomber_axis/bomber_axis.tga", "data/meshes/bomber_axis/bomber_axis.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-			bomber->model.traslate(0, i*750, j*200);
+			bomber->model.traslate(0, 750, 200);
 			root->addChild(bomber);
 
-			p38 = new AirPlane();
+			p38 = new AirPlane(true);
 			p38->setDynamic();
 			p38->config("data/meshes/p38/p38.tga", "data/meshes/p38/p38.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-			p38->model.traslate(40, i*750, j*190);
+			p38->model.traslate(40, 750, 190);
 			root->addChild(p38);
 
-			p38a = new AirPlane();
+			p38a = new AirPlane(true);
 			p38a->setDynamic();
 			p38a->config("data/meshes/p38/p38_axis.tga", "data/meshes/p38/p38.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-			p38a->model.traslate(-40, i*750, j*190);
+			p38a->model.traslate(-40, 750, 190);
 			root->addChild(p38a);
-		}
-	}*/
+
 
 
 	

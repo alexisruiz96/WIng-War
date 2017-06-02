@@ -17,15 +17,13 @@ void EntityMesh::render(Camera* camera, Shader* s)
 {
 	//model.rotate((float)(angle * DEG2RAD), Vector3(0.0f, 1.0f, 0.0f)); //build a rotation matrix
 
-
-
 	Matrix44 mvp = model * camera->viewprojection_matrix;
 	shader->enable();
 	shader->setMatrix44("u_model", model);
 	shader->setMatrix44("u_mvp", mvp);
 	shader->setTexture("u_texture", texture);
 	//if (!camera->testSphereInFrustum(this->mesh->header.center, this->mesh->header.radius))
-		mesh->render(GL_TRIANGLES, shader);
+	mesh->render(GL_TRIANGLES, shader);
 	
 	
 	shader->disable();

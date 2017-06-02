@@ -1,8 +1,13 @@
 #include "bulletmanager.h"
-
+#include "bass.h"
 
 BulletManager* BulletManager::instance = NULL;
 
+//El handler para un sample
+HSAMPLE hSample;
+
+//El handler para un canal
+HCHANNEL hSampleChannel;
 
 BulletManager::BulletManager()
 {
@@ -13,6 +18,11 @@ BulletManager::BulletManager()
 
 	last_pos = 0;
 	
+
+	//Cargamos un sample (memoria, filename, offset, length, max, flags)
+	hSample = BASS_SampleLoad(false, "data/sounds/shot.wav", 0, 0, 3, 0);
+	//Creamos un canal para el sample
+	hSampleChannel = BASS_SampleGetChannel(hSample, false);
 }
 
 
@@ -98,7 +108,9 @@ void BulletManager::update(float elapsed_time)
 
 void BulletManager::shoot(Vector3 pos,  Vector3 vel, float tl, float pow, Entity* author, int type)
 {
-	
+	if (last_pos >= 500) {
+		return;
+	}
 	
 
 	Bullet &bull = bullets[last_pos];
@@ -111,5 +123,8 @@ void BulletManager::shoot(Vector3 pos,  Vector3 vel, float tl, float pow, Entity
 	bull.author = author;
 	bull.type = type;
 
-	last_pos += 1;
+	last_pos++;
+
+	//Lanzamos un sample
+	BASS_ChannelPlay(hSampleChannel, true);
 }

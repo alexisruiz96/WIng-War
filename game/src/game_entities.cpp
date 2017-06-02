@@ -1,15 +1,25 @@
 #include "game_entities.h"
+#include "bulletmanager.h"
+#include "aicontroller.h"
 
 
-
-AirPlane::AirPlane()
+AirPlane::AirPlane(bool ia)
 {
 	last_shot = 0;
+	isIA = ia;
+
+	controller = NULL;
+
+	if (ia)
+	{
+		controller = new AIcontroller();
+		controller->setPlane(this);
+	}
+
 }
-
-
 AirPlane::~AirPlane()
 {
+
 }
 
 Vector3 AirPlane::getPosition() {
@@ -26,19 +36,25 @@ void AirPlane::setLastPosition(Vector3 lastpos) {
 	this->last_position = lastpos;
 }
 
+
+
+
 void AirPlane::update(double seconds_elapsed)
 {
-	colEsferas();
+	if (!this->isIA) {
+		colEsferas();
 
-	Vector3 origin = getPosition();
-	Vector3 direction = (getPosition() - getLastPosition()).normalize();
-	Vector3 collision;
+		Vector3 origin = getPosition();
+		Vector3 direction = (getPosition() - getLastPosition()).normalize();
+		Vector3 collision;
 
-	float maxdist = direction.length();
-	if (colVSStatics(origin, direction, collision, 0, maxdist)) {
-		std::cout << "Colision con statico" << std::endl;
-	}	
-
+		float maxdist = direction.length();
+		if (colVSStatics(origin, direction, collision, 0, maxdist)) {
+			std::cout << "Colision con statico" << std::endl;
+		}
+	}
+	//else
+		//controller->update(seconds_elapsed);
 }
 
 

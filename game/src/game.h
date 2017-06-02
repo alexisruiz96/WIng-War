@@ -7,10 +7,10 @@
 
 #include "includes.h"
 #include "camera.h"
-#include "playercontroller.h"
-
 #include "stages.h"
 
+
+class PlayerController;
 class Game
 {
 public:

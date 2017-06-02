@@ -4,6 +4,8 @@
 
 #include "game_entities.h"
 
+
+class AirPlane;
 class Scene
 {
 public:

@@ -1,4 +1,5 @@
 #include "stages.h"
+
 float angle = 0;
 Scene* scene = NULL;
 Shader * shader = NULL;
@@ -78,10 +79,21 @@ void GameStage::init()
 
 }
 
+
+
 void GameStage::render()
 {
+
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
 	//set the clear color (the background color)
 	glClearColor(0.15, 0.30, 0.35, 1.0);
+
+
 
 	// Clear the window and the depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -98,16 +110,38 @@ void GameStage::render()
 	scene->cielo->render(camera, shader);
 	glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_BLEND);
+	//glEnable(GL_BLEND);
 
 	scene->root->render(camera, shader);
 	//camera pos
 	//std::cout << camera->eye.x << " - " << camera->eye.y << " - " << camera->eye.z << std::endl; 
 
-	glDisable(GL_BLEND);
+	//glDisable(GL_BLEND);
 
 	BulletManager::instance->render();
+	renderGUI();
 }
+
+void GameStage::renderGUI()
+{
+	glDisable(GL_CULL_FACE);
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND); //transparencia
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	Camera cam2D;
+	cam2D.setOrthographic(0, Game::instance->window_width, Game::instance->window_height, 0, -1, 1);
+	cam2D.set();
+
+	Mesh quad;
+	Texture* cross = Texture::Load("data/meshes/crosshair.TGA");
+	cross->bind();
+	quad.createQuad(Game::instance->window_width*0.5, Game::instance->window_height*0.5, 50, 50);
+	quad.render(GL_TRIANGLES);
+	cross->unbind();
+
+}
+
 
 void GameStage::update(double seconds_elapsed)
 {
@@ -136,9 +170,14 @@ void GameStage::update(double seconds_elapsed)
 		//Vector3 lastpos = scene->plane->model * Vector3(1, 1, 1);
 
 		BulletManager::instance->update(seconds_elapsed);
-		pc->update(seconds_elapsed, scene, keystate, camera, numcam);
+		pc->update(seconds_elapsed, numcam);
 
 		scene->plane->update(seconds_elapsed);
+
+
+		//scene->p38->update(seconds_elapsed);
+		//scene->bomber->update(seconds_elapsed);
+		//scene->p38a->update(seconds_elapsed);
 	}
 
 	//to navigate with the mouse fixed in the middle

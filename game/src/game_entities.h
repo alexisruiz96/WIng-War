@@ -2,9 +2,10 @@
 #define GAME_ENTITIES_H
 
 #include "entitycollider.h"
-#include "bulletmanager.h"
 
-class BulletManager;
+
+class AIcontroller;
+
 
 class AirPlane : public EntityCollider
 {
@@ -12,10 +13,12 @@ private:
 	Vector3 position;
 	Vector3 last_position;
 	long last_shot;
-
+	bool isIA;
 public:
-	AirPlane();
+	AirPlane(bool ia = false);
 	virtual ~AirPlane();
+
+	AIcontroller* controller;
 
 	Vector3 getPosition();
 	void setPosition(Vector3 pos);
@@ -29,6 +32,8 @@ public:
 	//bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
 
 	void shoot();
+
+	
 };
 
 #endif

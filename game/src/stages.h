@@ -17,6 +17,7 @@
 #include "playercontroller.h"
 #include "game.h"
 
+class PlayerController;
 class Stage
 {
 public:
@@ -66,6 +67,7 @@ public:
 
 	virtual void init();
 	virtual void render();
+	virtual void renderGUI();
 	virtual void update(double dt);
 
 	virtual void onKeyPressed(SDL_KeyboardEvent event);
