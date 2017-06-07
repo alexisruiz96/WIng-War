@@ -34,7 +34,7 @@ void AIcontroller::update(double seconds_elapsed)
 		
 	}
 
-	ai_plane->model.traslateLocal(0, 0, seconds_elapsed * 100);
+	ai_plane->model.traslateLocal(0, 0, seconds_elapsed * 75);
 }
 
 void AIcontroller::setPlane(AirPlane* pl)

@@ -24,6 +24,8 @@ public:
 	virtual void render(Camera* camera, Shader* shader);
 	virtual void update(float elapsed_time);
 
+	std::string getName();
+	void setName(std::string name);
 	void addChild(Entity* ent);
 	void removeChild(Entity* ent);
 	Vector3 getPosition();

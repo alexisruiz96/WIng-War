@@ -25,6 +25,13 @@ void Entity::update(float elapsed_time)
 {
 }
 
+std::string Entity::getName() {
+	return name;
+}
+
+void Entity::setName(std::string name) {
+	this->name = name;
+}
 Vector3 Entity::getPosition()
 {
 	return Vector3();

@@ -62,7 +62,7 @@ GameStage::GameStage()
 void GameStage::init()
 {
 	camera = new Camera();
-	camera->lookAt(Vector3(0.f, 25.f, 25.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
+	camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
 	camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
 
 
@@ -106,9 +106,16 @@ void GameStage::render()
 
 	glDisable(GL_DEPTH_TEST);
 	scene->cielo->model.setIdentity();
-	scene->cielo->model.traslate(camera->eye.x, camera->eye.y, camera->eye.z);
+	scene->cielo->model.setTranslation(camera->eye.x, camera->eye.y, camera->eye.z);
 	scene->cielo->render(camera, shader);
+
+	/*scene->water->model.setIdentity();
+	scene->water->model.setTranslation(camera->eye.x, camera->eye.y, camera->eye.z);
+	scene->water->render(camera, shader);*/
+
 	glEnable(GL_DEPTH_TEST);
+
+	
 
 	//glEnable(GL_BLEND);
 
@@ -175,10 +182,12 @@ void GameStage::update(double seconds_elapsed)
 		scene->plane->update(seconds_elapsed);
 
 
-		scene->p38->update(seconds_elapsed);
-		scene->bomber->update(seconds_elapsed);
-		scene->p38a->update(seconds_elapsed);
+		
 	}
+
+	scene->p38->update(seconds_elapsed);
+	scene->bomber->update(seconds_elapsed);
+	scene->p38a->update(seconds_elapsed);
 
 	//to navigate with the mouse fixed in the middle
 	if (Game::instance->mouse_locked)
