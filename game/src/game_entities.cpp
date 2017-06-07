@@ -53,8 +53,10 @@ void AirPlane::update(double seconds_elapsed)
 			std::cout << "Colision con statico" << std::endl;
 		}
 	}
-	//else
-		//controller->update(seconds_elapsed);
+	else
+		controller->update(seconds_elapsed);
+		this->setLastPosition(this->getPosition());
+		this->setPosition(this->model * Vector3(0, 0, 0));
 }
 
 

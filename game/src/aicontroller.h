@@ -14,7 +14,7 @@ public:
 	~AIcontroller();
 
 	Vector3 target;
-	AirPlane* player_plane;
+	AirPlane* ai_plane;
 
 	void update(double seconds_elapsed);
 	void setPlane(AirPlane* pl);

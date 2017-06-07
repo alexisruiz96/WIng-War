@@ -48,7 +48,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\</OutDir>
-    <LibraryPath>C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\game\visualstudio15\libs\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Usuario\Desktop\jocs_e\jocs_e\game\visualstudio15\libs\lib;$(LibraryPath)</LibraryPath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

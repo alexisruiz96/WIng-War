@@ -1,20 +1,9 @@
 ﻿  aicontroller.cpp
-  bulletmanager.cpp
-  game.cpp
-  game_entities.cpp
-  main.cpp
-  playercontroller.cpp
-..\..\src\playercontroller.cpp(96): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-  scene.cpp
-  stages.cpp
-..\..\src\stages.cpp(93): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
-  utils.cpp
-LINK : warning LNK4098: la biblioteca predeterminada'LIBCMT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
-  Generando código
-  16 of 1979 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
-    4 functions were new in current compilation
-    23 functions had inline decision re-evaluated but remain unchanged
-  Generación de código finalizada
-glew32s.lib(glew.obj) : warning LNK4099: no se encontró PDB 'vc120.pdb' con 'glew32s.lib(glew.obj)' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\game\vc120.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-  visualstudio.vcxproj -> C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio.exe
-  visualstudio.vcxproj -> ..\..\visualstudio.pdb (Full PDB)
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  2 of 2004 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Usuario\Desktop\jocs_e\jocs_e\game\vc120.pdb'; linking object as if no debug info
+  visualstudio.vcxproj -> C:\Users\Usuario\Desktop\jocs_e\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio.exe

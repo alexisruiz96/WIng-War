@@ -175,9 +175,9 @@ void GameStage::update(double seconds_elapsed)
 		scene->plane->update(seconds_elapsed);
 
 
-		//scene->p38->update(seconds_elapsed);
-		//scene->bomber->update(seconds_elapsed);
-		//scene->p38a->update(seconds_elapsed);
+		scene->p38->update(seconds_elapsed);
+		scene->bomber->update(seconds_elapsed);
+		scene->p38a->update(seconds_elapsed);
 	}
 
 	//to navigate with the mouse fixed in the middle
