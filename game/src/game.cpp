@@ -11,6 +11,9 @@
 #include "utils.h"
 #include "bulletmanager.h"
 #include "bass.h"
+#include "gamestage.h"
+#include "menustage.h"
+#include "firstscreen.h"
 
 //some globals
 
@@ -47,33 +50,39 @@ void Game::init(void)
     //SDL_SetWindowSize(window, 50,50);
 
 	//create our camera
-	
+	camera = new Camera();
+	camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
+	camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
 	//OpenGL flags
 	glEnable( GL_CULL_FACE ); //render both sides of every triangle
 	glEnable( GL_DEPTH_TEST ); //check the occlusions using the Z buffer
 
+	FirstScreen* firstscreen = new FirstScreen();
+	Stage::s_Stages.insert(std::pair<std::string, Stage* >("firstscreen", firstscreen));
 	MenuStage* menu = new MenuStage();
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("menu", menu));
 	GameStage* gamestage = new GameStage();
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("gamestage", gamestage));
 
+	firstscreen->init();
 	menu->init();
 	gamestage->init();
 
-	Stage::current = Stage::s_Stages["gamestage"];
+	Stage::current = Stage::s_Stages["firstscreen"];
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
 
 
 	 //Inicializamos BASS  (id_del_device, muestras por segundo, ...)
-	BASS_Init(1, 44100, 0, 0, NULL);
+	
 }
 
 //what to do when the image has to be draw
 void Game::render(void)
 {
 	Stage::current->render();
+	//camera->set();
 
 	//example to render the FPS every 10 frames
 	drawText(2, 2, std::to_string(fps), Vector3(1, 1, 1), 2);

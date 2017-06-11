@@ -18,7 +18,7 @@ BulletManager::BulletManager()
 
 	last_pos = 0;
 	
-
+	BASS_Init(1, 44100, 0, 0, NULL);
 	//Cargamos un sample (memoria, filename, offset, length, max, flags)
 	hSample = BASS_SampleLoad(false, "data/sounds/shot.wav", 0, 0, 3, 0);
 	//Creamos un canal para el sample

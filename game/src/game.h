@@ -7,8 +7,6 @@
 
 #include "includes.h"
 #include "camera.h"
-#include "stages.h"
-
 
 class PlayerController;
 class Game

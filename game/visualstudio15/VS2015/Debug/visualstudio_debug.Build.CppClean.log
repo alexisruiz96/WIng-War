@@ -1,64 +1,48 @@
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\vc140.pdb
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\vc140.idb
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\box_bld.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\coldet.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\coldet_bld.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\math3d.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\mytritri.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\sysdep.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\entity.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\entitycollider.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\entitymesh.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\textparser.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\framework.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\game.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\main.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\mesh.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\playercontroller.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\rendertotexture.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\scene.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\shader.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\texture.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\utils.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\bullet.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\bulletmanager.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\camera.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\box.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\tritri.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio15\vs2015\debug\game_entities.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\vc140.pdb
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\vc140.idb
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\coldet.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\coldet_bld.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\math3d.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\mytritri.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\sysdep.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\entity.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\entitymesh.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\textparser.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\framework.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\game.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\game_entities.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\main.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\mesh.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\playercontroller.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\rendertotexture.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\scene.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\shader.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\texture.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\utils.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\bullet.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\camera.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\box.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\box_bld.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio_debug.exe
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\visualstudio_debug.pdb
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\meshmanager.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\tritri.obj
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\..\..\visualstudio_debug.exe
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\visualstudio.tlog\cl.command.1.tlog
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\visualstudio.tlog\cl.read.1.tlog
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\visualstudio.tlog\cl.write.1.tlog
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\visualstudio.tlog\link.command.1.tlog
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\visualstudio.tlog\link.read.1.tlog
-c:\users\usuario\documents\enginyeria informàtica\tje\tje\tje\visualstudio15\vs2015\debug\visualstudio.tlog\link.write.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\vc140.pdb
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\vc140.idb
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\controller.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\entity.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\entitycollider.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\entitymesh.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\textparser.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\firstscreen.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\framework.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\game.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\gamestage.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\game_entities.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\main.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\menustage.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\mesh.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\playercontroller.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\rendertotexture.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\scene.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\shader.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\stage.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\texture.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\utils.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\aicontroller.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\bullet.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\bulletmanager.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\camera.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\box.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\box_bld.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\coldet.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\coldet_bld.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\math3d.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\mytritri.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\sysdep.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\tritri.obj
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.res
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\cl.command.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\cl.read.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\cl.write.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\link-cvtres.read.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\link-cvtres.write.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\link-rc.read.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\link-rc.write.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\link.command.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\link.read.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\link.write.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\rc.command.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\rc.read.1.tlog
+c:\users\usuario\desktop\jocs_e\jocs_e\game\visualstudio15\vs2015\debug\visualstudio.tlog\rc.write.1.tlog

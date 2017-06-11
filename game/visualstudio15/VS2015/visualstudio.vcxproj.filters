@@ -43,9 +43,12 @@
       <Filter>coldet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\game_entities.cpp" />
-    <ClCompile Include="..\..\src\stages.cpp" />
     <ClCompile Include="..\..\src\controller.cpp" />
     <ClCompile Include="..\..\src\aicontroller.cpp" />
+    <ClCompile Include="..\..\src\menustage.cpp" />
+    <ClCompile Include="..\..\src\firstscreen.cpp" />
+    <ClCompile Include="..\..\src\gamestage.cpp" />
+    <ClCompile Include="..\..\src\stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\bullet.h" />
@@ -84,11 +87,14 @@
       <Filter>coldet</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\game_entities.h" />
-    <ClInclude Include="..\..\src\stages.h" />
     <ClInclude Include="..\..\src\controller.h" />
     <ClInclude Include="..\..\src\bass.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\src\aicontroller.h" />
+    <ClInclude Include="..\..\src\menustage.h" />
+    <ClInclude Include="..\..\src\firstscreen.h" />
+    <ClInclude Include="..\..\src\gamestage.h" />
+    <ClInclude Include="..\..\src\stage.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="coldet">
@@ -102,6 +108,7 @@
     <None Include="..\..\src\coldet\makefile.g++">
       <Filter>coldet</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="visualstudio.rc" />

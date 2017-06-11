@@ -1,11 +1,143 @@
-﻿  stages.cpp
-..\..\src\stages.cpp(94): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
-LINK : warning LNK4098: la biblioteca predeterminada'LIBCMT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
-  Generando código
-  1 of 1981 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    25 functions had inline decision re-evaluated but remain unchanged
-  Generación de código finalizada
-glew32s.lib(glew.obj) : warning LNK4099: no se encontró PDB 'vc120.pdb' con 'glew32s.lib(glew.obj)' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\game\vc120.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-  visualstudio.vcxproj -> C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio.exe
-  visualstudio.vcxproj -> ..\..\visualstudio.pdb (Full PDB)
+﻿  aicontroller.cpp
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(7): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(4): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\firstscreen.h(5): error C2504: 'Stage': base class undefined
+  firstscreen.cpp
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(7): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(4): error C2504: 'Stage': base class undefined
+  gamestage.cpp
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(7): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(4): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\firstscreen.h(5): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): error C2011: 'GameStage': 'class' type redefinition
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+..\..\src\gamestage.cpp(14): error C2027: use of undefined type 'GameStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+..\..\src\gamestage.cpp(16): error C2027: use of undefined type 'GameStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+..\..\src\gamestage.cpp(16): error C2059: syntax error: ')'
+..\..\src\gamestage.cpp(17): error C2143: syntax error: missing ';' before '{'
+..\..\src\gamestage.cpp(17): error C2447: '{': missing function header (old-style formal list?)
+..\..\src\gamestage.cpp(23): error C2027: use of undefined type 'GameStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+..\..\src\gamestage.cpp(25): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(26): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(26): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(26): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(27): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(27): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(27): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(27): error C2227: left of '->lookAt' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(28): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(28): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(28): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(28): error C2227: left of '->setPerspective' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(30): error C2065: 'camera': undeclared identifier
+..\..\src\gamestage.cpp(30): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(30): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(30): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(47): error C2027: use of undefined type 'GameStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+..\..\src\gamestage.cpp(57): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+..\..\src\gamestage.cpp(65): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(65): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(65): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(65): error C2227: left of '->set' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(72): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(72): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(72): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(72): error C2227: left of '->eye' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(72): error C2228: left of '.x' must have class/struct/union
+..\..\src\gamestage.cpp(72): error C2228: left of '.y' must have class/struct/union
+..\..\src\gamestage.cpp(72): error C2228: left of '.z' must have class/struct/union
+..\..\src\gamestage.cpp(72): error C2660: 'Matrix44::setTranslation': function does not take 1 arguments
+..\..\src\gamestage.cpp(73): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(73): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(73): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(85): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(85): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(85): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(92): error C3861: 'renderGUI': identifier not found
+..\..\src\gamestage.cpp(95): error C2027: use of undefined type 'GameStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+..\..\src\gamestage.cpp(103): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(103): error C2227: left of '->window_width' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(103): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(103): error C2227: left of '->window_height' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(103): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(103): error C2660: 'Camera::setOrthographic': function does not take 4 arguments
+..\..\src\gamestage.cpp(109): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(109): error C2227: left of '->window_width' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(109): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(109): error C2227: left of '->window_height' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(109): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(109): error C2660: 'Mesh::createQuad': function does not take 3 arguments
+..\..\src\gamestage.cpp(116): error C2027: use of undefined type 'GameStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+..\..\src\gamestage.cpp(118): error C2065: 'keystate': undeclared identifier
+..\..\src\gamestage.cpp(125): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(125): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(125): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(125): error C2227: left of '->rotate' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(126): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(126): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(126): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(126): error C2227: left of '->rotate' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(126): error C2227: left of '->getLocalVector' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(132): error C2065: 'keystate': undeclared identifier
+..\..\src\gamestage.cpp(133): error C2065: 'keystate': undeclared identifier
+..\..\src\gamestage.cpp(133): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(133): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(133): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(133): error C2227: left of '->move' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(134): error C2065: 'keystate': undeclared identifier
+..\..\src\gamestage.cpp(134): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(134): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(134): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(134): error C2227: left of '->move' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(135): error C2065: 'keystate': undeclared identifier
+..\..\src\gamestage.cpp(135): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(135): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(135): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(135): error C2227: left of '->move' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(136): error C2065: 'keystate': undeclared identifier
+..\..\src\gamestage.cpp(136): error C2065: 'game': undeclared identifier
+..\..\src\gamestage.cpp(136): error C2227: left of '->camera' must point to class/struct/union/generic type
+  ..\..\src\gamestage.cpp(136): note: type is 'unknown-type'
+..\..\src\gamestage.cpp(136): error C2227: left of '->move' must point to class/struct/union/generic type
+..\..\src\gamestage.cpp(181): error C2027: use of undefined type 'GameStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+..\..\src\gamestage.cpp(192): error C2027: use of undefined type 'GameStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(6): note: see declaration of 'GameStage'
+  game_entities.cpp
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(7): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(4): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\firstscreen.h(5): error C2504: 'Stage': base class undefined
+  menustage.cpp
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(7): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(4): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\firstscreen.h(5): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(3): error C2011: 'MenuStage': 'class' type redefinition
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(3): note: see declaration of 'MenuStage'
+..\..\src\menustage.cpp(3): error C2027: use of undefined type 'MenuStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(3): note: see declaration of 'MenuStage'
+..\..\src\menustage.cpp(3): error C2059: syntax error: ')'
+..\..\src\menustage.cpp(4): error C2143: syntax error: missing ';' before '{'
+..\..\src\menustage.cpp(4): error C2447: '{': missing function header (old-style formal list?)
+..\..\src\menustage.cpp(7): error C2027: use of undefined type 'MenuStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(3): note: see declaration of 'MenuStage'
+..\..\src\menustage.cpp(12): error C2027: use of undefined type 'MenuStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(3): note: see declaration of 'MenuStage'
+..\..\src\menustage.cpp(22): error C2027: use of undefined type 'MenuStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(3): note: see declaration of 'MenuStage'
+..\..\src\menustage.cpp(27): error C2027: use of undefined type 'MenuStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(3): note: see declaration of 'MenuStage'
+..\..\src\menustage.cpp(31): error C2027: use of undefined type 'MenuStage'
+  c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(3): note: see declaration of 'MenuStage'
+..\..\src\menustage.cpp(33): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+..\..\src\menustage.cpp(33): error C2227: left of '->current' must point to class/struct/union/generic type
+..\..\src\menustage.cpp(33): error C2227: left of '->onChange' must point to class/struct/union/generic type
+  stage.cpp
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\gamestage.h(7): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\menustage.h(4): error C2504: 'Stage': base class undefined
+c:\users\usuario\desktop\jocs_e\jocs_e\game\src\firstscreen.h(5): error C2504: 'Stage': base class undefined

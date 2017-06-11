@@ -1,7 +1,7 @@
 #pragma once
 
 #include "controller.h"
-#include "stages.h"
+#include "stage.h"
 #include "game_entities.h"
 
 

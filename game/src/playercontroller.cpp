@@ -12,7 +12,6 @@
 #include "utils.h"
 #include "camera.h"
 
-
 SDL_Joystick *joy = NULL;
 
 double last_time = 0;
@@ -43,7 +42,7 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 
 	float speed = seconds_elapsed * 100;
 	time = seconds_elapsed;
-	if (GameStage::instance->keystate[SDL_SCANCODE_LSHIFT])
+	if (Game::instance->keystate[SDL_SCANCODE_LSHIFT])
 		speed *= 25;
 
 
@@ -65,17 +64,17 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 		}
 	}
 
-	if (GameStage::instance->keystate[SDL_SCANCODE_A] || GameStage::instance->keystate[SDL_SCANCODE_LEFT]) {
+	if (Game::instance->keystate[SDL_SCANCODE_A] || Game::instance->keystate[SDL_SCANCODE_LEFT]) {
 		Scene::instance->plane->model.rotateLocal(seconds_elapsed * 5, Vector3(0, 0, 1));
 	}
-	if (GameStage::instance->keystate[SDL_SCANCODE_D] || GameStage::instance->keystate[SDL_SCANCODE_RIGHT]) {
+	if (Game::instance->keystate[SDL_SCANCODE_D] || Game::instance->keystate[SDL_SCANCODE_RIGHT]) {
 		Scene::instance->plane->model.rotateLocal(-seconds_elapsed * 5, Vector3(0, 0, 1));
 	}
-	if (GameStage::instance->keystate[SDL_SCANCODE_W] || GameStage::instance->keystate[SDL_SCANCODE_UP]) {
+	if (Game::instance->keystate[SDL_SCANCODE_W] || Game::instance->keystate[SDL_SCANCODE_UP]) {
 		Scene::instance->plane->model.rotateLocal(-seconds_elapsed, Vector3(1, 0, 0));
 
 	}
-	if (GameStage::instance->keystate[SDL_SCANCODE_S] || GameStage::instance->keystate[SDL_SCANCODE_DOWN]) {
+	if (Game::instance->keystate[SDL_SCANCODE_S] || Game::instance->keystate[SDL_SCANCODE_DOWN]) {
 		Scene::instance->plane->model.rotateLocal(seconds_elapsed, Vector3(1, 0, 0));
 
 	}
@@ -84,7 +83,7 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 	Scene::instance->plane->setLastPosition(Scene::instance->plane->getPosition());
 	Scene::instance->plane->setPosition(Scene::instance->plane->model * Vector3(0,0,0));
 
-	if (GameStage::instance->keystate[SDL_SCANCODE_L])
+	if (Game::instance->keystate[SDL_SCANCODE_L])
 		Scene::instance->plane->shoot();
 	
 	
@@ -94,22 +93,22 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 	switch (numc%4) {
 		case 0:
 			pos = Scene::instance->plane->model * Vector3(0, 5, -15);
-			pos = GameStage::instance->camera->eye  * 0.9 + pos * 0.1;
+			pos = Game::instance->camera->eye  * 0.9 + pos * 0.1;
 			//pos = pos.normalize()*10 + Vector3(0, 5, -15);
 			//pos = scene->plane->model * Vector3(1, 1, 1);
 			//std::cout << pos.x-lastpos.x << ",    " << pos.y - lastpos.y << ",   " << pos.z - lastpos.z << std::endl;
 			
-			GameStage::instance->camera->lookAt(pos, Scene::instance->plane->model* Vector3(0, 0, 40), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0))); //position the camera and point to 0,0,0
+			Game::instance->camera->lookAt(pos, Scene::instance->plane->model* Vector3(0, 0, 40), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0))); //position the camera and point to 0,0,0
 			break;
 		case 1:
 			
-			GameStage::instance->camera->lookAt(Scene::instance->plane->model * Vector3(0, 0.75, -1.5), Scene::instance->plane->model* Vector3(0, 0, 50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
+			Game::instance->camera->lookAt(Scene::instance->plane->model * Vector3(0, 0.75, -1.5), Scene::instance->plane->model* Vector3(0, 0, 50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
 			break;
 		case 2:
-			GameStage::instance->camera->lookAt(Scene::instance->plane->model * Vector3(1.5, 0, 0), Scene::instance->plane->model* Vector3(0, 0, 50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
+			Game::instance->camera->lookAt(Scene::instance->plane->model * Vector3(1.5, 0, 0), Scene::instance->plane->model* Vector3(0, 0, 50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
 			break;
 		case 3:
-			GameStage::instance->camera->lookAt(Scene::instance->plane->model * Vector3(-1.5, 0, 0), Scene::instance->plane->model* Vector3(0, 0, -50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
+			Game::instance->camera->lookAt(Scene::instance->plane->model * Vector3(-1.5, 0, 0), Scene::instance->plane->model* Vector3(0, 0, -50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
 			break;
 	}
 }
