@@ -10,4 +10,7 @@
     <RemoteDebuggerWorkingDirectory>
     </RemoteDebuggerWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup>
+    <ShowAllFiles>true</ShowAllFiles>
+  </PropertyGroup>
 </Project>

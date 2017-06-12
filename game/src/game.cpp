@@ -11,9 +11,9 @@
 #include "utils.h"
 #include "bulletmanager.h"
 #include "bass.h"
-#include "gamestage.h"
-#include "menustage.h"
-#include "firstscreen.h"
+#include "stages/gamestage.h"
+#include "stages/menustage.h"
+#include "stages/firstscreen.h"
 
 //some globals
 
@@ -60,7 +60,7 @@ void Game::init(void)
 	FirstScreen* firstscreen = new FirstScreen();
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("firstscreen", firstscreen));
 	MenuStage* menu = new MenuStage();
-	Stage::s_Stages.insert(std::pair<std::string, Stage* >("menu", menu));
+	Stage::s_Stages.insert(std::pair<std::string, Stage* >("menustate", menu));
 	GameStage* gamestage = new GameStage();
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("gamestage", gamestage));
 

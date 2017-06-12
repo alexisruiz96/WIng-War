@@ -45,10 +45,10 @@
     <ClCompile Include="..\..\src\game_entities.cpp" />
     <ClCompile Include="..\..\src\controller.cpp" />
     <ClCompile Include="..\..\src\aicontroller.cpp" />
-    <ClCompile Include="..\..\src\menustage.cpp" />
-    <ClCompile Include="..\..\src\firstscreen.cpp" />
-    <ClCompile Include="..\..\src\gamestage.cpp" />
-    <ClCompile Include="..\..\src\stage.cpp" />
+    <ClCompile Include="..\..\src\stages\gamestage.cpp" />
+    <ClCompile Include="..\..\src\stages\firstscreen.cpp" />
+    <ClCompile Include="..\..\src\stages\menustage.cpp" />
+    <ClCompile Include="..\..\src\stages\stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\bullet.h" />
@@ -91,14 +91,17 @@
     <ClInclude Include="..\..\src\bass.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\src\aicontroller.h" />
-    <ClInclude Include="..\..\src\menustage.h" />
-    <ClInclude Include="..\..\src\firstscreen.h" />
-    <ClInclude Include="..\..\src\gamestage.h" />
-    <ClInclude Include="..\..\src\stage.h" />
+    <ClInclude Include="..\..\src\stages\gamestage.h" />
+    <ClInclude Include="..\..\src\stages\firstscreen.h" />
+    <ClInclude Include="..\..\src\stages\menustage.h" />
+    <ClInclude Include="..\..\src\stages\stage.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="coldet">
       <UniqueIdentifier>{fd502b70-37b7-4df8-956c-d5001ed85696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stages">
+      <UniqueIdentifier>{c6fac5e3-052d-4173-82cb-6cbf25a9f2e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +112,8 @@
       <Filter>coldet</Filter>
     </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="visualstudio.rc" />

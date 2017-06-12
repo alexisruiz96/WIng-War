@@ -107,19 +107,19 @@
     <ClCompile Include="..\..\src\entitycollider.cpp" />
     <ClCompile Include="..\..\src\entitymesh.cpp" />
     <ClCompile Include="..\..\src\extra\textparser.cpp" />
-    <ClCompile Include="..\..\src\firstscreen.cpp" />
     <ClCompile Include="..\..\src\framework.cpp" />
     <ClCompile Include="..\..\src\game.cpp" />
-    <ClCompile Include="..\..\src\gamestage.cpp" />
     <ClCompile Include="..\..\src\game_entities.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
-    <ClCompile Include="..\..\src\menustage.cpp" />
     <ClCompile Include="..\..\src\mesh.cpp" />
     <ClCompile Include="..\..\src\playercontroller.cpp" />
     <ClCompile Include="..\..\src\rendertotexture.cpp" />
     <ClCompile Include="..\..\src\scene.cpp" />
     <ClCompile Include="..\..\src\shader.cpp" />
-    <ClCompile Include="..\..\src\stage.cpp" />
+    <ClCompile Include="..\..\src\stages\firstscreen.cpp" />
+    <ClCompile Include="..\..\src\stages\gamestage.cpp" />
+    <ClCompile Include="..\..\src\stages\menustage.cpp" />
+    <ClCompile Include="..\..\src\stages\stage.cpp" />
     <ClCompile Include="..\..\src\texture.cpp" />
     <ClCompile Include="..\..\src\utils.cpp" />
   </ItemGroup>
@@ -140,19 +140,19 @@
     <ClInclude Include="..\..\src\entitycollider.h" />
     <ClInclude Include="..\..\src\entitymesh.h" />
     <ClInclude Include="..\..\src\extra\textparser.h" />
-    <ClInclude Include="..\..\src\firstscreen.h" />
     <ClInclude Include="..\..\src\framework.h" />
     <ClInclude Include="..\..\src\game.h" />
-    <ClInclude Include="..\..\src\gamestage.h" />
     <ClInclude Include="..\..\src\game_entities.h" />
     <ClInclude Include="..\..\src\includes.h" />
-    <ClInclude Include="..\..\src\menustage.h" />
     <ClInclude Include="..\..\src\mesh.h" />
     <ClInclude Include="..\..\src\playercontroller.h" />
     <ClInclude Include="..\..\src\rendertotexture.h" />
     <ClInclude Include="..\..\src\scene.h" />
     <ClInclude Include="..\..\src\shader.h" />
-    <ClInclude Include="..\..\src\stage.h" />
+    <ClInclude Include="..\..\src\stages\firstscreen.h" />
+    <ClInclude Include="..\..\src\stages\gamestage.h" />
+    <ClInclude Include="..\..\src\stages\menustage.h" />
+    <ClInclude Include="..\..\src\stages\stage.h" />
     <ClInclude Include="..\..\src\texture.h" />
     <ClInclude Include="..\..\src\utils.h" />
     <ClInclude Include="resource.h" />
@@ -161,6 +161,8 @@
     <None Include="..\..\src\coldet\coldet.dsp" />
     <None Include="..\..\src\coldet\makefile.g++" />
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="visualstudio.rc" />
