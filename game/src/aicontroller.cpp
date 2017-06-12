@@ -32,7 +32,7 @@ void AIcontroller::update(double seconds_elapsed)
 		Matrix44 inv = ai_plane->model;
 		inv.inverse();
 		axis = inv.rotateVector(axis);
-		ai_plane->model.rotateLocal(cos_angle, axis);
+		ai_plane->model.rotateLocal(cos_angle * seconds_elapsed, axis);
 		
 	}
 	float angle_with_target = 1 - front.dot(target_front);

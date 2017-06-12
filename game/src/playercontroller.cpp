@@ -25,6 +25,7 @@ PlayerController::PlayerController()
 		joy = SDL_JoystickOpen(0);
 	}
 
+	useGUI = true;
 	
 
 }
@@ -99,16 +100,21 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 			//std::cout << pos.x-lastpos.x << ",    " << pos.y - lastpos.y << ",   " << pos.z - lastpos.z << std::endl;
 			
 			Game::instance->camera->lookAt(pos, Scene::instance->plane->model* Vector3(0, 0, 40), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0))); //position the camera and point to 0,0,0
+			useGUI = true;
 			break;
 		case 1:
 			
 			Game::instance->camera->lookAt(Scene::instance->plane->model * Vector3(0, 0.75, -1.5), Scene::instance->plane->model* Vector3(0, 0, 50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
+			useGUI = true;
 			break;
 		case 2:
 			Game::instance->camera->lookAt(Scene::instance->plane->model * Vector3(1.5, 0, 0), Scene::instance->plane->model* Vector3(0, 0, 50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
+			useGUI = false;
 			break;
+			
 		case 3:
 			Game::instance->camera->lookAt(Scene::instance->plane->model * Vector3(-1.5, 0, 0), Scene::instance->plane->model* Vector3(0, 0, -50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
+			useGUI = false;
 			break;
 	}
 }

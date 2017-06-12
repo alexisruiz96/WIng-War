@@ -11,6 +11,7 @@ public:
 	~PlayerController();
 
 
+	bool useGUI;
 	void render(void);
 	void update(double seconds_elapsed, int numc);
 
