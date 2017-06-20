@@ -4,7 +4,11 @@
 
 AIcontroller::AIcontroller()
 {
-	target = Scene::instance->plane->getPosition();;
+	waypoints.push_back(Vector3(600, 500, 600));
+	waypoints.push_back(Vector3(600, 500, -600));
+	waypoints.push_back(Vector3(-600, 500, 600));
+	waypoints.push_back(Vector3(1200, 500, 600));
+	waypoints.push_back(Vector3(600, 500, 1200));
 }
 
 
@@ -14,17 +18,30 @@ AIcontroller::~AIcontroller()
 
 void AIcontroller::update(double seconds_elapsed)
 {
-	target = Scene::instance->plane->getPosition();
 	Vector3 target_front = Scene::instance->plane->model.rotateVector(Vector3(0, 0, 1));
 	target_front.normalize();
 	//Camera* cam = GameStage::getInstance()->camera;
 	Vector3 origin = ai_plane->getPosition();
-	Vector3 to_target = target - origin;
-	float distance = to_target.length();
+
+	target = waypoints[0];
+	for (int i = 0; i < waypoints.size(); i++){
+		if ((waypoints[i] - origin).length() < (target - origin).length())
+			target = waypoints[i];
+	}
+
+	if ((Scene::instance->plane->getPosition() - origin).length() < 750.0f) {
+		target = Scene::instance->plane->getPosition();
+	}
+
 	Vector3 front = ai_plane->model.rotateVector(Vector3(0, 0, 1));
 
-	if (distance > 200)
+	Vector3 to_target = target - origin;
+	float distance = to_target.length();
+
+	bool is_in_front = false;
+	if (distance > 200 && !is_in_front)
 	{
+		is_in_front = false;
 		to_target.normalize();
 		float cos_angle = 1.0 - front.dot(to_target);
 		Vector3 axis = to_target.cross(front);
@@ -32,11 +49,13 @@ void AIcontroller::update(double seconds_elapsed)
 		Matrix44 inv = ai_plane->model;
 		inv.inverse();
 		axis = inv.rotateVector(axis);
-		ai_plane->model.rotateLocal(cos_angle * seconds_elapsed, axis);
-		
+		ai_plane->model.rotateLocal(cos_angle * seconds_elapsed * 10, axis);
 	}
+	if (1 - front.dot(target_front) < 0.1)
+		is_in_front = true;
+
 	float angle_with_target = 1 - front.dot(target_front);
-	if (angle_with_target < 0.1 && distance < 100)
+	if (angle_with_target < 0.1 && distance < 250)
 	{
 		this->ai_plane->shoot();
 	}

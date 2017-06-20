@@ -16,6 +16,8 @@ public:
 	Vector3 target;
 	AirPlane* ai_plane;
 
+	std::vector<Vector3> waypoints;
+
 	void update(double seconds_elapsed);
 	void setPlane(AirPlane* pl);
 };

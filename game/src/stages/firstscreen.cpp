@@ -13,7 +13,7 @@ FirstScreen::~FirstScreen()
 
 void FirstScreen::init() {
 
-	text = Texture::Load("data/menu/firstscreen.tga");
+	text = Texture::Load("data/meshes/cielo.tga");
 	game = Game::getInstance();
 
 	quadforstart.createQuad(game->window_width / 2, game->window_height / 2, game->window_width, game->window_height, true);
@@ -22,6 +22,7 @@ void FirstScreen::init() {
 
 void FirstScreen::render() {
 
+	camfscreen.set();
 
 	text->bind();
 	quadforstart.render(GL_TRIANGLES);
@@ -37,4 +38,5 @@ void FirstScreen::onKeyPressed(SDL_KeyboardEvent event) {
 }
 void FirstScreen::onMouseButton(SDL_MouseButtonEvent event) {
 	this->current->onChange("menustate");
+	
 }

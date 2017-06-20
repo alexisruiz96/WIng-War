@@ -64,6 +64,11 @@ void GameStage::render()
 	glEnable(GL_DEPTH_TEST);
 
 	
+	
+	scene->water->model.setIdentity();
+	scene->water->model.traslate(game->camera->eye.x, 0, game->camera->eye.z);
+	scene->water->render(game->camera, shader);
+
 
 	scene->root->render(game->camera, shader);
 	//camera pos
