@@ -72,9 +72,6 @@ void Game::init(void)
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
-
-
-	 //Inicializamos BASS  (id_del_device, muestras por segundo, ...)
 	
 }
 

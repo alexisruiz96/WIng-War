@@ -14,12 +14,14 @@ private:
 	Vector3 last_position;
 	long last_shot;
 	bool isIA;
+	
+
 public:
 	AirPlane(bool ia = false);
 	virtual ~AirPlane();
 
 	AIcontroller* controller;
-
+	int hp;
 	Vector3 getPosition();
 	void setPosition(Vector3 pos);
 

@@ -26,22 +26,22 @@ void Scene::createScene() {
 	plane = new AirPlane();
 	//plane->setDynamic();
 	plane->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-	plane->model.setTranslation(0, 750, 130);
+	plane->model.setTranslation(0, 750, 450);
 	plane->setPosition(plane->model * Vector3(0,0,0));
 	plane->setLastPosition(plane->getPosition());
 	root->addChild(plane);
 
-	for (int i = -1; i <= 1; i++) {
-		for (int j = -1; j <= 1; j++) {
+	//for (int i = -1; i <= 1; i++) {
+		//for (int j = -1; j <= 1; j++) {
 			suelo = new EntityCollider();
 			//bool terrain = rand() % 2 == 0;
 
 			suelo->setStatic();
 			suelo->config("data/meshes/island/island_color.tga", "data/meshes/island/island.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-			suelo->model.setTranslation(i * 14000, 0, j * 14000);
+			suelo->model.setTranslation( 0, 0, 0);
 			root->addChild(suelo);
-		}
-	}
+		//}
+	//}
 
 
 		
@@ -87,7 +87,7 @@ void Scene::createScene() {
 	
 	water = new EntityMesh();
 	water->config("data/meshes/island/agua.tga", "data/meshes/island/agua.ASE", "data/shaders/texture.vs", "data/shaders/texture.fs");
-	water->model.traslate(0, 0, 0);
+	water->model.traslate(0, -15, 0);
 	root->addChild(water);
 
 

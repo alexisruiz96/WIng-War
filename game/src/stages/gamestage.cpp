@@ -73,8 +73,9 @@ void GameStage::render()
 	scene->root->render(game->camera, shader);
 	//camera pos
 	//std::cout << camera->eye.x << " - " << camera->eye.y << " - " << camera->eye.z << std::endl; 
-
-	
+	std::stringstream vida;
+	vida << "HP : " << scene->plane->hp << "%";
+	drawText(game->window_width * 0.1 , game->window_height * 0.9, vida.str(), Vector3(1, 0.01*scene->plane->hp, 0.01*scene->plane->hp), 2);
 
 	BulletManager::instance->render();
 

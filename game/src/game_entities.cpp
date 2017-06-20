@@ -16,6 +16,7 @@ AirPlane::AirPlane(bool ia)
 		controller->setPlane(this);
 	}
 
+	hp = 100;
 }
 AirPlane::~AirPlane()
 {
