@@ -19,6 +19,7 @@ public:
 	float power;//damage of bullet
 	Entity* author;//who has shot
 	int type;
+	bool hittedYet;
 
 };
 

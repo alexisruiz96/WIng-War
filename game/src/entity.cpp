@@ -4,6 +4,8 @@
 #include "camera.h"
 #include "shader.h"
 
+std::vector<Entity*> Entity::toDestroy;
+
 Entity::Entity()
 {
 	parent = NULL;
@@ -61,5 +63,18 @@ void Entity::removeChild(Entity* ent)
 
 	//para actualizar la posicion de la entity cuando se quita como hijo
 	ent->model = ent->model * getGlobalMatrix();
+
+}
+
+void Entity::deleteEntity()
+{
+	Entity* tod;
+	for (int i = 0; i < toDestroy.size(); i++) {
+		tod = toDestroy[i];
+	}
+	if (tod->parent != NULL) {
+		tod->parent->removeChild(tod);
+	}
+	delete(tod);
 
 }

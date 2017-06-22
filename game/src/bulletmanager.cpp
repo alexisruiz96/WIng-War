@@ -85,8 +85,13 @@ void BulletManager::update(float elapsed_time)
 				float radius = colliders[j]->getRadius();
 				if ((model*center).distance(bull.position) <= radius) //distance between bullet and center less than the sphereCollision
 				{
-					std::cout << "bullet collision" << std::endl;
+					if (!bull.hittedYet) {
+						std::cout << "bullet collision" << std::endl;
+						colliders[j]->hp = colliders[j]->hp - 5;
+						bull.hittedYet = true;
+					}
 				}
+
 			}
 			/*else if (colliders[i]->isStatic()) {
 				Vector3 or = bull.position;
@@ -122,6 +127,7 @@ void BulletManager::shoot(Vector3 pos,  Vector3 vel, float tl, float pow, Entity
 	bull.power = pow;
 	bull.author = author;
 	bull.type = type;
+	bull.hittedYet = false;
 
 	last_pos++;
 

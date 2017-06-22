@@ -16,7 +16,6 @@ AirPlane::AirPlane(bool ia)
 		controller->setPlane(this);
 	}
 
-	hp = 100;
 }
 AirPlane::~AirPlane()
 {
@@ -45,6 +44,7 @@ void AirPlane::update(double seconds_elapsed)
 	if (!this->isIA) {
 		colEsferas();
 
+		
 		Vector3 origin = getPosition();
 		Vector3 direction = (getPosition() - getLastPosition()).normalize();
 		Vector3 collision;
@@ -91,4 +91,37 @@ void AirPlane::shoot() {
 		BulletManager::instance->shoot(model * Vector3(-2, 0.25, 0.25), v, 2.0, 5.00,this, 1);
 		last_shot = getTime() + 200;
 	}
+}
+
+
+
+Boat::Boat() {
+
+}
+
+Boat::~Boat() {
+
+}
+
+void Boat::update(double seconds_elapsed)
+{
+	if (this->getHp() <= 0) {
+		toDestroy.push_back(this);
+		deleteEntity();
+
+	}
+}
+
+Vector3 Boat::getPosition() {
+	return this->position;
+}
+void Boat::setPosition(Vector3 pos) {
+	this->position = pos;
+}
+
+Vector3 Boat::getLastPosition() {
+	return this->last_position;
+}
+void Boat::setLastPosition(Vector3 lastpos) {
+	this->last_position = lastpos;
 }

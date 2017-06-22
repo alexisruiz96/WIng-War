@@ -15,6 +15,7 @@ public:
 	Entity();
 	virtual ~Entity();
 
+	static std::vector<Entity*> toDestroy;
 	std::string name;
 	Matrix44 model;
 	int id;
@@ -29,6 +30,7 @@ public:
 	void addChild(Entity* ent);
 	void removeChild(Entity* ent);
 	Vector3 getPosition();
+	void deleteEntity();
 
 	Matrix44 getGlobalMatrix(); //returns transform in wolrd coordinates.
 };

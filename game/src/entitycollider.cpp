@@ -12,6 +12,7 @@ EntityCollider::EntityCollider()
 
 EntityCollider::~EntityCollider()
 {
+
 }
 
 void EntityCollider::update(double seconds_elapsed) 
@@ -86,5 +87,14 @@ bool EntityCollider::colVSStatics(Vector3 origin, Vector3 direction, Vector3& co
 	}
 	return false;
 
+}
+
+void EntityCollider::setHp(int hp)
+{
+	this->hp = hp;
+}
+int EntityCollider::getHp()
+{
+	return this->hp;
 }
 

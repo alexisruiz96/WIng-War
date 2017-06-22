@@ -21,7 +21,7 @@ public:
 	virtual ~AirPlane();
 
 	AIcontroller* controller;
-	int hp;
+	
 	Vector3 getPosition();
 	void setPosition(Vector3 pos);
 
@@ -38,4 +38,31 @@ public:
 	
 };
 
+class Boat : public EntityCollider
+{
+private:
+	Vector3 position;
+	Vector3 last_position;
+	long last_shot;
+	bool isIA;
+
+
+public:
+	Boat();
+	virtual ~Boat();
+
+	Vector3 getPosition();
+	void setPosition(Vector3 pos);
+
+	Vector3 getLastPosition();
+	void setLastPosition(Vector3 lastpos);
+
+	void update(double seconds_elapsed);
+
+	void colEsferas();
+	//bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
+
+	void shoot();
+
+};
 #endif

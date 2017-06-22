@@ -13,6 +13,7 @@ Scene::Scene()
 	p38a = NULL;
 	water = NULL;
 	cannon = NULL;
+	barco = NULL;
 	root = new Entity();
 }
 
@@ -26,9 +27,10 @@ void Scene::createScene() {
 	plane = new AirPlane();
 	//plane->setDynamic();
 	plane->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-	plane->model.setTranslation(0, 750, 450);
+	plane->model.setTranslation(-1094, 750, -2887);
 	plane->setPosition(plane->model * Vector3(0,0,0));
 	plane->setLastPosition(plane->getPosition());
+	plane->setHp(100);
 	root->addChild(plane);
 
 	//for (int i = -1; i <= 1; i++) {
@@ -55,6 +57,7 @@ void Scene::createScene() {
 			bomber->setDynamic();
 			bomber->config("data/meshes/bomber_axis/bomber_axis.tga", "data/meshes/bomber_axis/bomber_axis.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 			bomber->model.setTranslation(0, i*750, j*300);
+			bomber->setHp(50);
 			bomber->setPosition(bomber->model * Vector3(0, 0, 0));
 			bomber->setLastPosition(bomber->getPosition());
 			root->addChild(bomber);
@@ -65,6 +68,7 @@ void Scene::createScene() {
 			p38->model.setTranslation(40, i*750, j*290);
 			p38->setPosition(p38->model * Vector3(0, 0, 0));
 			p38->setLastPosition(p38->getPosition());
+			p38->setHp(25);
 			root->addChild(p38);
 
 			p38a = new AirPlane(true);
@@ -73,6 +77,7 @@ void Scene::createScene() {
 			p38a->model.setTranslation(-40, i*750,j*290);
 			p38a->setPosition(p38a->model * Vector3(0, 0, 0));
 			p38a->setLastPosition(p38a->getPosition());
+			p38a->setHp(25);
 			root->addChild(p38a);
 		}
 	}
@@ -85,13 +90,26 @@ void Scene::createScene() {
 	cannon->model.traslate(0, 1010, 1300);
 	plane->addChild(cannon);*/
 	
-	water = new EntityMesh();
-	water->config("data/meshes/island/agua.tga", "data/meshes/island/agua.ASE", "data/shaders/texture.vs", "data/shaders/texture.fs");
-	water->model.traslate(0, -15, 0);
-	root->addChild(water);
+	for (int i = -1; i <= 1; i++)
+	{
+		for (int j = -1; j <= 1; j++)
+		{
+			water = new EntityMesh();
+			water->config("data/meshes/island/agua.tga", "data/meshes/island/agua.ASE", "data/shaders/texture.vs", "data/shaders/texture.fs");
+			water->model.traslate(i*10000, -15,j *10000);
+			root->addChild(water);
+		}
+	}
 
-
-
+	barco = new Boat();
+	barco->setDynamic();
+	barco->setName("BarcoJefe");
+	barco->setHp(200);
+	barco->config("data/meshes/barcos/barco.tga", "data/meshes/barcos/barco.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
+	barco->model.setTranslation(-1094, 0, -2887);
+	barco->setPosition(barco->model * Vector3(0, 0, 0));
+	barco->setLastPosition(barco->getPosition());
+	root->addChild(barco);
 	
 
 

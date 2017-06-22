@@ -1,6 +1,7 @@
 #include "aicontroller.h"
 #include "scene.h"
 
+bool isAWaypoint;
 
 AIcontroller::AIcontroller()
 {
@@ -9,6 +10,8 @@ AIcontroller::AIcontroller()
 	waypoints.push_back(Vector3(-600, 500, 600));
 	waypoints.push_back(Vector3(1200, 500, 600));
 	waypoints.push_back(Vector3(600, 500, 1200));
+
+	isAWaypoint = true;
 }
 
 
@@ -31,6 +34,7 @@ void AIcontroller::update(double seconds_elapsed)
 
 	if ((Scene::instance->plane->getPosition() - origin).length() < 750.0f) {
 		target = Scene::instance->plane->getPosition();
+		isAWaypoint = false;
 	}
 
 	Vector3 front = ai_plane->model.rotateVector(Vector3(0, 0, 1));
@@ -52,7 +56,7 @@ void AIcontroller::update(double seconds_elapsed)
 	}
 
 	float angle_with_target = 1 - front.dot(target_front);
-	if (angle_with_target < 0.1 && distance < 250)
+	if (angle_with_target < 0.1 && distance < 400  && !isAWaypoint)
 	{
 		this->ai_plane->shoot();
 	}

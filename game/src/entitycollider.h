@@ -25,6 +25,9 @@ public:
 	virtual void onCollision(EntityCollider*);
 	void update(double dt);
 
+	int hp;
+	void setHp(int hp);
+	int getHp();
 	//setters
 	void setStatic();
 	void setDynamic();

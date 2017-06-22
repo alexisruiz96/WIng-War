@@ -65,22 +65,35 @@ void GameStage::render()
 
 	
 	
-	scene->water->model.setIdentity();
+	/*scene->water->model.setIdentity();
 	scene->water->model.traslate(game->camera->eye.x, 0, game->camera->eye.z);
-	scene->water->render(game->camera, shader);
+	scene->water->render(game->camera, shader);*/
 
 
 	scene->root->render(game->camera, shader);
 	//camera pos
 	//std::cout << camera->eye.x << " - " << camera->eye.y << " - " << camera->eye.z << std::endl; 
-	std::stringstream vida;
-	vida << "HP : " << scene->plane->hp << "%";
-	drawText(game->window_width * 0.1 , game->window_height * 0.9, vida.str(), Vector3(1, 0.01*scene->plane->hp, 0.01*scene->plane->hp), 2);
-
+	
 	BulletManager::instance->render();
 
 	if (pc->useGUI)
 		renderGUI();
+
+	std::stringstream vida;
+	vida << "HP : " << scene->plane->hp << "%";
+	drawText(game->window_width * 0.1, game->window_height * 0.9, vida.str(), Vector3(1, 0.01*scene->plane->hp, 0.01*scene->plane->hp), 2);
+
+
+
+	std::stringstream coord;
+	coord << "pos : (" << game->camera->eye.x << "," << game->camera->eye.y << "," << game->camera->eye.z << ")";
+	drawText(game->window_width * 0.7, game->window_height * 0.9, coord.str(), Vector3(1, 1, 1), 2);
+
+
+	std::stringstream vidabarco;
+	vidabarco << "HP : " << scene->barco->hp << "%";
+	drawText(game->window_width * 0.1, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.01*scene->barco->hp, 0.01*scene->barco->hp), 2);
+
 }
 
 void GameStage::renderGUI()
@@ -136,9 +149,12 @@ void GameStage::update(double seconds_elapsed)
 		
 	}
 
+	scene->plane->model.traslateLocal(0, 0, seconds_elapsed * 10);
+
 	scene->p38->update(seconds_elapsed);
 	scene->p38a->update(seconds_elapsed);
 	scene->bomber->update(seconds_elapsed);
+	scene->barco->update(seconds_elapsed);
 
 	//to navigate with the mouse fixed in the middle
 	if (Game::instance->mouse_locked)
@@ -175,6 +191,7 @@ void GameStage::onKeyPressed(SDL_KeyboardEvent event)
 	case SDLK_TAB: { control_camera = !control_camera; break;
 		//case SDLK_SPACE: bm->shoot(camera->eye, Vector3(10,10,10), 1.00 ,5.00, scene->plane, 1);
 	}
+	case SDLK_p: {scene->plane->hp = scene->plane->hp - 5;}
 	}
 }
 void GameStage::onMouseButton(SDL_MouseButtonEvent event)

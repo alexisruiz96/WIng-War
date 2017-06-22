@@ -28,6 +28,7 @@ public:
 	AirPlane* p38a;
 	EntityMesh* water;
 	EntityMesh* cannon;
+	Boat* barco;
 
 
 	void createScene();
