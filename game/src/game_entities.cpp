@@ -1,7 +1,7 @@
 #include "game_entities.h"
 #include "bulletmanager.h"
 #include "aicontroller.h"
-
+#include "stages/stage.h"
 
 AirPlane::AirPlane(bool ia)
 {
@@ -39,7 +39,7 @@ void AirPlane::setLastPosition(Vector3 lastpos) {
 
 
 
-void AirPlane::update(double seconds_elapsed)
+void AirPlane::update(float seconds_elapsed)
 {
 	if (!this->isIA) {
 		colEsferas();
@@ -52,14 +52,29 @@ void AirPlane::update(double seconds_elapsed)
 		float maxdist = direction.length();
 		if (colVSStatics(origin, direction, collision, 0, maxdist)) {
 			std::cout << "Colision con statico" << std::endl;
+			toDestroy.push_back(this);
+			deleteEntity();
+			Stage::instance->current->onChange("endstage");
+			toDestroy.push_back(Scene::instance->root);
+			deleteEntity();
 		}
 	}
 	else
 		controller->update(seconds_elapsed);
-		this->setLastPosition(this->getPosition());
-		this->setPosition(this->model * Vector3(0, 0, 0));
 
-	
+	this->setLastPosition(this->getPosition());
+	this->setPosition(this->model * Vector3(0, 0, 0));
+
+	if (this->getHp() <= 0) {
+		toDestroy.push_back(this);
+		deleteCollider(this);
+		deleteEntity();
+		if (!this->isIA) {
+			Stage::instance->current->onChange("endstage");
+			toDestroy.push_back(Scene::instance->root);
+			deleteEntity();
+		}
+	}
 }
 
 
@@ -103,11 +118,15 @@ Boat::~Boat() {
 
 }
 
-void Boat::update(double seconds_elapsed)
+void Boat::update(float seconds_elapsed)
 {
 	if (this->getHp() <= 0) {
 		toDestroy.push_back(this);
+		deleteCollider(this);
 		deleteEntity();
+		toDestroy.push_back(Scene::instance->root);
+		deleteEntity();
+		Stage::instance->current->onChange("endstage");
 
 	}
 }

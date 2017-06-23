@@ -21,11 +21,16 @@
 class Stage
 {
 public:
+
+	static Stage* instance;
+
+	static Stage* getInstance() {
+		return instance;
+	}
 	static std::map<std::string, Stage*> s_Stages;
 	static Stage* current;
 
 	static void onChange(const char* stagename);
-
 	virtual void init() {}
 	virtual void render() {}
 	virtual void update(double dt) {}

@@ -48,7 +48,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\</OutDir>
-    <LibraryPath>C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\game\visualstudio15\libs\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Usuario\Desktop\jocs_e\game\visualstudio15\libs\lib;C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\game\visualstudio15\libs\lib;$(LibraryPath)</LibraryPath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -116,6 +116,7 @@
     <ClCompile Include="..\..\src\rendertotexture.cpp" />
     <ClCompile Include="..\..\src\scene.cpp" />
     <ClCompile Include="..\..\src\shader.cpp" />
+    <ClCompile Include="..\..\src\stages\endstage.cpp" />
     <ClCompile Include="..\..\src\stages\firstscreen.cpp" />
     <ClCompile Include="..\..\src\stages\gamestage.cpp" />
     <ClCompile Include="..\..\src\stages\menustage.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="..\..\src\rendertotexture.h" />
     <ClInclude Include="..\..\src\scene.h" />
     <ClInclude Include="..\..\src\shader.h" />
+    <ClInclude Include="..\..\src\stages\endstage.h" />
     <ClInclude Include="..\..\src\stages\firstscreen.h" />
     <ClInclude Include="..\..\src\stages\gamestage.h" />
     <ClInclude Include="..\..\src\stages\menustage.h" />

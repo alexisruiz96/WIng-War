@@ -14,6 +14,7 @@
 #include "stages/gamestage.h"
 #include "stages/menustage.h"
 #include "stages/firstscreen.h"
+#include "stages/endstage.h"
 
 //some globals
 
@@ -63,6 +64,8 @@ void Game::init(void)
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("menustate", menu));
 	GameStage* gamestage = new GameStage();
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("gamestage", gamestage));
+	EndStage* endstage = new EndStage();
+	Stage::s_Stages.insert(std::pair<std::string, Stage* >("endstage", endstage));
 
 	firstscreen->init();
 	menu->init();

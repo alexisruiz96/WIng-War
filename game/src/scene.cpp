@@ -50,7 +50,6 @@ void Scene::createScene() {
 	cielo = new EntityMesh();
 	cielo->config("data/meshes/cielo.tga", "data/meshes/cielo.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	//root->addChild(cielo);
-	int e = 0;
 	for (int i = 1; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			bomber = new AirPlane(true);
@@ -106,7 +105,7 @@ void Scene::createScene() {
 	barco->setName("BarcoJefe");
 	barco->setHp(200);
 	barco->config("data/meshes/barcos/barco.tga", "data/meshes/barcos/barco.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-	barco->model.setTranslation(-1094, 0, -2887);
+	barco->model.setTranslation(-1094, -15, -2887);
 	barco->setPosition(barco->model * Vector3(0, 0, 0));
 	barco->setLastPosition(barco->getPosition());
 	root->addChild(barco);

@@ -25,6 +25,8 @@ void Entity::render(Camera* camera, Shader* shader)
 
 void Entity::update(float elapsed_time)
 {
+	for (int i = 0; i < children.size(); i++)
+		children[i]->update(elapsed_time);
 }
 
 std::string Entity::getName() {
@@ -74,6 +76,11 @@ void Entity::deleteEntity()
 	}
 	if (tod->parent != NULL) {
 		tod->parent->removeChild(tod);
+	}
+
+	if (!tod->children.empty()) {
+		for (int j = 0; j < tod->children.size(); j++)
+			delete(tod->children[j]);
 	}
 	delete(tod);
 

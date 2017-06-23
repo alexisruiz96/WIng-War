@@ -49,6 +49,7 @@
     <ClCompile Include="..\..\src\stages\firstscreen.cpp" />
     <ClCompile Include="..\..\src\stages\menustage.cpp" />
     <ClCompile Include="..\..\src\stages\stage.cpp" />
+    <ClCompile Include="..\..\src\stages\endstage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\bullet.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="..\..\src\stages\firstscreen.h" />
     <ClInclude Include="..\..\src\stages\menustage.h" />
     <ClInclude Include="..\..\src\stages\stage.h" />
+    <ClInclude Include="..\..\src\stages\endstage.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="coldet">

@@ -14,6 +14,7 @@ public:
 	const Uint8* keystate;
 	Game* game;
 	PlayerController* pc;
+	bool repeat;
 
 	virtual void init();
 	virtual void render();
@@ -22,5 +23,6 @@ public:
 
 	virtual void onKeyPressed(SDL_KeyboardEvent event);
 	virtual void onMouseButton(SDL_MouseButtonEvent event);
+	virtual void secondinit();
 };
 

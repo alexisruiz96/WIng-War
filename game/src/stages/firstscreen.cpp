@@ -44,6 +44,6 @@ void FirstScreen::onKeyPressed(SDL_KeyboardEvent event) {
 
 }
 void FirstScreen::onMouseButton(SDL_MouseButtonEvent event) {
-	this->current->onChange("menustate");
+	Stage::instance->current->onChange("menustate");
 	
 }

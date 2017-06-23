@@ -3,6 +3,12 @@
 class MenuStage : public Stage
 {
 public:
+
+	static MenuStage* instance;
+
+	static MenuStage* getInstance() {
+		return instance;
+	}
 	MenuStage();
 	virtual ~MenuStage();
 

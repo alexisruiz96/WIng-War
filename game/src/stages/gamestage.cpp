@@ -37,6 +37,24 @@ void GameStage::init()
 
 
 }
+void GameStage::secondinit()
+{
+	game = Game::getInstance();
+	//game->camera->lookAt(Vector3(0.f, 25.f, 25.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
+	//game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
+
+	//std::cout << scene->plane->model << std::endl;
+	//test = new EntityMesh();
+	//test->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE");
+	scene = new Scene();
+	scene->createScene();
+
+	BulletManager::instance = new BulletManager();
+
+	pc = new PlayerController();
+
+
+}
 
 void GameStage::render()
 {
@@ -92,7 +110,7 @@ void GameStage::render()
 
 	std::stringstream vidabarco;
 	vidabarco << "HP : " << scene->barco->hp << "%";
-	drawText(game->window_width * 0.1, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.01*scene->barco->hp, 0.01*scene->barco->hp), 2);
+	drawText(game->window_width * 0.1, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.005*scene->barco->hp, 0.005*scene->barco->hp), 2);
 
 }
 
@@ -144,22 +162,25 @@ void GameStage::update(double seconds_elapsed)
 		BulletManager::instance->update(seconds_elapsed);
 		pc->update(seconds_elapsed, numcam);
 
-		scene->plane->update(seconds_elapsed);
+		//scene->plane->update(seconds_elapsed);
 
 		
 	}
 
 	scene->plane->model.traslateLocal(0, 0, seconds_elapsed * 10);
 
+	scene->root->update(seconds_elapsed);
+	/*scene->plane->update(seconds_elapsed);
 	scene->p38->update(seconds_elapsed);
 	scene->p38a->update(seconds_elapsed);
 	scene->bomber->update(seconds_elapsed);
-	scene->barco->update(seconds_elapsed);
+	scene->barco->update(seconds_elapsed);*/
 
 	//to navigate with the mouse fixed in the middle
 	if (Game::instance->mouse_locked)
 	{
 		int center_x = (int)floor(Game::instance->window_width*0.5f);
+
 		int center_y = (int)floor(Game::instance->window_height*0.5f);
 		//center_x = center_y = 50;
 		SDL_WarpMouseInWindow(Game::instance->window, center_x, center_y); //put the mouse back in the middle of the screen

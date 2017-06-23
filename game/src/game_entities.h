@@ -28,7 +28,7 @@ public:
 	Vector3 getLastPosition();
 	void setLastPosition(Vector3 lastpos);
 
-	void update(double seconds_elapsed);
+	void update(float seconds_elapsed);
 
 	void colEsferas();
 	//bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
@@ -57,7 +57,7 @@ public:
 	Vector3 getLastPosition();
 	void setLastPosition(Vector3 lastpos);
 
-	void update(double seconds_elapsed);
+	void update(float seconds_elapsed);
 
 	void colEsferas();
 	//bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);

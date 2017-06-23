@@ -1,5 +1,6 @@
 #include "menustage.h"
 #include "../bass.h"
+#include "gamestage.h"
 
 //El handler para un sample
 HSAMPLE hSample2;
@@ -54,5 +55,7 @@ void MenuStage::onKeyPressed(SDL_KeyboardEvent event)
 void MenuStage::onMouseButton(SDL_MouseButtonEvent event)
 {
 	BASS_ChannelStop(hSampleChannel2);
-	this->current->onChange("gamestage");
+	if (GameStage::instance->repeat)
+		GameStage::instance->secondinit();
+	Stage::instance->current->onChange("gamestage");
 }

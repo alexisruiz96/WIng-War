@@ -98,3 +98,16 @@ int EntityCollider::getHp()
 	return this->hp;
 }
 
+void EntityCollider::deleteCollider(Entity* e)
+{
+	auto ite = std::find(static_colliders.begin(), static_colliders.end(), e);
+
+	if (ite != static_colliders.end())
+		static_colliders.erase(ite);
+
+	ite = std::find(dynamic_colliders.begin(), dynamic_colliders.end(), e);
+
+	if (ite != dynamic_colliders.end())
+		dynamic_colliders.erase(ite);
+}
+
