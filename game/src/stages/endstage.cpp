@@ -1,6 +1,6 @@
 #include "endstage.h"
 #include "gamestage.h"
-
+#include "../entitycollider.h"
 
 EndStage::EndStage()
 {

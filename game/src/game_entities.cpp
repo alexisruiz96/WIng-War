@@ -2,6 +2,7 @@
 #include "bulletmanager.h"
 #include "aicontroller.h"
 #include "stages/stage.h"
+#include "scene.h"
 
 AirPlane::AirPlane(bool ia)
 {
@@ -52,11 +53,12 @@ void AirPlane::update(float seconds_elapsed)
 		float maxdist = direction.length();
 		if (colVSStatics(origin, direction, collision, 0, maxdist)) {
 			std::cout << "Colision con statico" << std::endl;
-			toDestroy.push_back(this);
-			deleteEntity();
-			Stage::instance->current->onChange("endstage");
+			//toDestroy.push_back(this);
+			//deleteEntity();
+			deleteAllColliders();
 			toDestroy.push_back(Scene::instance->root);
 			deleteEntity();
+			Stage::instance->current->onChange("endstage");
 		}
 	}
 	else
@@ -66,14 +68,18 @@ void AirPlane::update(float seconds_elapsed)
 	this->setPosition(this->model * Vector3(0, 0, 0));
 
 	if (this->getHp() <= 0) {
-		toDestroy.push_back(this);
-		deleteCollider(this);
-		deleteEntity();
+	
 		if (!this->isIA) {
-			Stage::instance->current->onChange("endstage");
+			
+			deleteAllColliders();
 			toDestroy.push_back(Scene::instance->root);
 			deleteEntity();
+			Stage::instance->current->onChange("endstage");
 		}
+		else
+			toDestroy.push_back(this);
+			deleteCollider(this);
+			deleteEntity();
 	}
 }
 
@@ -89,8 +95,13 @@ void AirPlane::colEsferas()
 		Matrix44 plane_m = this->model;										//model of our plane
 		Vector3 plane_c = this->mesh->header.center;						//center of our plane
 		float plane_r = this->getRadius();									//radius of our plane
-		if ((model*center).distance(plane_m*plane_c) <= (radius + plane_r))	//calculate if distance between centers is less than the sum of the radius
+		if ((model*center).distance(plane_m*plane_c) <= (radius + plane_r)) {	//calculate if distance between centers is less than the sum of the radius
 			this->onCollision(dynamic_colliders[i]);
+			deleteAllColliders();
+			toDestroy.push_back(Scene::instance->root);
+			deleteEntity();
+			Stage::instance->current->onChange("endstage");
+		}
 	}
 }
 
@@ -108,27 +119,39 @@ void AirPlane::shoot() {
 	}
 }
 
+std::vector<Vector3> rute;
 
-
-Boat::Boat() {
-
+Boat::Boat()
+{
+	rute.push_back(Vector3(259, -15, -3266));
+	rute.push_back(Vector3(2136, -15, -2231));
+	rute.push_back(Vector3(4287, -15, -495));
+	rute.push_back(Vector3(3644, -15, 1713));
+	rute.push_back(Vector3(2313, -15, 3186));
+	rute.push_back(Vector3(-1574, -15, 3227));
+	rute.push_back(Vector3(-2214, -15, 5420));
 }
 
-Boat::~Boat() {
+Boat::~Boat()
+{
 
 }
 
 void Boat::update(float seconds_elapsed)
 {
 	if (this->getHp() <= 0) {
-		toDestroy.push_back(this);
-		deleteCollider(this);
-		deleteEntity();
+		
+		deleteAllColliders();
 		toDestroy.push_back(Scene::instance->root);
 		deleteEntity();
 		Stage::instance->current->onChange("endstage");
-
 	}
+
+	/*for (int i = 0; i < rute.size(); i++) {
+		
+		Vector3 origin = this->getPosition();
+	}*/
+	
 }
 
 Vector3 Boat::getPosition() {

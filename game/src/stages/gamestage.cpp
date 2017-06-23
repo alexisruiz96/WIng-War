@@ -1,5 +1,5 @@
 #include "gamestage.h"
-
+#include "../entitycollider.h"
 float angle = 0;
 Scene* scene = NULL;
 Shader * shader = NULL;
@@ -39,6 +39,7 @@ void GameStage::init()
 }
 void GameStage::secondinit()
 {
+
 	game = Game::getInstance();
 	//game->camera->lookAt(Vector3(0.f, 25.f, 25.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
 	//game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
@@ -109,7 +110,7 @@ void GameStage::render()
 
 
 	std::stringstream vidabarco;
-	vidabarco << "HP : " << scene->barco->hp << "%";
+	vidabarco << "Enemy boat : " << scene->barco->hp << "%";
 	drawText(game->window_width * 0.1, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.005*scene->barco->hp, 0.005*scene->barco->hp), 2);
 
 }

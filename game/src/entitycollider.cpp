@@ -111,3 +111,13 @@ void EntityCollider::deleteCollider(Entity* e)
 		dynamic_colliders.erase(ite);
 }
 
+void EntityCollider::deleteAllColliders()
+{
+	for(std::vector<EntityCollider*>::iterator ites = static_colliders.begin() ; ites != static_colliders.end(); ites++)
+		static_colliders.erase(ites);
+
+	for (std::vector<EntityCollider*>::iterator ited = dynamic_colliders.begin(); ited != dynamic_colliders.end(); ited++)
+		dynamic_colliders.erase(ited);
+
+
+}

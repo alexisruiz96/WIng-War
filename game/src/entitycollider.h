@@ -41,6 +41,7 @@ public:
 
 	bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
 	void deleteCollider(Entity* e);
+	static void deleteAllColliders();
 };
 
 #endif
