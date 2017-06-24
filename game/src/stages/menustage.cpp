@@ -57,5 +57,6 @@ void MenuStage::onMouseButton(SDL_MouseButtonEvent event)
 	BASS_ChannelStop(hSampleChannel2);
 	if (GameStage::instance->repeat)
 		GameStage::instance->secondinit();
+
 	Stage::instance->current->onChange("gamestage");
 }

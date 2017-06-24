@@ -5,7 +5,7 @@
 
 Camera::Camera()
 {
-	view_matrix.setIdentity();
+	lookAt(Vector3(0, 0, 0), Vector3(0, 0, -1), Vector3(0, 1, 0));
 	setOrthographic(-100,100,-100, 100,-100,100);
 }
 
@@ -23,10 +23,10 @@ void Camera::set()
 
 void Camera::updateViewMatrix()
 {
-	if(type == PERSPECTIVE)
+	//if(type == PERSPECTIVE)
 		view_matrix.lookAt( eye, center, up );
-	else
-		view_matrix.setIdentity();
+	//else
+	//	view_matrix.setIdentity();
 
 	viewprojection_matrix = view_matrix * projection_matrix;
 
@@ -232,6 +232,36 @@ bool Camera::testPointInFrustum( Vector3 v )
 	return true;
 }
 
+Vector3 Camera::project( Vector3 pos3d, float window_width, float window_height)
+{
+	Vector3 norm = viewprojection_matrix.project(pos3d); //returns from 0 to 1
+	norm.x *= window_width;
+	norm.y *= window_height;
+	return norm;
+}
+
+Vector3 Camera::unproject(Vector3 coord2d, float window_width, float window_height)
+{
+	coord2d.x = (coord2d.x * 2.0) / window_width - 1.0;
+	coord2d.y = (coord2d.y * 2.0) / window_height - 1.0;
+	coord2d.z = 2.0 * coord2d.z - 1.0;
+	Matrix44 inv_vp = viewprojection_matrix;
+	inv_vp.inverse();
+	Vector4 r = inv_vp * Vector4(coord2d, 1.0 );
+	return Vector3(r.x / r.w, r.y / r.w, r.z / r.w );
+}
+
+Vector3 Camera::getRayDirection( int mouse_x, int mouse_y, float window_width, float window_height )
+{
+	Vector3 mouse_pos( mouse_x, window_height - mouse_y, 1.0);
+	Vector3 p = unproject(mouse_pos, window_width, window_height);
+	return (p - eye).normalize();
+}
+
+float Camera::getProjectScale(Vector3 pos3D, float radius) {
+	float dist = eye.distance(pos3D);
+	return (sin(fov*DEG2RAD) / dist) * radius * 200.0; //100 is to compensate width in pixels
+}
 
 
 bool Camera::testSphereInFrustum( Vector3 v, float radius)

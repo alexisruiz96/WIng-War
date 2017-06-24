@@ -25,8 +25,10 @@ void Entity::render(Camera* camera, Shader* shader)
 
 void Entity::update(float elapsed_time)
 {
-	for (int i = 0; i < children.size(); i++)
-		children[i]->update(elapsed_time);
+	if (!this->children.empty()) {
+		for (int i = 0; i < children.size(); i++)
+			children[i]->update(elapsed_time);
+	}
 }
 
 std::string Entity::getName() {
