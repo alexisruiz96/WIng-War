@@ -46,7 +46,6 @@ void EndStage::init()
 
 void EndStage::render()
 {
-	std::cout << "perknovaputoaki" << std::endl;
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_DEPTH_TEST);
 
@@ -56,7 +55,6 @@ void EndStage::render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-	std::cout << "kelorraaa" << std::endl;
 	camfscreen.set();
 	glColor4f(1.f, 1.f, 1.f, 1.f);
 
@@ -78,7 +76,6 @@ void EndStage::render()
 		quadforstart.render(GL_TRIANGLES);
 		textsucces->unbind();
 	}
-	std::cout << "si homa" << std::endl;
 }
 
 void EndStage::update(float seconds_elapsed)

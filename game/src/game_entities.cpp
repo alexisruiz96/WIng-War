@@ -124,6 +124,8 @@ std::vector<Vector3> rute;
 
 Boat::Boat()
 {
+	actual = 0;
+
 	rute.push_back(Vector3(259, -15, -3266));
 	rute.push_back(Vector3(2136, -15, -2231));
 	rute.push_back(Vector3(4287, -15, -495));
@@ -140,6 +142,10 @@ Boat::~Boat()
 
 void Boat::update(float seconds_elapsed)
 {
+
+	this->setLastPosition(this->getPosition());
+	this->setPosition(this->model * Vector3(0, 0, 0));
+
 	if (this->getHp() <= 0) {
 		EndStage::instance->succes = true;
 		deleteAllColliders();
@@ -148,10 +154,27 @@ void Boat::update(float seconds_elapsed)
 		Stage::instance->current->onChange("endstage");
 	}
 
-	/*for (int i = 0; i < rute.size(); i++) {
-		
-		Vector3 origin = this->getPosition();
-	}*/
+	Vector3 origin = this->getPosition();
+	Vector3 front = this->model.rotateVector(Vector3(0, 0, 1));
+	Vector3 target = rute[actual];
+	Vector3 to_target = target - origin;
+	float dist = to_target.length();
+	to_target.normalize();
+	float cos_angle = 1.0 - front.dot(to_target);
+
+	Vector3 axis = to_target.cross(front);
+
+	Matrix44 inv = this->model;
+	inv.inverse();
+	axis = inv.rotateVector(axis);
+	this->model.rotateLocal(cos_angle * seconds_elapsed, axis);
+	
+	if (this->getPosition().x == rute[actual].x && this->getPosition().y == rute[actual].y && this->getPosition().z == rute[actual].z)
+	{
+		actual++;
+	}
+
+	this->model.traslateLocal(0, 0, seconds_elapsed * 50);
 	
 }
 

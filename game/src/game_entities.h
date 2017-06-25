@@ -59,6 +59,8 @@ public:
 
 	void update(float seconds_elapsed);
 
+	int actual;
+	bool ok;
 	void colEsferas();
 	//bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
 

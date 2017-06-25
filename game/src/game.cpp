@@ -69,9 +69,9 @@ void Game::init(void)
 	EndStage* endstage = new EndStage();
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("endstage", endstage));
 
-	
-	menu->init();
+
 	gamestage->init();
+	menu->init();
 	endstage->init();
 	firstscreen->init();
 
@@ -85,11 +85,7 @@ void Game::init(void)
 //what to do when the image has to be draw
 void Game::render(void)
 {
-
-	std::cout << "KEEEELO" << std::endl;
-
-	Stage::instance->current->render();
-	std::cout << "melonzo" << std::endl;
+	
 	//camera->set();
 
 	//example to render the FPS every 10 frames
@@ -97,7 +93,7 @@ void Game::render(void)
 
 	//swap between front buffer and back buffer
 	SDL_GL_SwapWindow(this->window);
-
+	Stage::instance->current->render();
 	
 }
 
