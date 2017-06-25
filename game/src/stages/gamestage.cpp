@@ -2,7 +2,7 @@
 #include "../entitycollider.h"
 #include "endstage.h"
 #include "../bass.h"
-#include <chrono>
+#include <math.h>
 float angle = 0;
 Scene* scene = NULL;
 Shader * shader = NULL;
@@ -15,6 +15,7 @@ const Uint8* keystate = NULL;
 PlayerController* pc = NULL;
 GameStage* GameStage::instance = NULL;
 
+int m, s;
 
 
 GameStage::GameStage()
@@ -26,10 +27,10 @@ GameStage::GameStage()
 
 void GameStage::init()
 {
-	t = getTime();
+	
 	ps = false;
 	bool control_camera = false;
-	elap = 330000;
+	elap = 209000;
 
 	game = Game::getInstance();
 	//game->camera->lookAt(Vector3(0.f, 25.f, 25.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
@@ -58,10 +59,10 @@ void GameStage::init()
 }
 void GameStage::secondinit()
 {
-	t = getTime();
+	
 	bool control_camera = false;
 	game = Game::getInstance();
-	elap = 330000;
+	elap = 209000;
 
 	game->camera = new Camera();
 	game->camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
@@ -88,7 +89,7 @@ void GameStage::secondinit()
 void GameStage::render()
 {
 	
-	
+	t = getTime();
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
@@ -146,11 +147,15 @@ void GameStage::render()
 	vidabarco << "Enemy boat : " << scene->barco->hp << "%";
 	drawText(game->window_width * 0.1, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.005*scene->barco->hp, 0.005*scene->barco->hp), 2);
 
-	
-	elap -= t;
+	g = getTime();
+	elap -= (g-t); //Asi esta en segundos
+	int p = (int)(floor(elap / 1000));
+	//int k = (int)(floor(elap));
+	m = (((p / 60)*100)/100);
+	//s = (int)(((((int)(p / 0.6)) / 10) % 10)*0.6) << (int)((((int)(k / 0.6)) % 1000)*0.6);
 	std::stringstream time;
-	time << "Time to kill the bomber boat : "<< elap  << " seconds";
-	drawText(game->window_width * 0.1, game->window_height * 0.1, time.str(), Vector3(1, 0.005*(1/elap), 0.005*(1/elap)), 2);
+	time << "Time to kill the bomber boat : 0"<< m <<":00" << " seconds";
+	drawText(game->window_width * 0.1, game->window_height * 0.1, time.str(), Vector3(1, 0.000005*elap, 0.000005*elap), 2);
 
 	
 }

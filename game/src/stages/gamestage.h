@@ -17,6 +17,7 @@ public:
 	bool repeat;
 	bool ps;
 	float t;
+	float g;
 	float elap;
 	HSAMPLE hSample6;
 	HCHANNEL hSampleChannel6;
