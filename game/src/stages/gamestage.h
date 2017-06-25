@@ -16,7 +16,8 @@ public:
 	PlayerController* pc;
 	bool repeat;
 	bool ps;
-
+	float t;
+	float elap;
 	HSAMPLE hSample6;
 	HCHANNEL hSampleChannel6;
 

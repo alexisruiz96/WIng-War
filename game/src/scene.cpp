@@ -14,6 +14,7 @@ Scene::Scene()
 	water = NULL;
 	cannon = NULL;
 	barco = NULL;
+	aircar = NULL;
 	root = new Entity();
 }
 
@@ -103,7 +104,7 @@ void Scene::createScene() {
 
 	barco = new Boat();
 	barco->setDynamic();
-	barco->setName("BarcoJefe");
+	barco->setName("BarcoEnemigo");
 	barco->setHp(200);
 	barco->config("data/meshes/barcos/barco.tga", "data/meshes/barcos/barco.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	barco->model.setTranslation(-1094, -15, -2887);
@@ -111,6 +112,17 @@ void Scene::createScene() {
 	barco->setLastPosition(barco->getPosition());
 	root->addChild(barco);
 	
+
+	aircar = new AircraftCarrier();
+	aircar->setDynamic();
+	aircar->setName("BarcoAliado");
+	aircar->setHp(5000);
+	aircar->config("data/meshes/barcos/aircarrier_metal.tga", "data/meshes/barcos/aircarrier.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
+	aircar->model.setTranslation(-2214, -15, 5420);
+	aircar->setPosition(barco->model * Vector3(0, 0, 0));
+	aircar->setLastPosition(barco->getPosition());
+	root->addChild(aircar);
+
 
 
 	

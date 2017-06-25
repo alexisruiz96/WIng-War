@@ -67,4 +67,30 @@ public:
 	void shoot();
 
 };
+
+
+class AircraftCarrier : public EntityCollider
+{
+private:
+	Vector3 position;
+	Vector3 last_position;
+	long last_shot;
+	bool isIA;
+
+
+public:
+	AircraftCarrier();
+	virtual ~AircraftCarrier();
+
+	Vector3 getPosition();
+	void setPosition(Vector3 pos);
+
+	Vector3 getLastPosition();
+	void setLastPosition(Vector3 lastpos);
+
+	void update(float seconds_elapsed);
+
+	void shoot();
+
+};
 #endif

@@ -6,7 +6,7 @@
 #include "stages/endstage.h"
 #include "bass.h"
 #include "stages/gamestage.h"
-
+#include "entitycollider.h"
 AirPlane::AirPlane(bool ia)
 {
 	last_shot = 0;
@@ -132,9 +132,11 @@ Boat::Boat()
 	rute.push_back(Vector3(259, -15, -3266));
 	rute.push_back(Vector3(2136, -15, -2231));
 	rute.push_back(Vector3(4287, -15, -495));
-	rute.push_back(Vector3(3644, -15, 1713));
-	rute.push_back(Vector3(2313, -15, 3186));
-	rute.push_back(Vector3(-1574, -15, 3227));
+	rute.push_back(Vector3(6530, -15, -688));
+	rute.push_back(Vector3(6610, -15, -315));
+	rute.push_back(Vector3(6951, -15, 1667));
+	rute.push_back(Vector3(3777, -15, 3066));
+	rute.push_back(Vector3(604, -15, 3586));
 	rute.push_back(Vector3(-2214, -15, 5420));
 }
 
@@ -173,12 +175,21 @@ void Boat::update(float seconds_elapsed)
 	axis = inv.rotateVector(axis);
 	this->model.rotateLocal(cos_angle * seconds_elapsed, axis);
 	
-	if (dist <= 50.0)
+	if (dist <= 150.0)
 	{
 		actual++;
 	}
+	if (actual == 9) {
+		deleteAllColliders();
+		std::cout << "SHEEETE" << std::endl;
+		toDestroy.push_back(Scene::instance->root);
+		deleteEntity();
+		Stage::instance->current->onChange("endstage");
+		BASS_ChannelStop(GameStage::instance->hSampleChannel6);
+		std::cout << "Time: " << getTime() << std::endl;
+	}
 
-	this->model.traslateLocal(0, 0, seconds_elapsed * 50);
+	this->model.traslateLocal(0, 0, seconds_elapsed * 100);
 	
 }
 
@@ -193,5 +204,49 @@ Vector3 Boat::getLastPosition() {
 	return this->last_position;
 }
 void Boat::setLastPosition(Vector3 lastpos) {
+	this->last_position = lastpos;
+}
+
+
+AircraftCarrier::AircraftCarrier()
+{
+
+}
+
+AircraftCarrier::~AircraftCarrier()
+{
+
+}
+
+void AircraftCarrier::update(float seconds_elapsed)
+{
+	this->setLastPosition(this->getPosition());
+	this->setPosition(this->model * Vector3(0, 0, 0));
+
+	if ((this->getPosition() - Scene::instance->barco->getPosition()).length() <= 100.0)
+	{
+		std::cout << "eoaksdko" << std::endl;
+		deleteAllColliders();
+		toDestroy.push_back(Scene::instance->root);
+		deleteEntity();
+		Stage::instance->current->onChange("endstage");
+		BASS_ChannelStop(GameStage::instance->hSampleChannel6);
+		std::cout << "Time: " << getTime() << std::endl;
+	}
+	
+}
+
+
+Vector3 AircraftCarrier::getPosition() {
+	return this->position;
+}
+void AircraftCarrier::setPosition(Vector3 pos) {
+	this->position = pos;
+}
+
+Vector3 AircraftCarrier::getLastPosition() {
+	return this->last_position;
+}
+void AircraftCarrier::setLastPosition(Vector3 lastpos) {
 	this->last_position = lastpos;
 }
