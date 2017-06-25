@@ -1,6 +1,7 @@
 #include "gamestage.h"
 #include "../entitycollider.h"
 #include "endstage.h"
+#include "../bass.h"
 float angle = 0;
 Scene* scene = NULL;
 Shader * shader = NULL;
@@ -13,13 +14,20 @@ const Uint8* keystate = NULL;
 PlayerController* pc = NULL;
 GameStage* GameStage::instance = NULL;
 
+
+
 GameStage::GameStage()
 {
 	instance = this;
+	hSample6 = NULL;
+	hSampleChannel6 = NULL;
 }
 
 void GameStage::init()
 {
+	ps = false;
+	
+
 	game = Game::getInstance();
 	//game->camera->lookAt(Vector3(0.f, 25.f, 25.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
 	//game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
@@ -38,6 +46,12 @@ void GameStage::init()
 	pc = new PlayerController();
 
 	EndStage::instance->succes = false;
+
+	BASS_Init(1, 44100, 0, 0, NULL);
+	//Cargamos un sample (memoria, filename, offset, length, max, flags)
+	hSample6 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
+	//Creamos un canal para el sample
+	hSampleChannel6 = BASS_SampleGetChannel(hSample6, false);
 
 }
 void GameStage::secondinit()
@@ -59,6 +73,12 @@ void GameStage::secondinit()
 	pc = new PlayerController();
 
 	EndStage::instance->succes = false;
+
+	BASS_Init(1, 44100, 0, 0, NULL);
+	//Cargamos un sample (memoria, filename, offset, length, max, flags)
+	hSample6 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
+	//Creamos un canal para el sample
+	hSampleChannel6 = BASS_SampleGetChannel(hSample6, false);
 }
 
 void GameStage::render()
@@ -94,6 +114,9 @@ void GameStage::render()
 
 
 	scene->root->render(shader);
+
+	if (ps)
+		BASS_ChannelPlay(hSampleChannel6, false);
 	//camera pos
 	//std::cout << camera->eye.x << " - " << camera->eye.y << " - " << camera->eye.z << std::endl; 
 	

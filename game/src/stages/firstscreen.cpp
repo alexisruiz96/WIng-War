@@ -1,10 +1,11 @@
 #include "firstscreen.h"
-
+#include "gamestage.h"
+#include "../bass.h"
 Vector2 screen;
 
 FirstScreen::FirstScreen()
 {
-	
+	idk = true;
 }
 
 
@@ -14,6 +15,11 @@ FirstScreen::~FirstScreen()
 
 void FirstScreen::init() {
 
+	if (idk) {
+		GameStage::instance->render();
+		idk = false;
+		GameStage::instance->ps = true;
+	}
 	game = Game::getInstance();
 
 	text = Texture::Load("data/menu/firstscreen.tga");

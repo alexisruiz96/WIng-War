@@ -8,7 +8,7 @@ HSAMPLE hSample2;
 
 //El handler para un canal
 HCHANNEL hSampleChannel2;
-bool sound;
+
 MenuStage::MenuStage()
 {
 	instance = this;
@@ -37,7 +37,6 @@ void MenuStage::init()
 	//Creamos un canal para el sample
 	hSampleChannel2 = BASS_SampleGetChannel(hSample2, false);
 	
-	sound = false;
 	
 	
 }
@@ -57,13 +56,11 @@ void MenuStage::secondInit()
 	//Creamos un canal para el sample
 	hSampleChannel2 = BASS_SampleGetChannel(hSample2, false);
 
-	sound = false;
 
 
 }
 void MenuStage::render()
 {
-
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND); //transparencia
@@ -85,10 +82,7 @@ void MenuStage::render()
 	quad.render(GL_TRIANGLES);
 	text->unbind();
 
-	//if (sound == false) {
-		BASS_ChannelPlay(hSampleChannel2, false);
-		//sound = true;
-	//}
+	BASS_ChannelPlay(hSampleChannel2, false);
 
 
 }

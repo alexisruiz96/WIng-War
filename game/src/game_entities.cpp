@@ -4,6 +4,8 @@
 #include "stages/stage.h"
 #include "scene.h"
 #include "stages/endstage.h"
+#include "bass.h"
+#include "stages/gamestage.h"
 
 AirPlane::AirPlane(bool ia)
 {
@@ -61,6 +63,7 @@ void AirPlane::update(float seconds_elapsed)
 			toDestroy.push_back(Scene::instance->root);
 			deleteEntity();
 			Stage::instance->current->onChange("endstage");
+			BASS_ChannelStop(GameStage::instance->hSampleChannel6);
 		}
 	}
 	else
@@ -77,6 +80,7 @@ void AirPlane::update(float seconds_elapsed)
 			toDestroy.push_back(Scene::instance->root);
 			deleteEntity();
 			Stage::instance->current->onChange("endstage");
+			BASS_ChannelStop(GameStage::instance->hSampleChannel6);
 		}
 		else
 			toDestroy.push_back(this);
@@ -98,9 +102,8 @@ void AirPlane::colEsferas()
 		Vector3 plane_c = this->mesh->header.center;						//center of our plane
 		float plane_r = this->getRadius();									//radius of our plane
 		if ((model*center).distance(plane_m*plane_c) <= (radius + plane_r)) {	//calculate if distance between centers is less than the sum of the radius
-			std::cout << "ha susedido" << std::endl;
 			this->onCollision(dynamic_colliders[i]);
-			std::cout << "sisi lo ha hecho" << std::endl;
+			BASS_ChannelStop(GameStage::instance->hSampleChannel6);
 
 		}
 	}
@@ -152,6 +155,7 @@ void Boat::update(float seconds_elapsed)
 		toDestroy.push_back(Scene::instance->root);
 		deleteEntity();
 		Stage::instance->current->onChange("endstage");
+		BASS_ChannelStop(GameStage::instance->hSampleChannel6);
 	}
 
 	Vector3 origin = this->getPosition();
@@ -169,7 +173,7 @@ void Boat::update(float seconds_elapsed)
 	axis = inv.rotateVector(axis);
 	this->model.rotateLocal(cos_angle * seconds_elapsed, axis);
 	
-	if (this->getPosition().x == rute[actual].x && this->getPosition().y == rute[actual].y && this->getPosition().z == rute[actual].z)
+	if (dist <= 50.0)
 	{
 		actual++;
 	}

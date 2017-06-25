@@ -1,6 +1,6 @@
 #pragma once
 #include "stage.h"
-
+#include "../bass.h"
 class GameStage : public Stage
 {
 public:
@@ -15,6 +15,10 @@ public:
 	Game* game;
 	PlayerController* pc;
 	bool repeat;
+	bool ps;
+
+	HSAMPLE hSample6;
+	HCHANNEL hSampleChannel6;
 
 	virtual void init();
 	virtual void render();

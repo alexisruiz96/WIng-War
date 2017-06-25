@@ -17,6 +17,7 @@ public:
 	Camera camera2D;
 	Game* game;
 	Mesh quadMenu;
+	bool idk;
 
 	virtual void onKeyPressed(SDL_KeyboardEvent event);
 	virtual void onMouseButton(SDL_MouseButtonEvent event);

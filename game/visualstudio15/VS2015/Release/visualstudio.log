@@ -1,22 +1,9 @@
-﻿  aicontroller.cpp
-  bulletmanager.cpp
-  entitycollider.cpp
-  game.cpp
-  game_entities.cpp
-  playercontroller.cpp
-..\..\src\playercontroller.cpp(97): warning C4305: 'argument': truncation from 'double' to 'float'
-  scene.cpp
-  endstage.cpp
-  firstscreen.cpp
-  gamestage.cpp
-..\..\src\stages\gamestage.cpp(72): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-  menustage.cpp
-  stage.cpp
+﻿  game_entities.cpp
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  4 of 2091 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  1 of 2091 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Usuario\Desktop\jocs_e\game\vc120.pdb'; linking object as if no debug info
   visualstudio.vcxproj -> C:\Users\Usuario\Desktop\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio.exe
