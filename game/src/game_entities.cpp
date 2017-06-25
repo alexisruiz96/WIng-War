@@ -3,6 +3,7 @@
 #include "aicontroller.h"
 #include "stages/stage.h"
 #include "scene.h"
+#include "stages/endstage.h"
 
 AirPlane::AirPlane(bool ia)
 {
@@ -43,7 +44,8 @@ void AirPlane::setLastPosition(Vector3 lastpos) {
 void AirPlane::update(float seconds_elapsed)
 {
 	if (!this->isIA) {
-		colEsferas();
+
+			colEsferas();
 
 		
 		Vector3 origin = getPosition();
@@ -96,11 +98,10 @@ void AirPlane::colEsferas()
 		Vector3 plane_c = this->mesh->header.center;						//center of our plane
 		float plane_r = this->getRadius();									//radius of our plane
 		if ((model*center).distance(plane_m*plane_c) <= (radius + plane_r)) {	//calculate if distance between centers is less than the sum of the radius
+			std::cout << "ha susedido" << std::endl;
 			this->onCollision(dynamic_colliders[i]);
-			deleteAllColliders();
-			toDestroy.push_back(Scene::instance->root);
-			deleteEntity();
-			Stage::instance->current->onChange("endstage");
+			std::cout << "sisi lo ha hecho" << std::endl;
+
 		}
 	}
 }
@@ -140,7 +141,7 @@ Boat::~Boat()
 void Boat::update(float seconds_elapsed)
 {
 	if (this->getHp() <= 0) {
-		
+		EndStage::instance->succes = true;
 		deleteAllColliders();
 		toDestroy.push_back(Scene::instance->root);
 		deleteEntity();

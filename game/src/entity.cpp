@@ -15,10 +15,10 @@ Entity::~Entity()
 {
 }
 
-void Entity::render(Camera* camera, Shader* shader)
+void Entity::render(Shader* shader)
 {
 	for (int i = 0; i < children.size(); i++) {
-		children[i]->render(camera, shader);
+		children[i]->render(shader);
 	}
 
 }
@@ -85,5 +85,7 @@ void Entity::deleteEntity()
 			delete(tod->children[j]);
 	}
 	delete(tod);
+
+	toDestroy.clear();
 
 }

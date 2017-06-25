@@ -40,7 +40,6 @@ public:
 	bool mouse_locked; //tells if the mouse is locked (not seen)
 	
 	Camera* camera; //our global camera
-	Camera* camera_player;
 	Game(SDL_Window* window);
 	void init( void );
 	void render( void );

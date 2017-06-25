@@ -37,7 +37,7 @@ void Scene::createScene() {
 		//for (int j = -1; j <= 1; j++) {
 			suelo = new EntityCollider();
 			//bool terrain = rand() % 2 == 0;
-
+			suelo->setName("floooor");
 			suelo->setStatic();
 			suelo->config("data/meshes/island/island_color.tga", "data/meshes/island/island.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 			suelo->model.setTranslation( 0, 0, 0);
@@ -49,7 +49,8 @@ void Scene::createScene() {
 		
 	cielo = new EntityMesh();
 	cielo->config("data/meshes/cielo.tga", "data/meshes/cielo.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-	//root->addChild(cielo);
+	root->addChild(cielo);
+
 	for (int i = 1; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			bomber = new AirPlane(true);

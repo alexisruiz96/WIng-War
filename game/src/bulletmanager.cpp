@@ -4,10 +4,10 @@
 BulletManager* BulletManager::instance = NULL;
 
 //El handler para un sample
-HSAMPLE hSample;
+HSAMPLE hSample, hSample3;
 
 //El handler para un canal
-HCHANNEL hSampleChannel;
+HCHANNEL hSampleChannel, hSampleChannel3;
 
 BulletManager::BulletManager()
 {
@@ -21,8 +21,10 @@ BulletManager::BulletManager()
 	BASS_Init(1, 44100, 0, 0, NULL);
 	//Cargamos un sample (memoria, filename, offset, length, max, flags)
 	hSample = BASS_SampleLoad(false, "data/sounds/shot.wav", 0, 0, 3, 0);
+	hSample3 = BASS_SampleLoad(false, "data/sounds/hitmarker.wav", 0, 0, 3, 0);
 	//Creamos un canal para el sample
 	hSampleChannel = BASS_SampleGetChannel(hSample, false);
+	hSampleChannel3 = BASS_SampleGetChannel(hSample3, false);
 }
 
 
@@ -87,6 +89,7 @@ void BulletManager::update(float elapsed_time)
 				{
 					if (!bull.hittedYet) {
 						std::cout << "bullet collision" << std::endl;
+						BASS_ChannelPlay(hSampleChannel3, true);
 						colliders[j]->hp = colliders[j]->hp - 5;
 						bull.hittedYet = true;
 					}

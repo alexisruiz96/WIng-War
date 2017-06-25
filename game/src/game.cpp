@@ -23,10 +23,14 @@ std::map<std::string, Stage*> Stage::s_Stages;
 Stage* Stage::current = NULL;
 Game* Game::instance = NULL;
 
+Camera* camera = NULL;
+//Camera* camera = NULL;
+
 Game::Game(SDL_Window* window)
 {
 	this->window = window;
 	instance = this;
+
 
 	// initialize attributes
 	// Warning: DO NOT CREATE STUFF HERE, USE THE INIT 
@@ -41,6 +45,7 @@ Game::Game(SDL_Window* window)
 
 	keystate = NULL;
 	mouse_locked = false;
+
 }
 
 //Here we have already GL working, so we can create meshes and textures
@@ -50,10 +55,7 @@ void Game::init(void)
     
     //SDL_SetWindowSize(window, 50,50);
 
-	//create our camera
-	camera = new Camera();
-	camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
-	camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
+	
 	//OpenGL flags
 	glEnable( GL_CULL_FACE ); //render both sides of every triangle
 	glEnable( GL_DEPTH_TEST ); //check the occlusions using the Z buffer
@@ -67,11 +69,13 @@ void Game::init(void)
 	EndStage* endstage = new EndStage();
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("endstage", endstage));
 
-	firstscreen->init();
+	
 	menu->init();
 	gamestage->init();
+	endstage->init();
+	firstscreen->init();
 
-	Stage::current = Stage::s_Stages["firstscreen"];
+	Stage::instance->current = Stage::s_Stages["firstscreen"];
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -81,7 +85,11 @@ void Game::init(void)
 //what to do when the image has to be draw
 void Game::render(void)
 {
-	Stage::current->render();
+
+	std::cout << "KEEEELO" << std::endl;
+
+	Stage::instance->current->render();
+	std::cout << "melonzo" << std::endl;
 	//camera->set();
 
 	//example to render the FPS every 10 frames
@@ -89,17 +97,19 @@ void Game::render(void)
 
 	//swap between front buffer and back buffer
 	SDL_GL_SwapWindow(this->window);
+
+	
 }
 
 void Game::update(double seconds_elapsed)
 {
-	Stage::current->update(seconds_elapsed);
+	Stage::instance->current->update(seconds_elapsed);
 }
 
 //Keyboard event handler (sync input)
 void Game::onKeyPressed( SDL_KeyboardEvent event )
 {
-	Stage::current->onKeyPressed(event);
+	Stage::instance->current->onKeyPressed(event);
 	switch (event.keysym.sym)
 	{
 	case SDLK_ESCAPE: exit(0); //ESC key, kill the app
@@ -109,7 +119,7 @@ void Game::onKeyPressed( SDL_KeyboardEvent event )
 
 void Game::onMouseButton( SDL_MouseButtonEvent event )
 {
-	Stage::current->onMouseButton(event);
+	Stage::instance->current->onMouseButton(event);
 
 	if (event.button == SDL_BUTTON_MIDDLE) //middle mouse
 	{
@@ -132,7 +142,7 @@ void Game::setWindowSize(int width, int height)
 	*/
 
 	glViewport( 0,0, width, height );
-	camera->aspect =  width / (float)height;
+	//camera->aspect =  width / (float)height;
 	window_width = width;
 	window_height = height;
 }

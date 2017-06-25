@@ -1,9 +1,10 @@
 #include "firstscreen.h"
 
-
+Vector2 screen;
 
 FirstScreen::FirstScreen()
 {
+	
 }
 
 
@@ -13,27 +14,37 @@ FirstScreen::~FirstScreen()
 
 void FirstScreen::init() {
 
-	text = Texture::Load("data/menu/firstscreen.tga");
 	game = Game::getInstance();
 
-	quadforstart.createQuad(game->window_width / 2, game->window_height / 2, game->window_width, game->window_height, true);
-	camfscreen.setOrthographic(0.0, game->window_width, game->window_height, 0.0, -1.0, 1.0);
+	text = Texture::Load("data/menu/firstscreen.tga");
 
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glColor4f(1.f, 1.f, 1.f, 1.f);
+	camera2D.setOrthographic(0.0, game->window_width, game->window_height, 0.0, -1.0, 1.0);
+	quadMenu.createQuad(game->window_width*0.5, game->window_height*0.5, game->window_width, game->window_height, true);
+
+
 }
 
 void FirstScreen::render() {
 
-	glDisable(GL_CULL_FACE);
-	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE); //render both sides of every triangle
+	glDisable(GL_DEPTH_TEST); //check the occlusions using the Z buffer
+	glDisable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	camfscreen.set();
+	glClearColor(1, 0, 0, 1.0);
+
+	// Clear the window and the depth buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	camera2D.set();
+	glColor4f(1.f, 1.f, 1.f, 1.f);
 
 	text->bind();
-	quadforstart.render(GL_TRIANGLES);
+	quadMenu.render(GL_TRIANGLES);
 	text->unbind();
+
+
 }
 
 void FirstScreen::update(double dt) {

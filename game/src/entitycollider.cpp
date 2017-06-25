@@ -1,4 +1,6 @@
 #include "entitycollider.h"
+#include "scene.h"
+#include "stages/stage.h"
 
 std::vector<EntityCollider*> EntityCollider::static_colliders;
 std::vector<EntityCollider*> EntityCollider::dynamic_colliders;
@@ -23,6 +25,15 @@ void EntityCollider::onCollision(EntityCollider *)
 {
 
 	std::cout << "Colisiona" << std::endl;
+	deleteAllColliders();
+
+	toDestroy.push_back(Scene::instance->root);
+
+	deleteEntity();
+
+	Stage::instance->current->onChange("endstage");
+	Game::instance->render();
+
 	
 }
 
@@ -109,15 +120,27 @@ void EntityCollider::deleteCollider(Entity* e)
 
 	if (ite != dynamic_colliders.end())
 		dynamic_colliders.erase(ite);
+
+
 }
 
 void EntityCollider::deleteAllColliders()
 {
-	for(std::vector<EntityCollider*>::iterator ites = static_colliders.begin() ; ites != static_colliders.end(); ites++)
+		/*auto ites = static_colliders.begin();
+		std::cout << "JAJEUJA" << static_colliders.size() << std::endl;
 		static_colliders.erase(ites);
-
-	for (std::vector<EntityCollider*>::iterator ited = dynamic_colliders.begin(); ited != dynamic_colliders.end(); ited++)
+		std::cout << "SHUURA" << std::endl;
+	
+	int i = 0;
+	for (std::vector<EntityCollider*>::iterator ited = dynamic_colliders.begin(); ited != dynamic_colliders.end(); ited++) {
+		std::cout << "TEETE size = " << dynamic_colliders.size() << std::endl;
 		dynamic_colliders.erase(ited);
+		std::cout << "PIITEMELARK " <<  i << std::endl;
+		i++;
+	}*/
+
+	static_colliders.clear();
+	dynamic_colliders.clear();
 
 
 }

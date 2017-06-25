@@ -1,5 +1,6 @@
 #include "gamestage.h"
 #include "../entitycollider.h"
+#include "endstage.h"
 float angle = 0;
 Scene* scene = NULL;
 Shader * shader = NULL;
@@ -9,7 +10,6 @@ int cam_position = 0;
 int numcam = 0;
 
 const Uint8* keystate = NULL;
-Camera* camera = NULL;
 PlayerController* pc = NULL;
 GameStage* GameStage::instance = NULL;
 
@@ -23,7 +23,10 @@ void GameStage::init()
 	game = Game::getInstance();
 	//game->camera->lookAt(Vector3(0.f, 25.f, 25.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
 	//game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
-
+	//create our camera
+	game->camera = new Camera();
+	game->camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
+	game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
 			//std::cout << scene->plane->model << std::endl;
 			//test = new EntityMesh();
 		   //test->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE");
@@ -34,16 +37,17 @@ void GameStage::init()
 
 	pc = new PlayerController();
 
-
+	EndStage::instance->succes = false;
 
 }
 void GameStage::secondinit()
 {
 
 	game = Game::getInstance();
-	//game->camera->lookAt(Vector3(0.f, 25.f, 25.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
-	//game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
 
+	game->camera = new Camera();
+	game->camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
+	game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
 	//std::cout << scene->plane->model << std::endl;
 	//test = new EntityMesh();
 	//test->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE");
@@ -54,7 +58,7 @@ void GameStage::secondinit()
 
 	pc = new PlayerController();
 
-
+	EndStage::instance->succes = false;
 }
 
 void GameStage::render()
@@ -79,7 +83,7 @@ void GameStage::render()
 	glDisable(GL_DEPTH_TEST);
 	scene->cielo->model.setIdentity();
 	scene->cielo->model.traslate(game->camera->eye.x, game->camera->eye.y, game->camera->eye.z);
-	scene->cielo->render(game->camera, shader);
+	scene->cielo->render(shader);
 	glEnable(GL_DEPTH_TEST);
 
 	
@@ -89,7 +93,7 @@ void GameStage::render()
 	scene->water->render(game->camera, shader);*/
 
 
-	scene->root->render(game->camera, shader);
+	scene->root->render(shader);
 	//camera pos
 	//std::cout << camera->eye.x << " - " << camera->eye.y << " - " << camera->eye.z << std::endl; 
 	

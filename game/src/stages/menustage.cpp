@@ -2,6 +2,7 @@
 #include "../bass.h"
 #include "gamestage.h"
 
+MenuStage* MenuStage::instance = NULL;
 //El handler para un sample
 HSAMPLE hSample2;
 
@@ -10,7 +11,7 @@ HCHANNEL hSampleChannel2;
 bool sound;
 MenuStage::MenuStage()
 {
-
+	instance = this;
 }
 MenuStage::~MenuStage()
 {
@@ -28,6 +29,20 @@ void MenuStage::init()
 	sound = false;
 	
 	
+}
+
+void MenuStage::secondInit()
+{
+
+	BASS_Init(1, 44100, 0, 0, NULL);
+	//Cargamos un sample (memoria, filename, offset, length, max, flags)
+	hSample2 = BASS_SampleLoad(false, "data/sounds/musicmenu.wav", 0, 0, 3, 0);
+	//Creamos un canal para el sample
+	hSampleChannel2 = BASS_SampleGetChannel(hSample2, false);
+
+	sound = false;
+
+
 }
 void MenuStage::render()
 {

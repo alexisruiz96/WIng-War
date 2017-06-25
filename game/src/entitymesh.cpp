@@ -1,6 +1,6 @@
 #include "entitymesh.h"
 #include "shader.h"
-
+#include "game.h"
 EntityMesh::EntityMesh()
 {
 	texture = NULL;
@@ -13,16 +13,16 @@ EntityMesh::~EntityMesh()
 }
 
 
-void EntityMesh::render(Camera* camera, Shader* s)
+void EntityMesh::render(Shader* s)
 {
 	//model.rotate((float)(angle * DEG2RAD), Vector3(0.0f, 1.0f, 0.0f)); //build a rotation matrix
 
-	Matrix44 mvp = model * camera->viewprojection_matrix;
+	Matrix44 mvp = model * Game::instance->camera->viewprojection_matrix;
 	shader->enable();
 	shader->setMatrix44("u_model", model);
 	shader->setMatrix44("u_mvp", mvp);
 	shader->setTexture("u_texture", texture);
-	if (camera->testSphereInFrustum(this->model * this->mesh->header.center, this->mesh->header.radius)) {
+	if (Game::instance->camera->testSphereInFrustum(this->model * this->mesh->header.center, this->mesh->header.radius)) {
 		mesh->render(GL_TRIANGLES, shader);
 
 	}
@@ -31,7 +31,7 @@ void EntityMesh::render(Camera* camera, Shader* s)
 	shader->disable();
 
 	for (int i = 0; i < children.size(); i++) {
-		children[i]->render(camera, shader);
+		children[i]->render(shader);
 	}
 
 }

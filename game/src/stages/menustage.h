@@ -15,6 +15,7 @@ public:
 	virtual void init();
 	virtual void render();
 	virtual void update(double dt);
+	virtual void secondInit();
 
 	virtual void onKeyPressed(SDL_KeyboardEvent event);
 	virtual void onMouseButton(SDL_MouseButtonEvent event);

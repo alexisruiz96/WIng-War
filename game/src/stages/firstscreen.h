@@ -14,9 +14,9 @@ public:
 	virtual void update(double dt);
 
 	Texture* text;
-	Camera camfscreen;
+	Camera camera2D;
 	Game* game;
-	Mesh quadforstart;
+	Mesh quadMenu;
 
 	virtual void onKeyPressed(SDL_KeyboardEvent event);
 	virtual void onMouseButton(SDL_MouseButtonEvent event);

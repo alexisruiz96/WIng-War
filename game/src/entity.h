@@ -22,7 +22,7 @@ public:
 	Entity* parent; //pointer to parent
 	std::vector<Entity*> children; //pointers to childrens
 
-	virtual void render(Camera* camera, Shader* shader);
+	virtual void render(Shader* shader);
 	virtual void update(float elapsed_time);
 
 	std::string getName();
