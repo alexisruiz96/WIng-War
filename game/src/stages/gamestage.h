@@ -19,6 +19,7 @@ public:
 	float t;
 	float g;
 	float elap;
+	bool floorok;
 	HSAMPLE hSample6;
 	HCHANNEL hSampleChannel6;
 

@@ -1,6 +1,8 @@
 #include "entitymesh.h"
 #include "shader.h"
 #include "game.h"
+#include "stages/gamestage.h"
+#include "scene.h"
 EntityMesh::EntityMesh()
 {
 	texture = NULL;
@@ -15,6 +17,7 @@ EntityMesh::~EntityMesh()
 
 void EntityMesh::render(Shader* s)
 {
+
 	//model.rotate((float)(angle * DEG2RAD), Vector3(0.0f, 1.0f, 0.0f)); //build a rotation matrix
 
 	Matrix44 mvp = model * Game::instance->camera->viewprojection_matrix;
@@ -22,8 +25,12 @@ void EntityMesh::render(Shader* s)
 	shader->setMatrix44("u_model", model);
 	shader->setMatrix44("u_mvp", mvp);
 	shader->setTexture("u_texture", texture);
+	shader->setVector3("u_poscam", Game::instance->camera->eye);
 	if (Game::instance->camera->testSphereInFrustum(this->model * this->mesh->header.center, this->mesh->header.radius)) {
+
+
 		mesh->render(GL_TRIANGLES, shader);
+
 
 	}
 	

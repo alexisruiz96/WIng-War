@@ -1,4 +1,5 @@
 #include "scene.h"
+#include <math.h>
 
 Scene* Scene::instance = NULL;
 
@@ -28,7 +29,8 @@ void Scene::createScene() {
 	plane = new AirPlane();
 	//plane->setDynamic();
 	plane->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-	plane->model.setTranslation(-1094, 750, -2887);
+	plane->model.setTranslation(-2214, 200, 7000);
+	plane->model.rotateLocal(M_PI ,  Vector3(0.f,1.f,0.f));
 	plane->setPosition(plane->model * Vector3(0,0,0));
 	plane->setLastPosition(plane->getPosition());
 	plane->setHp(100);
@@ -38,7 +40,7 @@ void Scene::createScene() {
 		//for (int j = -1; j <= 1; j++) {
 			suelo = new EntityCollider();
 			//bool terrain = rand() % 2 == 0;
-			suelo->setName("floooor");
+			suelo->setName("floor");
 			suelo->setStatic();
 			suelo->config("data/meshes/island/island_color.tga", "data/meshes/island/island.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 			suelo->model.setTranslation( 0, 0, 0);
@@ -49,8 +51,9 @@ void Scene::createScene() {
 
 		
 	cielo = new EntityMesh();
+	cielo->setName("cielo");
 	cielo->config("data/meshes/cielo.tga", "data/meshes/cielo.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-	root->addChild(cielo);
+	//root->addChild(cielo);
 
 	for (int i = 1; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
@@ -96,7 +99,7 @@ void Scene::createScene() {
 		for (int j = -1; j <= 1; j++)
 		{
 			water = new EntityMesh();
-			water->config("data/meshes/island/agua.tga", "data/meshes/island/agua.ASE", "data/shaders/texture.vs", "data/shaders/texture.fs");
+			water->config("data/meshes/island/agua.tga", "data/meshes/island/agua.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 			water->model.traslate(i*10000, -15,j *10000);
 			root->addChild(water);
 		}
@@ -119,6 +122,7 @@ void Scene::createScene() {
 	aircar->setHp(5000);
 	aircar->config("data/meshes/barcos/aircarrier_metal.tga", "data/meshes/barcos/aircarrier.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	aircar->model.setTranslation(-2214, -15, 5420);
+	aircar->model.rotateLocal(M_PI, Vector3(0.f, 1.f, 0.f));
 	aircar->setPosition(barco->model * Vector3(0, 0, 0));
 	aircar->setLastPosition(barco->getPosition());
 	root->addChild(aircar);

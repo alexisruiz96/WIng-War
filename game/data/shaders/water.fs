@@ -9,9 +9,13 @@ uniform sampler2D u_texture;
 
 void main()
 {
-    vec4 color =  0.5 * texture2D(u_texture, -v_world_position.xz , 0.001);
+    vec4 color =  0.5 * texture2D(u_texture, -v_world_position.xz*0.001);
+
     vec3 light = vec3(0.3,0.4,0.6);
+
     light += max(0.0, v_normal.y) * vec3(1.0,0.7,0.2);
+
     color.xyz *= light;
+
 	gl_FragColor = color;
 }

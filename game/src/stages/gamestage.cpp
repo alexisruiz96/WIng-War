@@ -27,7 +27,7 @@ GameStage::GameStage()
 
 void GameStage::init()
 {
-	
+	floorok = false;
 	ps = false;
 	bool control_camera = false;
 	elap = 209000;
@@ -59,7 +59,7 @@ void GameStage::init()
 }
 void GameStage::secondinit()
 {
-	
+	floorok = false;
 	bool control_camera = false;
 	game = Game::getInstance();
 	elap = 209000;
@@ -96,7 +96,7 @@ void GameStage::render()
 	glDisable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//set the clear color (the background color)
-	glClearColor(0.15, 0.30, 0.35, 1.0);
+	glClearColor(61.0/256.0, 96.0/256.0, 147.0/256.0, 1.0);
 
 	// Clear the window and the depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -149,12 +149,14 @@ void GameStage::render()
 
 	g = getTime();
 	elap -= (g-t); //Asi esta en segundos
-	int p = (int)(floor(elap / 1000));
+	//int p = (int)(floor(elap / 1000));
 	//int k = (int)(floor(elap));
-	m = (((p / 60)*100)/100);
+	//m = (((p / 60)*100)/100);
 	//s = (int)(((((int)(p / 0.6)) / 10) % 10)*0.6) << (int)((((int)(k / 0.6)) % 1000)*0.6);
+
+
 	std::stringstream time;
-	time << "Time to kill the bomber boat : 0"<< m <<":00" << " seconds";
+	time << "Time to kill the bomber boat : "<< elap/1000 <<" seconds";
 	drawText(game->window_width * 0.1, game->window_height * 0.1, time.str(), Vector3(1, 0.000005*elap, 0.000005*elap), 2);
 
 	
