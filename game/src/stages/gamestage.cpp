@@ -7,7 +7,6 @@ float angle = 0;
 Scene* scene = NULL;
 Shader * shader = NULL;
 
-bool control_camera = false;
 int cam_position = 0;
 int numcam = 0;
 
@@ -17,19 +16,23 @@ GameStage* GameStage::instance = NULL;
 
 int m, s;
 
+//El handler para un sample
+HSAMPLE hSample6, hSample7, hSample8;
+
+//El handler para un canal
+HCHANNEL hSampleChannel6, hSampleChannel7, hSampleChannel8;
 
 GameStage::GameStage()
 {
 	instance = this;
-	hSample6 = NULL;
-	hSampleChannel6 = NULL;
+	
 }
 
 void GameStage::init()
 {
 	floorok = false;
 	ps = false;
-	bool control_camera = false;
+	control_camera = false;
 	elap = 209000;
 
 	game = Game::getInstance();
@@ -38,7 +41,7 @@ void GameStage::init()
 	//create our camera
 	game->camera = new Camera();
 	game->camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
-	game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
+	game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 10.f, 10000.f); //set the projection, we want to be perspective
 			//std::cout << scene->plane->model << std::endl;
 			//test = new EntityMesh();
 		   //test->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE");
@@ -51,16 +54,24 @@ void GameStage::init()
 
 	EndStage::instance->succes = false;
 	BASS_Init(1, 44100, 0, 0, NULL);
+	BASS_Init(1, 44100, 0, 0, NULL);
+	BASS_Init(1, 44100, 0, 0, NULL);
 	//Cargamos un sample (memoria, filename, offset, length, max, flags)
 	hSample6 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
+	hSample7 = BASS_SampleLoad(false, "data/sounds/tensionmid.wav", 0, 0, 3, 0);
+	hSample8 = BASS_SampleLoad(false, "data/sounds/tensionlast.wav", 0, 0, 3, 0);
 	//Creamos un canal para el sample
 	hSampleChannel6 = BASS_SampleGetChannel(hSample6, false);
+	hSampleChannel7 = BASS_SampleGetChannel(hSample7, false);
+	hSampleChannel8 = BASS_SampleGetChannel(hSample8, false);
 
+
+	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.3);
 }
 void GameStage::secondinit()
 {
 	floorok = false;
-	bool control_camera = false;
+	control_camera = false;
 	game = Game::getInstance();
 	elap = 209000;
 
@@ -80,10 +91,21 @@ void GameStage::secondinit()
 	EndStage::instance->succes = false;
 
 	BASS_Init(1, 44100, 0, 0, NULL);
+	BASS_Init(1, 44100, 0, 0, NULL);
+	BASS_Init(1, 44100, 0, 0, NULL);
 	//Cargamos un sample (memoria, filename, offset, length, max, flags)
 	hSample6 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
+
+	hSample7 = BASS_SampleLoad(false, "data/sounds/tensionmid.wav", 0, 0, 3, 0);
+	hSample8 = BASS_SampleLoad(false, "data/sounds/tensionlast.wav", 0, 0, 3, 0);
 	//Creamos un canal para el sample
+
+
 	hSampleChannel6 = BASS_SampleGetChannel(hSample6, false);
+	hSampleChannel7 = BASS_SampleGetChannel(hSample7, false);
+	hSampleChannel8 = BASS_SampleGetChannel(hSample8, false);
+
+	BASS_ChannelSetAttribute(hSampleChannel6, BASS_ATTRIB_VOL, 0.3);
 }
 
 void GameStage::render()
@@ -122,8 +144,14 @@ void GameStage::render()
 
 	scene->root->render(shader);
 
-	if (ps)
+	if (ps) {
 		BASS_ChannelPlay(hSampleChannel6, false);
+		if(Scene::instance->barco->musicon)
+			BASS_ChannelPlay(hSampleChannel8, false);
+		else
+		BASS_ChannelPlay(hSampleChannel7, false);
+		
+	}
 	//camera pos
 	//std::cout << camera->eye.x << " - " << camera->eye.y << " - " << camera->eye.z << std::endl; 
 	
@@ -134,18 +162,23 @@ void GameStage::render()
 
 	std::stringstream vida;
 	vida << "HP : " << scene->plane->hp << "%";
-	drawText(game->window_width * 0.1, game->window_height * 0.9, vida.str(), Vector3(1, 0.01*scene->plane->hp, 0.01*scene->plane->hp), 2);
+	drawText(game->window_width * 0.05, game->window_height * 0.9, vida.str(), Vector3(1, 0.01*scene->plane->hp, 0.01*scene->plane->hp), 2);
 
 
 
 	std::stringstream coord;
-	coord << "pos : (" << game->camera->eye.x << "," << game->camera->eye.y << "," << game->camera->eye.z << ")";
+	coord << "Coord : (" << game->camera->eye.x << "," << game->camera->eye.y << "," << game->camera->eye.z << ")";
 	drawText(game->window_width * 0.7, game->window_height * 0.9, coord.str(), Vector3(1, 1, 1), 2);
 
 
 	std::stringstream vidabarco;
 	vidabarco << "Enemy boat : " << scene->barco->hp << "%";
-	drawText(game->window_width * 0.1, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.005*scene->barco->hp, 0.005*scene->barco->hp), 2);
+	drawText(game->window_width * 0.05, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.005*scene->barco->hp, 0.005*scene->barco->hp), 2);
+
+
+	std::stringstream score;
+	score << "Score : " << scene->plane->getScore() << " points";
+	drawText(game->window_width * 0.05, game->window_height * 0.05, score.str(), Vector3(1, 1, 1), 2);
 
 	g = getTime();
 	elap -= (g-t); //Asi esta en segundos
@@ -156,8 +189,10 @@ void GameStage::render()
 
 
 	std::stringstream time;
-	time << "Time to kill the bomber boat : "<< elap/1000 <<" seconds";
-	drawText(game->window_width * 0.1, game->window_height * 0.1, time.str(), Vector3(1, 0.000005*elap, 0.000005*elap), 2);
+	time << "Time remaining : "<< (int)floor(elap/1000) <<" s";
+	drawText(game->window_width * 0.05, game->window_height * 0.1, time.str(), Vector3(1, 0.000005*elap, 0.000005*elap), 2);
+
+
 
 	
 }
@@ -250,7 +285,12 @@ void GameStage::update(double seconds_elapsed)
 	*/
 
 }
-
+void GameStage::stopMusic()
+{
+	BASS_ChannelStop(hSampleChannel6);
+	BASS_ChannelStop(hSampleChannel7);
+	BASS_ChannelStop(hSampleChannel8);
+}
 void GameStage::onKeyPressed(SDL_KeyboardEvent event)
 {
 	switch (event.keysym.sym)

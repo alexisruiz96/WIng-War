@@ -20,8 +20,7 @@ public:
 	float g;
 	float elap;
 	bool floorok;
-	HSAMPLE hSample6;
-	HCHANNEL hSampleChannel6;
+	bool control_camera;
 
 	virtual void init();
 	virtual void render();
@@ -31,5 +30,6 @@ public:
 	virtual void onKeyPressed(SDL_KeyboardEvent event);
 	virtual void onMouseButton(SDL_MouseButtonEvent event);
 	virtual void secondinit();
+	virtual void stopMusic();
 };
 

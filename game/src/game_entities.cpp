@@ -11,7 +11,7 @@ AirPlane::AirPlane(bool ia)
 {
 	last_shot = 0;
 	isIA = ia;
-
+	isFB = false;
 	controller = NULL;
 
 	if (ia)
@@ -20,12 +20,20 @@ AirPlane::AirPlane(bool ia)
 		controller->setPlane(this);
 	}
 
+	score = 0;
 }
 AirPlane::~AirPlane()
 {
 
 }
 
+int AirPlane::getScore() {
+	return this->score;
+}
+
+void AirPlane::setScore(int score) {
+	this->score = score;
+}
 Vector3 AirPlane::getPosition() {
 	return this->position;
 }
@@ -61,9 +69,10 @@ void AirPlane::update(float seconds_elapsed)
 			//deleteEntity();
 			deleteAllColliders();
 			toDestroy.push_back(Scene::instance->root);
+			toDestroy.push_back(Scene::instance->cielo);
 			deleteEntity();
 			Stage::instance->current->onChange("endstage");
-			BASS_ChannelStop(GameStage::instance->hSampleChannel6);
+			GameStage::instance->stopMusic();
 		}
 	}
 	else
@@ -78,14 +87,17 @@ void AirPlane::update(float seconds_elapsed)
 			
 			deleteAllColliders();
 			toDestroy.push_back(Scene::instance->root);
+			toDestroy.push_back(Scene::instance->cielo);
 			deleteEntity();
 			Stage::instance->current->onChange("endstage");
-			BASS_ChannelStop(GameStage::instance->hSampleChannel6);
+			GameStage::instance->stopMusic();
 		}
-		else
+		else {
 			toDestroy.push_back(this);
 			deleteCollider(this);
 			deleteEntity();
+			Scene::instance->plane->setScore(Scene::instance->plane->getScore() + this->getScore());
+		}
 	}
 }
 
@@ -102,8 +114,9 @@ void AirPlane::colEsferas()
 		Vector3 plane_c = this->mesh->header.center;						//center of our plane
 		float plane_r = this->getRadius();									//radius of our plane
 		if ((model*center).distance(plane_m*plane_c) <= (radius + plane_r)) {	//calculate if distance between centers is less than the sum of the radius
+			if(this != dynamic_colliders[i])
 			this->onCollision(dynamic_colliders[i]);
-			BASS_ChannelStop(GameStage::instance->hSampleChannel6);
+			GameStage::instance->stopMusic();
 
 		}
 	}
@@ -138,6 +151,8 @@ Boat::Boat()
 	rute.push_back(Vector3(3777, -15, 3066));
 	rute.push_back(Vector3(604, -15, 3586));
 	rute.push_back(Vector3(-2214, -15, 5420));
+
+	musicon = false;
 }
 
 Boat::~Boat()
@@ -155,9 +170,10 @@ void Boat::update(float seconds_elapsed)
 		EndStage::instance->succes = true;
 		deleteAllColliders();
 		toDestroy.push_back(Scene::instance->root);
+		toDestroy.push_back(Scene::instance->cielo);
 		deleteEntity();
 		Stage::instance->current->onChange("endstage");
-		BASS_ChannelStop(GameStage::instance->hSampleChannel6);
+		GameStage::instance->stopMusic();
 	}
 
 	Vector3 origin = this->getPosition();
@@ -179,13 +195,15 @@ void Boat::update(float seconds_elapsed)
 	{
 		actual++;
 	}
+	if (actual == 6)
+		musicon = true;
+
 	if (actual == 9) {
 		deleteAllColliders();
-		std::cout << "SHEEETE" << std::endl;
 		toDestroy.push_back(Scene::instance->root);
 		deleteEntity();
 		Stage::instance->current->onChange("endstage");
-		BASS_ChannelStop(GameStage::instance->hSampleChannel6);
+		GameStage::instance->stopMusic();
 		std::cout << "Time: " << getTime() << std::endl;
 	}
 
@@ -230,7 +248,7 @@ void AircraftCarrier::update(float seconds_elapsed)
 		toDestroy.push_back(Scene::instance->root);
 		deleteEntity();
 		Stage::instance->current->onChange("endstage");
-		BASS_ChannelStop(GameStage::instance->hSampleChannel6);
+		GameStage::instance->stopMusic();
 		std::cout << "Time: " << getTime() << std::endl;
 	}
 	

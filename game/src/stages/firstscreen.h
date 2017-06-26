@@ -18,6 +18,7 @@ public:
 	Game* game;
 	Mesh quadMenu;
 	bool idk;
+	bool idf;
 
 	virtual void onKeyPressed(SDL_KeyboardEvent event);
 	virtual void onMouseButton(SDL_MouseButtonEvent event);

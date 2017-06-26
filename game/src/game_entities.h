@@ -14,9 +14,12 @@ private:
 	Vector3 last_position;
 	long last_shot;
 	bool isIA;
-	
+	int score;
 
 public:
+
+	int getScore();
+	void setScore(int score);
 	AirPlane(bool ia = false);
 	virtual ~AirPlane();
 
@@ -34,7 +37,7 @@ public:
 	//bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
 
 	void shoot();
-
+	bool isFB;
 	
 };
 
@@ -61,6 +64,7 @@ public:
 
 	int actual;
 	bool ok;
+	bool musicon;
 	void colEsferas();
 	//bool colVSStatics(Vector3 origin, Vector3 direction, Vector3& collision, float min_dist, float max_distance);
 

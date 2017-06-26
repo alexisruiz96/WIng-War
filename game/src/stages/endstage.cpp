@@ -91,7 +91,6 @@ void EndStage::onKeyPressed(SDL_KeyboardEvent event)
 void EndStage::onMouseButton(SDL_MouseButtonEvent event)
 {
 	GameStage::instance->repeat = true;
-
 	MenuStage::instance->secondInit();
 
 	Stage::instance->current->onChange("menustate");

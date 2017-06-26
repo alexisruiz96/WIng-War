@@ -75,7 +75,7 @@ void Game::init(void)
 	endstage->init();
 	firstscreen->init();
 
-	Stage::instance->current = Stage::s_Stages["gamestage"];
+	Stage::instance->current = Stage::s_Stages["firstscreen"];
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -89,7 +89,7 @@ void Game::render(void)
 	//camera->set();
 
 	//example to render the FPS every 10 frames
-	drawText(2, 2, std::to_string(fps), Vector3(1, 1, 1), 2);
+	//drawText(2, 2, std::to_string(fps), Vector3(1, 1, 1), 2);
 
 	//swap between front buffer and back buffer
 	SDL_GL_SwapWindow(this->window);

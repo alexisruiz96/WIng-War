@@ -1,5 +1,6 @@
 #include "bulletmanager.h"
 #include "bass.h"
+#include "scene.h"
 
 BulletManager* BulletManager::instance = NULL;
 
@@ -88,10 +89,12 @@ void BulletManager::update(float elapsed_time)
 				if ((model*center).distance(bull.position) <= radius) //distance between bullet and center less than the sphereCollision
 				{
 					if (!bull.hittedYet) {
-						std::cout << "bullet collision" << std::endl;
-						BASS_ChannelPlay(hSampleChannel3, true);
-						colliders[j]->hp = colliders[j]->hp - 5;
-						bull.hittedYet = true;
+						if ((bull.author != colliders[j]) && ((bull.author == Scene::instance->plane) || (colliders[j] == Scene::instance->plane))) {
+							colliders[j]->hp = colliders[j]->hp - 5;
+							bull.hittedYet = true;
+							if (bull.author == Scene::instance->plane)
+								BASS_ChannelPlay(hSampleChannel3, false);
+						}
 					}
 				}
 

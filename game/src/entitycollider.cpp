@@ -28,6 +28,7 @@ void EntityCollider::onCollision(EntityCollider *)
 	deleteAllColliders();
 
 	toDestroy.push_back(Scene::instance->root);
+	toDestroy.push_back(Scene::instance->cielo);
 
 	deleteEntity();
 

@@ -16,6 +16,8 @@ Scene::Scene()
 	cannon = NULL;
 	barco = NULL;
 	aircar = NULL;
+	bomber1 = NULL;
+	bomber2 = NULL;
 	root = new Entity();
 }
 
@@ -27,7 +29,7 @@ Scene::~Scene()
 void Scene::createScene() {
 
 	plane = new AirPlane();
-	//plane->setDynamic();
+	plane->setDynamic();
 	plane->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	plane->model.setTranslation(-2214, 200, 7000);
 	plane->model.rotateLocal(M_PI ,  Vector3(0.f,1.f,0.f));
@@ -55,13 +57,14 @@ void Scene::createScene() {
 	cielo->config("data/meshes/cielo.tga", "data/meshes/cielo.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	//root->addChild(cielo);
 
-	for (int i = 1; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
+	for (int i = -2; i < 3; i++) {
+		for (int j = -2; j < 2; j++) {
 			bomber = new AirPlane(true);
 			bomber->setDynamic();
 			bomber->config("data/meshes/bomber_axis/bomber_axis.tga", "data/meshes/bomber_axis/bomber_axis.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-			bomber->model.setTranslation(0, i*750, j*300);
+			bomber->model.setTranslation(i*2200, 1000, j*750);
 			bomber->setHp(50);
+			bomber->setScore(50);
 			bomber->setPosition(bomber->model * Vector3(0, 0, 0));
 			bomber->setLastPosition(bomber->getPosition());
 			root->addChild(bomber);
@@ -69,19 +72,21 @@ void Scene::createScene() {
 			p38 = new AirPlane(true);
 			p38->setDynamic();
 			p38->config("data/meshes/p38/p38.tga", "data/meshes/p38/p38.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-			p38->model.setTranslation(40, i*750, j*290);
+			p38->model.setTranslation(i*2240, 750, j*740);
 			p38->setPosition(p38->model * Vector3(0, 0, 0));
 			p38->setLastPosition(p38->getPosition());
 			p38->setHp(25);
+			p38->setScore(25);
 			root->addChild(p38);
 
 			p38a = new AirPlane(true);
 			p38a->setDynamic();
 			p38a->config("data/meshes/p38/p38_axis.tga", "data/meshes/p38/p38.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
-			p38a->model.setTranslation(-40, i*750,j*290);
+			p38a->model.setTranslation(i*2160, 1250,j*740);
 			p38a->setPosition(p38a->model * Vector3(0, 0, 0));
 			p38a->setLastPosition(p38a->getPosition());
 			p38a->setHp(25);
+			p38a->setScore(25);
 			root->addChild(p38a);
 		}
 	}
@@ -108,7 +113,7 @@ void Scene::createScene() {
 	barco = new Boat();
 	barco->setDynamic();
 	barco->setName("BarcoEnemigo");
-	barco->setHp(200);
+	barco->setHp(400);
 	barco->config("data/meshes/barcos/barco.tga", "data/meshes/barcos/barco.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	barco->model.setTranslation(-1094, -15, -2887);
 	barco->setPosition(barco->model * Vector3(0, 0, 0));
@@ -127,7 +132,27 @@ void Scene::createScene() {
 	aircar->setLastPosition(barco->getPosition());
 	root->addChild(aircar);
 
+	bomber1 = new AirPlane(true);
+	bomber1->setDynamic();
+	bomber1->isFB = true;
+	bomber1->config("data/meshes/bomber_axis/bomber_axis.tga", "data/meshes/bomber_axis/bomber_axis.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
+	bomber1->model.setTranslation(-1074, 150, -2913);
+	bomber1->setHp(100);
+	bomber1->setScore(200);
+	bomber1->setPosition(bomber1->model * Vector3(0, 0, 0));
+	bomber1->setLastPosition(bomber1->getPosition());
+	root->addChild(bomber1);
 
+	bomber2 = new AirPlane(true);
+	bomber2->setDynamic();
+	bomber2->isFB = true;
+	bomber2->config("data/meshes/bomber_axis/bomber_axis.tga", "data/meshes/bomber_axis/bomber_axis.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
+	bomber2->model.setTranslation(-1114, 150, -2850);
+	bomber2->setHp(100);
+	bomber1->setScore(200);
+	bomber2->setPosition(bomber2->model * Vector3(0, 0, 0));
+	bomber2->setLastPosition(bomber2->getPosition());
+	root->addChild(bomber2);
 
 	
 }

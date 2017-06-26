@@ -21,10 +21,7 @@ void MenuStage::init()
 {
 
 	game = Game::getInstance();
-	game->camera = new Camera();
-	game->camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
-	game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
-
+	
 	text = Texture::Load("data/menu/menustart.tga");
 
 
@@ -109,6 +106,5 @@ void MenuStage::onMouseButton(SDL_MouseButtonEvent event)
 	BASS_ChannelStop(hSampleChannel2);
 	if (GameStage::instance->repeat)
 		GameStage::instance->secondinit();
-
 	Stage::instance->current->onChange("gamestage");
 }

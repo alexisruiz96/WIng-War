@@ -6,6 +6,7 @@ Vector2 screen;
 FirstScreen::FirstScreen()
 {
 	idk = true;
+	idf = false;
 }
 
 
@@ -17,8 +18,16 @@ void FirstScreen::init() {
 
 	if (idk) {
 		GameStage::instance->render();
+		std::cout << "asdasd";
 		idk = false;
-		GameStage::instance->ps = true;
+	}
+	if (!idk && !idf)
+	{
+		EntityCollider::deleteAllColliders();
+		Entity::toDestroy.push_back(Scene::instance->root);
+		Entity::toDestroy.push_back(Scene::instance->cielo);
+		Scene::instance->plane->deleteEntity();
+		idf = true;
 	}
 	game = Game::getInstance();
 
@@ -61,6 +70,8 @@ void FirstScreen::onKeyPressed(SDL_KeyboardEvent event) {
 
 }
 void FirstScreen::onMouseButton(SDL_MouseButtonEvent event) {
+
+	GameStage::instance->ps = true;
 	Stage::instance->current->onChange("menustate");
 	
 }

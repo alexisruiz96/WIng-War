@@ -27,11 +27,7 @@ void EntityMesh::render(Shader* s)
 	shader->setTexture("u_texture", texture);
 	shader->setVector3("u_poscam", Game::instance->camera->eye);
 	if (Game::instance->camera->testSphereInFrustum(this->model * this->mesh->header.center, this->mesh->header.radius)) {
-
-
 		mesh->render(GL_TRIANGLES, shader);
-
-
 	}
 	
 	

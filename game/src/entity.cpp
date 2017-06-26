@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "camera.h"
 #include "shader.h"
+#include "scene.h"
 
 std::vector<Entity*> Entity::toDestroy;
 
@@ -72,6 +73,7 @@ void Entity::removeChild(Entity* ent)
 
 void Entity::deleteEntity()
 {
+	//Scene::instance->root->addChild(Scene::instance->cielo);
 	Entity* tod;
 	for (int i = 0; i < toDestroy.size(); i++) {
 		tod = toDestroy[i];
