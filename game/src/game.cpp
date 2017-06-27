@@ -75,7 +75,7 @@ void Game::init(void)
 	endstage->init();
 	firstscreen->init();
 
-	Stage::instance->current = Stage::s_Stages["gamestage"];
+	Stage::instance->current = Stage::s_Stages["firstscreen"];
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse

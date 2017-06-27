@@ -114,9 +114,10 @@ void AirPlane::colEsferas()
 		Vector3 plane_c = this->mesh->header.center;						//center of our plane
 		float plane_r = this->getRadius();									//radius of our plane
 		if ((model*center).distance(plane_m*plane_c) <= (radius + plane_r)) {	//calculate if distance between centers is less than the sum of the radius
-			if(this != dynamic_colliders[i])
-			this->onCollision(dynamic_colliders[i]);
-			GameStage::instance->stopMusic();
+			if (this != dynamic_colliders[i] && this->getName() != dynamic_colliders[i]->getName()) {
+				this->onCollision(dynamic_colliders[i]);
+				GameStage::instance->stopMusic();
+			}
 
 		}
 	}

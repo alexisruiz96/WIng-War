@@ -30,6 +30,7 @@ void Scene::createScene() {
 
 	plane = new AirPlane();
 	plane->setDynamic();
+	plane->setName("ourplane");
 	plane->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
 	plane->model.setTranslation(-2214, 200, 7000);
 	plane->model.rotateLocal(M_PI ,  Vector3(0.f,1.f,0.f));

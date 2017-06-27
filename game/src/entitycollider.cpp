@@ -33,7 +33,7 @@ void EntityCollider::onCollision(EntityCollider *)
 	deleteEntity();
 
 	Stage::instance->current->onChange("endstage");
-	Game::instance->render();
+	//Game::instance->render();
 
 	
 }
@@ -128,15 +128,11 @@ void EntityCollider::deleteCollider(Entity* e)
 void EntityCollider::deleteAllColliders()
 {
 		/*auto ites = static_colliders.begin();
-		std::cout << "JAJEUJA" << static_colliders.size() << std::endl;
 		static_colliders.erase(ites);
-		std::cout << "SHUURA" << std::endl;
 	
 	int i = 0;
 	for (std::vector<EntityCollider*>::iterator ited = dynamic_colliders.begin(); ited != dynamic_colliders.end(); ited++) {
-		std::cout << "TEETE size = " << dynamic_colliders.size() << std::endl;
 		dynamic_colliders.erase(ited);
-		std::cout << "PIITEMELARK " <<  i << std::endl;
 		i++;
 	}*/
 

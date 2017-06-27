@@ -83,7 +83,6 @@ void GameStage::secondinit()
 	
 	//Cargamos un sample (memoria, filename, offset, length, max, flags)
 	hSample6 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
-
 	hSample7 = BASS_SampleLoad(false, "data/sounds/tensionmid.wav", 0, 0, 3, 0);
 	hSample8 = BASS_SampleLoad(false, "data/sounds/tensionlast.wav", 0, 0, 3, 0);
 	//Creamos un canal para el sample
@@ -93,7 +92,8 @@ void GameStage::secondinit()
 	hSampleChannel7 = BASS_SampleGetChannel(hSample7, false);
 	hSampleChannel8 = BASS_SampleGetChannel(hSample8, false);
 
-	BASS_ChannelSetAttribute(hSampleChannel6, BASS_ATTRIB_VOL, 0.3);
+	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.5);
+	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.8);
 }
 
 void GameStage::render()
@@ -133,13 +133,11 @@ void GameStage::render()
 	if (ps) {
 		BASS_ChannelPlay(hSampleChannel6, false);
 
-		std::cout << "okpapi" << std::endl;
 		if (Scene::instance->barco->musicon) {
 			BASS_ChannelPlay(hSampleChannel8, false);
 		}
 		else {
 			BASS_ChannelPlay(hSampleChannel7, false);
-			std::cout << "SI ENTRA" << std::endl;
 		}
 	}
 
