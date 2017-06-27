@@ -93,10 +93,10 @@ void AirPlane::update(float seconds_elapsed)
 			GameStage::instance->stopMusic();
 		}
 		else {
+			Scene::instance->plane->setScore(Scene::instance->plane->getScore() + this->getScore());
 			toDestroy.push_back(this);
 			deleteCollider(this);
 			deleteEntity();
-			Scene::instance->plane->setScore(Scene::instance->plane->getScore() + this->getScore());
 		}
 	}
 }

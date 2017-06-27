@@ -17,7 +17,7 @@ public:
 	Vector3 color;
 	Shader* shader;
 
-	void render(Shader* s);
+	void render();
 	void update(float dt);
 	void config(const char * text, const char * ase, const char * vs, const char* fs);
 };

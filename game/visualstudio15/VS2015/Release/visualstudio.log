@@ -1,12 +1,39 @@
-﻿  gamestage.cpp
-..\..\src\stages\gamestage.cpp(69): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-..\..\src\stages\gamestage.cpp(108): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+﻿  firstscreen.cpp
+  menustage.cpp
 LINK : warning LNK4098: la biblioteca predeterminada'LIBCMT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
   Generando código
-  1 of 2071 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  2 of 2071 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    9 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
+aicontroller.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'aicontroller.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+bullet.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'bullet.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+bulletmanager.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'bulletmanager.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+camera.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'camera.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+box.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'box.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+box_bld.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'box_bld.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+coldet.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'coldet.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+coldet_bld.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'coldet_bld.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+math3d.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'math3d.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+mytritri.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'mytritri.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+sysdep.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'sysdep.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+tritri.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'tritri.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+controller.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'controller.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+entity.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'entity.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+entitycollider.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'entitycollider.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+textparser.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'textparser.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+framework.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'framework.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+game_entities.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'game_entities.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+main.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'main.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+mesh.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'mesh.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+playercontroller.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'playercontroller.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+rendertotexture.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'rendertotexture.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+scene.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'scene.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+shader.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'shader.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+endstage.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'endstage.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+stage.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'stage.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+texture.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'texture.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+utils.obj : warning LNK4099: no se encontró PDB 'vc140.pdb' con 'utils.obj' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc140.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 glew32s.lib(glew.obj) : warning LNK4099: no se encontró PDB 'vc120.pdb' con 'glew32s.lib(glew.obj)' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc120.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
   visualstudio.vcxproj -> C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio.exe
   visualstudio.vcxproj -> ..\..\visualstudio.pdb (Full PDB)

@@ -3,8 +3,11 @@
 #include "../bass.h"
 Vector2 screen;
 
+
+FirstScreen* FirstScreen::instance = NULL;
 FirstScreen::FirstScreen()
 {
+	instance = this;
 	idk = true;
 	idf = false;
 }
@@ -27,8 +30,12 @@ void FirstScreen::init() {
 		Entity::toDestroy.push_back(Scene::instance->root);
 		Entity::toDestroy.push_back(Scene::instance->cielo);
 		Scene::instance->plane->deleteEntity();
+		
 		idf = true;
 	}
+
+	GameStage::instance->secondinit();
+
 	game = Game::getInstance();
 
 	text = Texture::Load("data/menu/firstscreen.tga");
@@ -71,7 +78,7 @@ void FirstScreen::onKeyPressed(SDL_KeyboardEvent event) {
 }
 void FirstScreen::onMouseButton(SDL_MouseButtonEvent event) {
 
-	GameStage::instance->ps = true;
+	//GameStage::instance->ps = true;
 	Stage::instance->current->onChange("menustate");
 	
 }

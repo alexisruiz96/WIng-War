@@ -75,7 +75,7 @@ void Game::init(void)
 	endstage->init();
 	firstscreen->init();
 
-	Stage::instance->current = Stage::s_Stages["firstscreen"];
+	Stage::instance->current = Stage::s_Stages["gamestage"];
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -91,9 +91,10 @@ void Game::render(void)
 	//example to render the FPS every 10 frames
 	//drawText(2, 2, std::to_string(fps), Vector3(1, 1, 1), 2);
 
+	Stage::instance->current->render();
 	//swap between front buffer and back buffer
 	SDL_GL_SwapWindow(this->window);
-	Stage::instance->current->render();
+
 	
 }
 
@@ -138,7 +139,7 @@ void Game::setWindowSize(int width, int height)
 	*/
 
 	glViewport( 0,0, width, height );
-	//camera->aspect =  width / (float)height;
+	camera->aspect =  width / (float)height;
 	window_width = width;
 	window_height = height;
 }

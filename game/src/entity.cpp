@@ -16,10 +16,10 @@ Entity::~Entity()
 {
 }
 
-void Entity::render(Shader* shader)
+void Entity::render()
 {
 	for (int i = 0; i < children.size(); i++) {
-		children[i]->render(shader);
+		children[i]->render();
 	}
 
 }

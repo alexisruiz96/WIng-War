@@ -103,8 +103,12 @@ void MenuStage::onKeyPressed(SDL_KeyboardEvent event)
 }
 void MenuStage::onMouseButton(SDL_MouseButtonEvent event)
 {
+
 	BASS_ChannelStop(hSampleChannel2);
 	if (GameStage::instance->repeat)
 		GameStage::instance->secondinit();
+
+	std::cout << "kul"<<std::endl;
 	Stage::instance->current->onChange("gamestage");
+	std::cout << "yeoaas" << std::endl;
 }

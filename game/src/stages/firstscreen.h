@@ -6,6 +6,11 @@
 class FirstScreen : public Stage
 {
 public:
+	static FirstScreen* instance;
+
+	static FirstScreen* getInstance() {
+		return instance;
+	}
 	FirstScreen();
 	virtual ~FirstScreen();
 

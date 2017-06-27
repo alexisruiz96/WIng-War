@@ -36,6 +36,7 @@ void Scene::createScene() {
 	plane->setPosition(plane->model * Vector3(0,0,0));
 	plane->setLastPosition(plane->getPosition());
 	plane->setHp(100);
+	plane->setScore(0);
 	root->addChild(plane);
 
 	//for (int i = -1; i <= 1; i++) {

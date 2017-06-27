@@ -1,5 +1,47 @@
-﻿  menustage.cpp
-aicontroller.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Usuario\Desktop\jocs_e\game\vc120.pdb'; linking object as if no debug info
-  visualstudio.vcxproj -> C:\Users\Usuario\Desktop\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio_debug.exe
+﻿  utils.cpp
+  texture.cpp
+  stage.cpp
+  menustage.cpp
+  gamestage.cpp
+c:\users\usuario\documents\enginyeria informàtica\tje\jocs_e\true game\jocs_e\game\src\stages\gamestage.cpp(68): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+c:\users\usuario\documents\enginyeria informàtica\tje\jocs_e\true game\jocs_e\game\src\stages\gamestage.cpp(106): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+  firstscreen.cpp
+  endstage.cpp
+  shader.cpp
+  scene.cpp
+c:\users\usuario\documents\enginyeria informàtica\tje\jocs_e\true game\jocs_e\game\src\scene.cpp(35): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+c:\users\usuario\documents\enginyeria informàtica\tje\jocs_e\true game\jocs_e\game\src\scene.cpp(131): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+  rendertotexture.cpp
+  playercontroller.cpp
+c:\users\usuario\documents\enginyeria informàtica\tje\jocs_e\true game\jocs_e\game\src\playercontroller.cpp(97): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+  mesh.cpp
+  main.cpp
+  game_entities.cpp
+  game.cpp
+  framework.cpp
+  textparser.cpp
+  entitymesh.cpp
+  entitycollider.cpp
+  entity.cpp
+  Generando código...
+  Compilando...
+  controller.cpp
+  sysdep.cpp
+  mytritri.cpp
+  math3d.cpp
+  coldet_bld.cpp
+  coldet.cpp
+  box_bld.cpp
+c:\users\usuario\documents\enginyeria informàtica\tje\jocs_e\true game\jocs_e\game\src\coldet\box_bld.cpp(134): warning C4018: '<': no coinciden signed/unsigned
+  box.cpp
+  camera.cpp
+  bulletmanager.cpp
+  bullet.cpp
+  aicontroller.cpp
+  Generando código...
+  tritri.c
+aicontroller.obj : warning LNK4075: se omite '/EDITANDCONTINUE' debido a la especificación '/OPT:LBR'
+LINK : warning LNK4098: la biblioteca predeterminada'LIBCMT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+glew32s.lib(glew.obj) : warning LNK4099: no se encontró PDB 'vc120.pdb' con 'glew32s.lib(glew.obj)' o en 'C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\vc120.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+  visualstudio.vcxproj -> C:\Users\usuario\Documents\Enginyeria Informàtica\TJE\jocs_e\TRUE GAME\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio_debug.exe
+  visualstudio.vcxproj -> ..\..\visualstudio_debug.pdb (Full PDB)

@@ -15,7 +15,7 @@ EntityMesh::~EntityMesh()
 }
 
 
-void EntityMesh::render(Shader* s)
+void EntityMesh::render()
 {
 
 	//model.rotate((float)(angle * DEG2RAD), Vector3(0.0f, 1.0f, 0.0f)); //build a rotation matrix
@@ -25,7 +25,7 @@ void EntityMesh::render(Shader* s)
 	shader->setMatrix44("u_model", model);
 	shader->setMatrix44("u_mvp", mvp);
 	shader->setTexture("u_texture", texture);
-	shader->setVector3("u_poscam", Game::instance->camera->eye);
+	//shader->setVector3("u_poscam", Game::instance->camera->eye);
 	if (Game::instance->camera->testSphereInFrustum(this->model * this->mesh->header.center, this->mesh->header.radius)) {
 		mesh->render(GL_TRIANGLES, shader);
 	}
@@ -34,7 +34,7 @@ void EntityMesh::render(Shader* s)
 	shader->disable();
 
 	for (int i = 0; i < children.size(); i++) {
-		children[i]->render(shader);
+		children[i]->render();
 	}
 
 }

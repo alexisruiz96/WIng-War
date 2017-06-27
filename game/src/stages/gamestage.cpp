@@ -3,6 +3,7 @@
 #include "endstage.h"
 #include "../bass.h"
 #include <math.h>
+#include "firstscreen.h"
 float angle = 0;
 Scene* scene = NULL;
 Shader * shader = NULL;
@@ -41,7 +42,7 @@ void GameStage::init()
 	//create our camera
 	game->camera = new Camera();
 	game->camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
-	game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 10.f, 10000.f); //set the projection, we want to be perspective
+	game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 7.5f, 50000.f); //set the projection, we want to be perspective
 			//std::cout << scene->plane->model << std::endl;
 			//test = new EntityMesh();
 		   //test->config("data/meshes/spitfire/spitfire_color_spec.tga", "data/meshes/spitfire/spitfire.ASE");
@@ -53,24 +54,12 @@ void GameStage::init()
 	pc = new PlayerController();
 
 	EndStage::instance->succes = false;
-	BASS_Init(1, 44100, 0, 0, NULL);
-	BASS_Init(1, 44100, 0, 0, NULL);
-	BASS_Init(1, 44100, 0, 0, NULL);
-	//Cargamos un sample (memoria, filename, offset, length, max, flags)
-	hSample6 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
-	hSample7 = BASS_SampleLoad(false, "data/sounds/tensionmid.wav", 0, 0, 3, 0);
-	hSample8 = BASS_SampleLoad(false, "data/sounds/tensionlast.wav", 0, 0, 3, 0);
-	//Creamos un canal para el sample
-	hSampleChannel6 = BASS_SampleGetChannel(hSample6, false);
-	hSampleChannel7 = BASS_SampleGetChannel(hSample7, false);
-	hSampleChannel8 = BASS_SampleGetChannel(hSample8, false);
 
-
-	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.3);
 }
 void GameStage::secondinit()
 {
 	floorok = false;
+	ps = true;
 	control_camera = false;
 	game = Game::getInstance();
 	elap = 209000;
@@ -91,8 +80,7 @@ void GameStage::secondinit()
 	EndStage::instance->succes = false;
 
 	BASS_Init(1, 44100, 0, 0, NULL);
-	BASS_Init(1, 44100, 0, 0, NULL);
-	BASS_Init(1, 44100, 0, 0, NULL);
+	
 	//Cargamos un sample (memoria, filename, offset, length, max, flags)
 	hSample6 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
 
@@ -110,9 +98,6 @@ void GameStage::secondinit()
 
 void GameStage::render()
 {
-	
-	t = getTime();
-
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
@@ -128,12 +113,14 @@ void GameStage::render()
 
 	//Draw out world
 	//drawGrid(500); //background grid
-
+	
 	glDisable(GL_DEPTH_TEST);
 	scene->cielo->model.setIdentity();
 	scene->cielo->model.traslate(game->camera->eye.x, game->camera->eye.y, game->camera->eye.z);
-	scene->cielo->render(shader);
+	scene->cielo->render();
 	glEnable(GL_DEPTH_TEST);
+	
+
 
 	
 	
@@ -141,17 +128,21 @@ void GameStage::render()
 	scene->water->model.traslate(game->camera->eye.x, 0, game->camera->eye.z);
 	scene->water->render(game->camera, shader);*/
 
-
-	scene->root->render(shader);
+	scene->root->render();
 
 	if (ps) {
 		BASS_ChannelPlay(hSampleChannel6, false);
-		if(Scene::instance->barco->musicon)
+
+		std::cout << "okpapi" << std::endl;
+		if (Scene::instance->barco->musicon) {
 			BASS_ChannelPlay(hSampleChannel8, false);
-		else
-		BASS_ChannelPlay(hSampleChannel7, false);
-		
+		}
+		else {
+			BASS_ChannelPlay(hSampleChannel7, false);
+			std::cout << "SI ENTRA" << std::endl;
+		}
 	}
+
 	//camera pos
 	//std::cout << camera->eye.x << " - " << camera->eye.y << " - " << camera->eye.z << std::endl; 
 	
@@ -180,16 +171,11 @@ void GameStage::render()
 	score << "Score : " << scene->plane->getScore() << " points";
 	drawText(game->window_width * 0.05, game->window_height * 0.05, score.str(), Vector3(1, 1, 1), 2);
 
-	g = getTime();
-	elap -= (g-t); //Asi esta en segundos
-	//int p = (int)(floor(elap / 1000));
-	//int k = (int)(floor(elap));
-	//m = (((p / 60)*100)/100);
-	//s = (int)(((((int)(p / 0.6)) / 10) % 10)*0.6) << (int)((((int)(k / 0.6)) % 1000)*0.6);
+	
 
 
 	std::stringstream time;
-	time << "Time remaining : "<< (int)floor(elap/1000) <<" s";
+	time << "Time remaining : "<< elap <<" s";
 	drawText(game->window_width * 0.05, game->window_height * 0.1, time.str(), Vector3(1, 0.000005*elap, 0.000005*elap), 2);
 
 
