@@ -138,5 +138,10 @@ void BulletManager::shoot(Vector3 pos,  Vector3 vel, float tl, float pow, Entity
 	last_pos++;
 
 	//Lanzamos un sample
-	BASS_ChannelPlay(hSampleChannel, true);
+	if (bull.author == Scene::instance->plane)
+		BASS_ChannelPlay(hSampleChannel, true);
+	else {
+		BASS_ChannelSetAttribute(hSampleChannel, BASS_ATTRIB_VOL, 0.1);
+		BASS_ChannelPlay(hSampleChannel, true);
+	}
 }

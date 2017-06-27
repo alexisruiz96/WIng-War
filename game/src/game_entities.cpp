@@ -7,6 +7,13 @@
 #include "bass.h"
 #include "stages/gamestage.h"
 #include "entitycollider.h"
+
+//El handler para un sample
+HSAMPLE hSample9;
+
+//El handler para un canal
+HCHANNEL hSampleChannel9;
+
 AirPlane::AirPlane(bool ia)
 {
 	last_shot = 0;
@@ -21,6 +28,12 @@ AirPlane::AirPlane(bool ia)
 	}
 
 	score = 0;
+
+	BASS_Init(1, 44100, 0, 0, NULL);
+	//Cargamos un sample (memoria, filename, offset, length, max, flags)
+	hSample9 = BASS_SampleLoad(false, "data/sounds/explosion.wav", 0, 0, 3, 0);
+	//Creamos un canal para el sample
+	hSampleChannel9 = BASS_SampleGetChannel(hSample9, false);
 }
 AirPlane::~AirPlane()
 {
@@ -94,6 +107,7 @@ void AirPlane::update(float seconds_elapsed)
 		}
 		else {
 			Scene::instance->plane->setScore(Scene::instance->plane->getScore() + this->getScore());
+			BASS_ChannelPlay(hSampleChannel9, false);
 			toDestroy.push_back(this);
 			deleteCollider(this);
 			deleteEntity();
@@ -196,8 +210,9 @@ void Boat::update(float seconds_elapsed)
 	{
 		actual++;
 	}
-	if (actual == 6)
+	if (actual == 6) {
 		musicon = true;
+	}
 
 	if (actual == 9) {
 		deleteAllColliders();
@@ -205,7 +220,7 @@ void Boat::update(float seconds_elapsed)
 		deleteEntity();
 		Stage::instance->current->onChange("endstage");
 		GameStage::instance->stopMusic();
-		std::cout << "Time: " << getTime() << std::endl;
+		std::cout << "m :" << GameStage::instance->m << "s : " << GameStage::instance->s << std::endl;
 	}
 
 	this->model.traslateLocal(0, 0, seconds_elapsed * 100);
@@ -250,7 +265,7 @@ void AircraftCarrier::update(float seconds_elapsed)
 		deleteEntity();
 		Stage::instance->current->onChange("endstage");
 		GameStage::instance->stopMusic();
-		std::cout << "Time: " << getTime() << std::endl;
+		std::cout << "m :" << GameStage::instance->m <<"s : " << GameStage::instance->s << std::endl;
 	}
 	
 }

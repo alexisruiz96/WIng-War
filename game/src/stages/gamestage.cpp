@@ -34,8 +34,9 @@ void GameStage::init()
 	floorok = false;
 	ps = false;
 	control_camera = false;
-	elap = 209000;
-
+	s = 33; // 32s
+	m = 3; // 3 min
+	n = 1;
 	game = Game::getInstance();
 	//game->camera->lookAt(Vector3(0.f, 25.f, 25.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
 	//game->camera->setPerspective(70.f, Game::instance->window_width / (float)Game::instance->window_height, 0.1f, 100000.f); //set the projection, we want to be perspective
@@ -62,7 +63,10 @@ void GameStage::secondinit()
 	ps = true;
 	control_camera = false;
 	game = Game::getInstance();
-	elap = 209000;
+	m = 3;
+	s = 33;
+	n = 1;
+
 
 	game->camera = new Camera();
 	game->camera->lookAt(Vector3(0, 750, 0), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera
@@ -92,8 +96,8 @@ void GameStage::secondinit()
 	hSampleChannel7 = BASS_SampleGetChannel(hSample7, false);
 	hSampleChannel8 = BASS_SampleGetChannel(hSample8, false);
 
-	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.5);
-	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.8);
+	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.4);
+	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.7);
 }
 
 void GameStage::render()
@@ -135,6 +139,7 @@ void GameStage::render()
 
 		if (Scene::instance->barco->musicon) {
 			BASS_ChannelPlay(hSampleChannel8, false);
+			BASS_ChannelStop(hSampleChannel7);
 		}
 		else {
 			BASS_ChannelPlay(hSampleChannel7, false);
@@ -162,21 +167,28 @@ void GameStage::render()
 
 	std::stringstream vidabarco;
 	vidabarco << "Enemy boat : " << scene->barco->hp << "%";
-	drawText(game->window_width * 0.05, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.005*scene->barco->hp, 0.005*scene->barco->hp), 2);
+	drawText(game->window_width * 0.05, game->window_height * 0.85, vidabarco.str(), Vector3(1, 0.0025*scene->barco->hp, 0.0025*scene->barco->hp), 2);
 
+
+
+
+	
+
+	
+	if (s < 0.0) {
+		s = 59.0;
+		m -= 1.0;
+	}
+	//if (s == 9.0) s = 09.0; if (s == 8.0) s = 08.0; if (s == 7.0) s = 07.0; if (s == 6.0) s = 06.0; if (s == 5.0) s = 05.0; if (s == 4.0) s = 04.0; if (s == 3.0) s = 03.0; if (s == 2.0) s = 02.0; if (s == 1.0) s = 01.0; if (s == 0.0) s = 00.0;
+
+	float elap = m * 60.0 + s;
+	std::stringstream time;
+	time << "Time remaining : 0"<<m << ":" << (int)s << " min";
+	drawText(game->window_width * 0.05, game->window_height * 0.1, time.str(), Vector3(1, 0.005*elap, 0.005*elap), 2);
 
 	std::stringstream score;
 	score << "Score : " << scene->plane->getScore() << " points";
 	drawText(game->window_width * 0.05, game->window_height * 0.05, score.str(), Vector3(1, 1, 1), 2);
-
-	
-
-
-	std::stringstream time;
-	time << "Time remaining : "<< elap <<" s";
-	drawText(game->window_width * 0.05, game->window_height * 0.1, time.str(), Vector3(1, 0.000005*elap, 0.000005*elap), 2);
-
-
 
 	
 }
@@ -267,6 +279,11 @@ void GameStage::update(double seconds_elapsed)
 	scene->p38a->model.traslateLocal(0, 0, seconds_elapsed * 10 * speed);
 	scene->bomber->model.traslateLocal(0, 0, seconds_elapsed * 10 * speed);
 	*/
+	
+
+	s -= seconds_elapsed;
+	
+	
 
 }
 void GameStage::stopMusic()

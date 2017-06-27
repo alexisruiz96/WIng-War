@@ -11,6 +11,13 @@
 #include <cmath>
 #include "utils.h"
 #include "camera.h"
+#include "bass.h"
+
+//El handler para un sample
+HSAMPLE hSample10;
+
+//El handler para un canal
+HCHANNEL hSampleChannel10;
 
 SDL_Joystick *joy = NULL;
 
@@ -26,7 +33,15 @@ PlayerController::PlayerController()
 	}
 
 	useGUI = true;
-	
+
+	BASS_Init(1, 44100, 0, 0, NULL);
+
+	//Cargamos un sample (memoria, filename, offset, length, max, flags)
+	hSample10 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
+	//Creamos un canal para el sample
+
+
+	hSampleChannel10 = BASS_SampleGetChannel(hSample10, false);
 
 }
 
@@ -43,8 +58,10 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 
 	float speed = seconds_elapsed * 100;
 	time = seconds_elapsed;
-	if (Game::instance->keystate[SDL_SCANCODE_LSHIFT])
+	if (Game::instance->keystate[SDL_SCANCODE_LSHIFT]) {
 		speed *= 25;
+		BASS_ChannelPlay(hSampleChannel10, false);
+	}
 
 
 	if (joy) {

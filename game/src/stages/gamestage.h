@@ -18,9 +18,11 @@ public:
 	bool ps;
 	float t;
 	float g;
-	float elap;
+	int m;
+	int n;
 	bool floorok;
 	bool control_camera;
+	float s;
 
 	virtual void init();
 	virtual void render();
