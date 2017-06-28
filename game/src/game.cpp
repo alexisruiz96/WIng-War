@@ -15,6 +15,7 @@
 #include "stages/menustage.h"
 #include "stages/firstscreen.h"
 #include "stages/endstage.h"
+#include "stages/controlstage.h"
 
 //some globals
 
@@ -68,11 +69,13 @@ void Game::init(void)
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("gamestage", gamestage));
 	EndStage* endstage = new EndStage();
 	Stage::s_Stages.insert(std::pair<std::string, Stage* >("endstage", endstage));
-
+	ControlStage* controlstage = new ControlStage();
+	Stage::s_Stages.insert(std::pair<std::string, Stage* >("controlstage", controlstage));
 
 	gamestage->init();
 	menu->init();
 	endstage->init();
+	controlstage->init();
 	firstscreen->init();
 
 	Stage::instance->current = Stage::s_Stages["firstscreen"];
@@ -107,10 +110,10 @@ void Game::update(double seconds_elapsed)
 void Game::onKeyPressed( SDL_KeyboardEvent event )
 {
 	Stage::instance->current->onKeyPressed(event);
-	switch (event.keysym.sym)
+	/*switch (event.keysym.sym)
 	{
 	case SDLK_ESCAPE: exit(0); //ESC key, kill the app
-	}
+	}*/
 }
 
 

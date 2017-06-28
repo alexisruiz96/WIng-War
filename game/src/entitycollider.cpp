@@ -1,6 +1,7 @@
 #include "entitycollider.h"
 #include "scene.h"
 #include "stages/stage.h"
+#include "stages/gamestage.h"
 
 std::vector<EntityCollider*> EntityCollider::static_colliders;
 std::vector<EntityCollider*> EntityCollider::dynamic_colliders;
@@ -31,7 +32,7 @@ void EntityCollider::onCollision(EntityCollider *)
 	toDestroy.push_back(Scene::instance->cielo);
 
 	deleteEntity();
-
+	GameStage::instance->stopMusic();
 	Stage::instance->current->onChange("endstage");
 	//Game::instance->render();
 

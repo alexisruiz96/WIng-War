@@ -92,7 +92,7 @@ void BulletManager::update(float elapsed_time)
 						if ((bull.author != colliders[j]) && ((bull.author == Scene::instance->plane) || (colliders[j] == Scene::instance->plane))) {
 							colliders[j]->hp = colliders[j]->hp - 5;
 							bull.hittedYet = true;
-							if (bull.author == Scene::instance->plane)
+							if (bull.author == Scene::instance->plane || colliders[j] == Scene::instance->plane)
 								BASS_ChannelPlay(hSampleChannel3, false);
 						}
 					}
@@ -138,8 +138,10 @@ void BulletManager::shoot(Vector3 pos,  Vector3 vel, float tl, float pow, Entity
 	last_pos++;
 
 	//Lanzamos un sample
-	if (bull.author == Scene::instance->plane)
+	if (bull.author == Scene::instance->plane) {
+		BASS_ChannelSetAttribute(hSampleChannel, BASS_ATTRIB_VOL, 0.9);
 		BASS_ChannelPlay(hSampleChannel, true);
+	}
 	else {
 		BASS_ChannelSetAttribute(hSampleChannel, BASS_ATTRIB_VOL, 0.1);
 		BASS_ChannelPlay(hSampleChannel, true);

@@ -1,15 +1,20 @@
 #include "firstscreen.h"
 #include "gamestage.h"
 #include "../bass.h"
+#include "../utils.h"
 Vector2 screen;
 
-
+SDL_Joystick *joyf = NULL;
 FirstScreen* FirstScreen::instance = NULL;
 FirstScreen::FirstScreen()
 {
 	instance = this;
 	idk = true;
 	idf = false;
+
+	if (SDL_NumJoysticks()> 0) {
+		joyf = SDL_JoystickOpen(0);
+	}
 }
 
 
@@ -72,11 +77,21 @@ void FirstScreen::render() {
 }
 
 void FirstScreen::update(double dt) {
+	
+	
+	if (joyf) {
+		JoystickState jst = getJoystickState(joyf);
+		if (jst.button[START_BUTTON]) {
 
+			Stage::instance->current->onChange("menustate");
+		}
+	}
 }
 
 void FirstScreen::onKeyPressed(SDL_KeyboardEvent event) {
-
+	
+	
+	
 }
 void FirstScreen::onMouseButton(SDL_MouseButtonEvent event) {
 

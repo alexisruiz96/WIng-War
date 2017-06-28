@@ -1,10 +1,12 @@
-﻿  game_entities.cpp
-LINK : warning LNK4098: la biblioteca predeterminada'LIBCMT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
-  Generando código
-  6 of 2074 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+﻿  gamestage.cpp
+..\..\src\stages\gamestage.cpp(106): warning C4305: 'argument': truncation from 'double' to 'float'
+..\..\src\stages\gamestage.cpp(107): warning C4305: 'argument': truncation from 'double' to 'float'
+..\..\src\stages\gamestage.cpp(109): warning C4305: 'argument': truncation from 'double' to 'float'
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  1 of 2107 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    19 functions had inline decision re-evaluated but remain unchanged
-  Generación de código finalizada
-glew32s.lib(glew.obj) : warning LNK4099: no se encontró PDB 'vc120.pdb' con 'glew32s.lib(glew.obj)' o en 'C:\Users\u114151\Desktop\jocs_e\game\vc120.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-  visualstudio.vcxproj -> C:\Users\u114151\Desktop\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio.exe
-  visualstudio.vcxproj -> ..\..\visualstudio.pdb (Full PDB)
+    3 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Usuario\Desktop\jocs_e\game\vc120.pdb'; linking object as if no debug info
+  visualstudio.vcxproj -> C:\Users\Usuario\Desktop\jocs_e\game\visualstudio15\VS2015\..\..\visualstudio.exe

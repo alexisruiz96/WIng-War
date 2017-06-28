@@ -6,12 +6,18 @@ MenuStage* MenuStage::instance = NULL;
 //El handler para un sample
 HSAMPLE hSample2;
 
+SDL_Joystick *joym = NULL;
+
 //El handler para un canal
 HCHANNEL hSampleChannel2;
 
 MenuStage::MenuStage()
 {
 	instance = this;
+
+	if (SDL_NumJoysticks()> 0) {
+		joym = SDL_JoystickOpen(0);
+	}
 }
 MenuStage::~MenuStage()
 {
@@ -85,7 +91,22 @@ void MenuStage::render()
 }
 void MenuStage::update(double dt)
 {
+	if (joym) {
+		JoystickState jst = getJoystickState(joym);
 
+		if (jst.button[BACK_BUTTON] && jst.button[B_BUTTON]) {
+			exit(0);
+		}
+		if (jst.button[A_BUTTON]) {
+			BASS_ChannelStop(hSampleChannel2);
+			if (GameStage::instance->repeat)
+				GameStage::instance->secondinit();
+			Stage::instance->current->onChange("gamestage");
+		}
+		if (jst.button[X_BUTTON]) {
+			Stage::instance->current->onChange("controlstage");
+		}
+	}
 }
 
 void MenuStage::onKeyPressed(SDL_KeyboardEvent event)
@@ -97,7 +118,11 @@ void MenuStage::onKeyPressed(SDL_KeyboardEvent event)
 		GameStage::instance->secondinit();
 		Stage::instance->current->onChange("gamestage"); break; 
 	}
-	case SDLK_ESCAPE || SDLK_3: exit(0); 
+
+	case SDLK_2: { Stage::instance->current->onChange("controlstage"); break;
+	}
+	case SDLK_ESCAPE || SDLK_3: exit(0); break;
+
 	
 	}
 }

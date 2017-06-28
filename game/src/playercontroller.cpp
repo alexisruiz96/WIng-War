@@ -37,12 +37,12 @@ PlayerController::PlayerController()
 	BASS_Init(1, 44100, 0, 0, NULL);
 
 	//Cargamos un sample (memoria, filename, offset, length, max, flags)
-	hSample10 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
+	hSample10 = BASS_SampleLoad(false, "data/sounds/sprint.wav", 0, 0, 3, 0);
 	//Creamos un canal para el sample
 
 
 	hSampleChannel10 = BASS_SampleGetChannel(hSample10, false);
-
+	spr = false;
 }
 
 
@@ -59,9 +59,13 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 	float speed = seconds_elapsed * 100;
 	time = seconds_elapsed;
 	if (Game::instance->keystate[SDL_SCANCODE_LSHIFT]) {
-		speed *= 25;
-		BASS_ChannelPlay(hSampleChannel10, false);
+		speed *= 10;
+		if (!spr)
+			BASS_ChannelPlay(hSampleChannel10, false);
+		spr = true;
 	}
+	else
+		spr = false;
 
 
 	if (joy) {
@@ -69,16 +73,23 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 		JoystickState jst = getJoystickState(joy);
 
 		if (jst.button[LB_BUTTON]) {
-			speed *= 25;
+			speed *= 10;
+			if(!spr)
+				BASS_ChannelPlay(hSampleChannel10, false);
+			spr = true;
 		}
-
+		else
+			spr = false;
 		if (abs(jst.axis[LEFT_ANALOG_X]) > 0.2)
 		{
-			Scene::instance->plane->model.rotateLocal(-jst.axis[LEFT_ANALOG_X] * seconds_elapsed, Vector3(0, 0, 1));
+			Scene::instance->plane->model.rotateLocal(-jst.axis[LEFT_ANALOG_X] *4* seconds_elapsed, Vector3(0, 0, 1));
 		}
 		if (abs(jst.axis[RIGHT_ANALOG_Y]) > 0.2)
 		{
-			Scene::instance->plane->model.rotateLocal(jst.axis[RIGHT_ANALOG_Y] * seconds_elapsed, Vector3(1, 0, 0));
+			Scene::instance->plane->model.rotateLocal(jst.axis[RIGHT_ANALOG_Y] *2* seconds_elapsed, Vector3(1, 0, 0));
+		}
+		if (jst.button[RB_BUTTON]) {
+			Scene::instance->plane->shoot();
 		}
 	}
 
@@ -97,7 +108,7 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 
 	}
 
-	Scene::instance->plane->model.traslateLocal(0, 0, seconds_elapsed * 10 * speed);
+	Scene::instance->plane->model.traslateLocal(0, 0, seconds_elapsed * 15 * speed);
 	Scene::instance->plane->setLastPosition(Scene::instance->plane->getPosition());
 	Scene::instance->plane->setPosition(Scene::instance->plane->model * Vector3(0,0,0));
 
@@ -121,7 +132,7 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 			break;
 		case 1:
 			
-			Game::instance->camera->lookAt(Scene::instance->plane->model * Vector3(0, 0.75, -1.5), Scene::instance->plane->model* Vector3(0, 0, 50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
+			Game::instance->camera->lookAt(Scene::instance->plane->model * Vector3(0.0, 0.70, -1.25), Scene::instance->plane->model* Vector3(0, 0, 50), Scene::instance->plane->model.rotateVector(Vector3(0, 1, 0)));
 			useGUI = true;
 			break;
 		case 2:

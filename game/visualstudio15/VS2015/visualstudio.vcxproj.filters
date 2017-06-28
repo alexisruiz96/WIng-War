@@ -50,6 +50,7 @@
     <ClCompile Include="..\..\src\stages\menustage.cpp" />
     <ClCompile Include="..\..\src\stages\stage.cpp" />
     <ClCompile Include="..\..\src\stages\endstage.cpp" />
+    <ClCompile Include="..\..\src\stages\controlstage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\bullet.h" />
@@ -97,6 +98,7 @@
     <ClInclude Include="..\..\src\stages\menustage.h" />
     <ClInclude Include="..\..\src\stages\stage.h" />
     <ClInclude Include="..\..\src\stages\endstage.h" />
+    <ClInclude Include="..\..\src\stages\controlstage.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="coldet">

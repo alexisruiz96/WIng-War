@@ -13,7 +13,7 @@ public:
 	virtual ~EndStage();
 	virtual void init();
 	virtual void render();
-	virtual void update(float dt);
+	virtual void update(double dt);
 
 	bool succes;
 	bool go;

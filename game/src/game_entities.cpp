@@ -97,13 +97,14 @@ void AirPlane::update(float seconds_elapsed)
 	if (this->getHp() <= 0) {
 	
 		if (!this->isIA) {
-			
+
+			GameStage::instance->stopMusic();
 			deleteAllColliders();
 			toDestroy.push_back(Scene::instance->root);
 			toDestroy.push_back(Scene::instance->cielo);
 			deleteEntity();
 			Stage::instance->current->onChange("endstage");
-			GameStage::instance->stopMusic();
+			
 		}
 		else {
 			Scene::instance->plane->setScore(Scene::instance->plane->getScore() + this->getScore());
@@ -130,7 +131,6 @@ void AirPlane::colEsferas()
 		if ((model*center).distance(plane_m*plane_c) <= (radius + plane_r)) {	//calculate if distance between centers is less than the sum of the radius
 			if (this != dynamic_colliders[i] && this->getName() != dynamic_colliders[i]->getName()) {
 				this->onCollision(dynamic_colliders[i]);
-				GameStage::instance->stopMusic();
 			}
 
 		}

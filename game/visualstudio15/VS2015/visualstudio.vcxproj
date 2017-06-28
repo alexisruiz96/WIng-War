@@ -116,6 +116,7 @@
     <ClCompile Include="..\..\src\rendertotexture.cpp" />
     <ClCompile Include="..\..\src\scene.cpp" />
     <ClCompile Include="..\..\src\shader.cpp" />
+    <ClCompile Include="..\..\src\stages\controlstage.cpp" />
     <ClCompile Include="..\..\src\stages\endstage.cpp" />
     <ClCompile Include="..\..\src\stages\firstscreen.cpp" />
     <ClCompile Include="..\..\src\stages\gamestage.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="..\..\src\rendertotexture.h" />
     <ClInclude Include="..\..\src\scene.h" />
     <ClInclude Include="..\..\src\shader.h" />
+    <ClInclude Include="..\..\src\stages\controlstage.h" />
     <ClInclude Include="..\..\src\stages\endstage.h" />
     <ClInclude Include="..\..\src\stages\firstscreen.h" />
     <ClInclude Include="..\..\src\stages\gamestage.h" />

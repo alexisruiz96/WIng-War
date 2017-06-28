@@ -106,7 +106,7 @@ void Scene::createScene() {
 		for (int j = -1; j <= 1; j++)
 		{
 			water = new EntityMesh();
-			water->config("data/meshes/island/agua.tga", "data/meshes/island/agua.ASE", "data/shaders/texture.vs", "data/shaders/simple.fs");
+			water->config("data/meshes/island/agua.tga", "data/meshes/island/agua.ASE", "data/shaders/water.vs", "data/shaders/water.fs");
 			water->model.traslate(i*10000, -15,j *10000);
 			root->addChild(water);
 		}

@@ -5,7 +5,7 @@
 #include "menustage.h"
 
 EndStage* EndStage::instance = NULL;
-
+SDL_Joystick *joye = NULL;
 //El handler para un sample
 HSAMPLE hSample4, hSample5;
 
@@ -14,6 +14,10 @@ HCHANNEL hSampleChannel4, hSampleChannel5;
 EndStage::EndStage()
 {
 	instance = this;
+
+	if (SDL_NumJoysticks()> 0) {
+		joye = SDL_JoystickOpen(0);
+	}
 }
 
 
@@ -76,16 +80,32 @@ void EndStage::render()
 		quadforstart.render(GL_TRIANGLES);
 		textsucces->unbind();
 	}
+
+	std::stringstream back;
+	back << "ESC / (BACK) - BACK TO MENU";
+	drawText(game->window_width * 0.35, game->window_height * 0.90, back.str(), Vector3(1, 1, 1), 3);
 }
 
-void EndStage::update(float seconds_elapsed)
+void EndStage::update(double seconds_elapsed)
 {
 
+	if (joye) {
+		JoystickState jst = getJoystickState(joye);
+
+		if (jst.button[BACK_BUTTON]) {
+			GameStage::instance->repeat = true;
+			MenuStage::instance->secondInit();
+			Stage::instance->current->onChange("menustate");
+		}
+	}
 }
 
 void EndStage::onKeyPressed(SDL_KeyboardEvent event)
 {
+	GameStage::instance->repeat = true;
+	MenuStage::instance->secondInit();
 
+	Stage::instance->current->onChange("menustate");
 }
 
 void EndStage::onMouseButton(SDL_MouseButtonEvent event)

@@ -18,15 +18,18 @@ GameStage* GameStage::instance = NULL;
 int m, s;
 
 //El handler para un sample
-HSAMPLE hSample6, hSample7, hSample8;
-
+HSAMPLE hSample6, hSample7, hSample8, hSample12, hSample13;
+SDL_Joystick *joyg = NULL;
 //El handler para un canal
-HCHANNEL hSampleChannel6, hSampleChannel7, hSampleChannel8;
+HCHANNEL hSampleChannel6, hSampleChannel7, hSampleChannel8, hSampleChannel12, hSampleChannel13;
 
 GameStage::GameStage()
 {
 	instance = this;
 	
+	if (SDL_NumJoysticks()> 0) {
+		joyg = SDL_JoystickOpen(0);
+	}
 }
 
 void GameStage::init()
@@ -89,15 +92,23 @@ void GameStage::secondinit()
 	hSample6 = BASS_SampleLoad(false, "data/sounds/planesound.wav", 0, 0, 3, 0);
 	hSample7 = BASS_SampleLoad(false, "data/sounds/tensionmid.wav", 0, 0, 3, 0);
 	hSample8 = BASS_SampleLoad(false, "data/sounds/tensionlast.wav", 0, 0, 3, 0);
+	hSample12 = BASS_SampleLoad(false, "data/sounds/alarm.wav", 0, 0, 3, 0);
+	hSample13 = BASS_SampleLoad(false, "data/sounds/writer.wav", 0, 0, 3, 0);
 	//Creamos un canal para el sample
 
 
 	hSampleChannel6 = BASS_SampleGetChannel(hSample6, false);
 	hSampleChannel7 = BASS_SampleGetChannel(hSample7, false);
 	hSampleChannel8 = BASS_SampleGetChannel(hSample8, false);
+	hSampleChannel12 = BASS_SampleGetChannel(hSample12, false);
+	hSampleChannel13 = BASS_SampleGetChannel(hSample13, false);
 
 	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.4);
-	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.7);
+	BASS_ChannelSetAttribute(hSampleChannel6, BASS_ATTRIB_VOL, 0.6);
+
+	BASS_ChannelSetAttribute(hSampleChannel12, BASS_ATTRIB_VOL, 0.6);
+
+	BASS_ChannelSetAttribute(hSampleChannel13, BASS_ATTRIB_VOL, 1.5);
 }
 
 void GameStage::render()
@@ -107,7 +118,8 @@ void GameStage::render()
 	glDisable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//set the clear color (the background color)
-	glClearColor(61.0/256.0, 96.0/256.0, 147.0/256.0, 1.0);
+	//glClearColor(61.0/256.0, 96.0/256.0, 147.0/256.0, 1.0);
+	glClearColor(71.0 / 256.0, 101.0 / 256.0, 113.0 / 256.0, 1.0);
 
 	// Clear the window and the depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -184,13 +196,30 @@ void GameStage::render()
 	float elap = m * 60.0 + s;
 	std::stringstream time;
 	time << "Time remaining : 0"<<m << ":" << (int)s << " min";
-	drawText(game->window_width * 0.05, game->window_height * 0.1, time.str(), Vector3(1, 0.005*elap, 0.005*elap), 2);
+	drawText(game->window_width * 0.05, game->window_height * 0.1, time.str(), Vector3(1, 0.005*elap, 0.005*elap),2);
 
 	std::stringstream score;
 	score << "Score : " << scene->plane->getScore() << " points";
 	drawText(game->window_width * 0.05, game->window_height * 0.05, score.str(), Vector3(1, 1, 1), 2);
 
-	
+	if (m >= 0.0 &&  m < 1.0 && s <= 10.0) {
+		BASS_ChannelPlay(hSampleChannel12, false);
+	}
+
+	if (m >= 3.00 && s > 17.0) {
+
+		BASS_ChannelPlay(hSampleChannel13, false);
+		std::stringstream msg;
+		msg << "Hey soldier ! Your mission today is to defend us" << std::endl;
+		msg << "from terrorists !  There are one boat fully " << std::endl;
+		msg << "charged from bombs which are coming to our carrier ! "<< std::endl;
+		msg << "Find it and destroy it as fast as you can! " << std::endl;
+		msg << "Go carefully there are a lot of planes defending him !" << std::endl;
+		msg << "You have less than 4 minutes ... GOOD LUCK" << std::endl;
+		drawText(game->window_width * 0.3, game->window_height * 0.3, msg.str(), Vector3(1, 1, 1), 2);
+	}
+	else
+		BASS_ChannelStop(hSampleChannel13);
 }
 
 void GameStage::renderGUI()
@@ -283,7 +312,22 @@ void GameStage::update(double seconds_elapsed)
 
 	s -= seconds_elapsed;
 	
-	
+	if (joyg) {
+		JoystickState jst = getJoystickState(joyg);
+
+		if (jst.button[BACK_BUTTON]) {
+			EntityCollider::deleteAllColliders();
+			Entity::toDestroy.push_back(Scene::instance->root);
+			Entity::toDestroy.push_back(Scene::instance->cielo);
+			scene->plane->deleteEntity();
+			GameStage::instance->repeat = true;
+			Stage::instance->current->onChange("menustate");
+			stopMusic();
+		}
+		if (jst.button[Y_BUTTON]) {
+			numcam += 1;
+		}
+	}
 
 }
 void GameStage::stopMusic()
@@ -291,17 +335,20 @@ void GameStage::stopMusic()
 	BASS_ChannelStop(hSampleChannel6);
 	BASS_ChannelStop(hSampleChannel7);
 	BASS_ChannelStop(hSampleChannel8);
+	BASS_ChannelStop(hSampleChannel12);
+	BASS_ChannelStop(hSampleChannel13);
 }
 void GameStage::onKeyPressed(SDL_KeyboardEvent event)
 {
 	switch (event.keysym.sym)
 	{
 	case SDLK_z: {numcam += 1; break; } //change camera player mode
-	case SDLK_ESCAPE: exit(0); //ESC key, kill the app
-	case SDLK_TAB: { control_camera = !control_camera; break;
-		//case SDLK_SPACE: bm->shoot(camera->eye, Vector3(10,10,10), 1.00 ,5.00, scene->plane, 1);
-	}
-	case SDLK_p: {scene->plane->hp = scene->plane->hp - 5;}
+	case SDLK_ESCAPE: {Stage::instance->current->onChange("menustate");stopMusic(); break;}
+					  //ESC key, kill the app
+	case SDLK_TAB: { control_camera = !control_camera; break;}
+				   //case SDLK_SPACE: bm->shoot(camera->eye, Vector3(10,10,10), 1.00 ,5.00, scene->plane, 1);
+	 /*case SDLK_p: {scene->plane->hp = scene->plane->hp - 5;}*/
+			   
 	}
 }
 void GameStage::onMouseButton(SDL_MouseButtonEvent event)

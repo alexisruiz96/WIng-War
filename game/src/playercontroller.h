@@ -10,6 +10,7 @@ public:
 	PlayerController();
 	~PlayerController();
 
+	bool spr;
 
 	bool useGUI;
 	void render(void);

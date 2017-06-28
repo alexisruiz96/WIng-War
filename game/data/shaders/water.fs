@@ -9,7 +9,8 @@ uniform sampler2D u_texture;
 
 void main()
 {
-    vec4 color =  0.5 * texture2D(u_texture, -v_world_position.xz*0.001);
+
+    vec4 color =  texture2D(u_texture, -v_world_position.xz*0.001);
 
     vec3 light = vec3(0.3,0.4,0.6);
 
