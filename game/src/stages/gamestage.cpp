@@ -4,6 +4,7 @@
 #include "../bass.h"
 #include <math.h>
 #include "firstscreen.h"
+#include "menustage.h"
 float angle = 0;
 Scene* scene = NULL;
 Shader * shader = NULL;
@@ -37,7 +38,7 @@ void GameStage::init()
 	floorok = false;
 	ps = false;
 	control_camera = false;
-	s = 33; // 32s
+	s = 36; // 32s
 	m = 3; // 3 min
 	n = 1;
 	game = Game::getInstance();
@@ -67,7 +68,7 @@ void GameStage::secondinit()
 	control_camera = false;
 	game = Game::getInstance();
 	m = 3;
-	s = 33;
+	s = 36;
 	n = 1;
 
 
@@ -104,7 +105,7 @@ void GameStage::secondinit()
 	hSampleChannel13 = BASS_SampleGetChannel(hSample13, false);
 
 	BASS_ChannelSetAttribute(hSampleChannel7, BASS_ATTRIB_VOL, 0.4);
-	BASS_ChannelSetAttribute(hSampleChannel6, BASS_ATTRIB_VOL, 0.6);
+	BASS_ChannelSetAttribute(hSampleChannel6, BASS_ATTRIB_VOL, 0.5);
 
 	BASS_ChannelSetAttribute(hSampleChannel12, BASS_ATTRIB_VOL, 0.6);
 
@@ -148,7 +149,11 @@ void GameStage::render()
 
 	if (ps) {
 		BASS_ChannelPlay(hSampleChannel6, false);
-
+		if (pc->spr) {
+			BASS_ChannelSetAttribute(hSampleChannel6, BASS_ATTRIB_VOL, 0.8);
+		}
+		else
+			BASS_ChannelSetAttribute(hSampleChannel6, BASS_ATTRIB_VOL, 0.5);
 		if (Scene::instance->barco->musicon) {
 			BASS_ChannelPlay(hSampleChannel8, false);
 			BASS_ChannelStop(hSampleChannel7);
@@ -195,7 +200,12 @@ void GameStage::render()
 
 	float elap = m * 60.0 + s;
 	std::stringstream time;
-	time << "Time remaining : 0"<<m << ":" << (int)s << " min";
+
+	if (s >= 10.0)
+		time << "Time remaining : 0"<<m << ":" << (int)s << " min";
+	else
+
+		time << "Time remaining : 0" << m << ":0" << (int)s << " min";
 	drawText(game->window_width * 0.05, game->window_height * 0.1, time.str(), Vector3(1, 0.005*elap, 0.005*elap),2);
 
 	std::stringstream score;
@@ -210,13 +220,13 @@ void GameStage::render()
 
 		BASS_ChannelPlay(hSampleChannel13, false);
 		std::stringstream msg;
-		msg << "Hey soldier ! Your mission today is to defend us" << std::endl;
-		msg << "from terrorists !  There are one boat fully " << std::endl;
-		msg << "charged from bombs which are coming to our carrier ! "<< std::endl;
+		msg << "Hey soldier ! Your mission today is to defend" << std::endl;
+		msg << "us from terrorists !  There is one boat fully" << std::endl;
+		msg << "charged of bombs which is coming to our carrier!"<< std::endl;
 		msg << "Find it and destroy it as fast as you can! " << std::endl;
-		msg << "Go carefully there are a lot of planes defending him !" << std::endl;
+		msg << "Go carefully, there are a lot of enemies defending him !" << std::endl;
 		msg << "You have less than 4 minutes ... GOOD LUCK" << std::endl;
-		drawText(game->window_width * 0.3, game->window_height * 0.3, msg.str(), Vector3(1, 1, 1), 2);
+		drawText(game->window_width * 0.25, game->window_height * 0.275, msg.str(), Vector3(1, 1, 1), 2);
 	}
 	else
 		BASS_ChannelStop(hSampleChannel13);
@@ -343,7 +353,14 @@ void GameStage::onKeyPressed(SDL_KeyboardEvent event)
 	switch (event.keysym.sym)
 	{
 	case SDLK_z: {numcam += 1; break; } //change camera player mode
-	case SDLK_ESCAPE: {Stage::instance->current->onChange("menustate");stopMusic(); break;}
+	case SDLK_ESCAPE: {EntityCollider::deleteAllColliders();
+		Entity::toDestroy.push_back(Scene::instance->root);
+		Entity::toDestroy.push_back(Scene::instance->cielo);
+		scene->plane->deleteEntity();
+		GameStage::instance->repeat = true;
+		Stage::instance->current->onChange("menustate");
+		stopMusic();
+		MenuStage::instance->secondInit(); break;}
 					  //ESC key, kill the app
 	case SDLK_TAB: { control_camera = !control_camera; break;}
 				   //case SDLK_SPACE: bm->shoot(camera->eye, Vector3(10,10,10), 1.00 ,5.00, scene->plane, 1);

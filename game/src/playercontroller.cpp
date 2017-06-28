@@ -33,15 +33,6 @@ PlayerController::PlayerController()
 	}
 
 	useGUI = true;
-
-	BASS_Init(1, 44100, 0, 0, NULL);
-
-	//Cargamos un sample (memoria, filename, offset, length, max, flags)
-	hSample10 = BASS_SampleLoad(false, "data/sounds/sprint.wav", 0, 0, 3, 0);
-	//Creamos un canal para el sample
-
-
-	hSampleChannel10 = BASS_SampleGetChannel(hSample10, false);
 	spr = false;
 }
 
@@ -60,13 +51,9 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 	time = seconds_elapsed;
 	if (Game::instance->keystate[SDL_SCANCODE_LSHIFT]) {
 		speed *= 10;
-		if (!spr)
-			BASS_ChannelPlay(hSampleChannel10, false);
 		spr = true;
 	}
-	else
-		spr = false;
-
+	spr = false;
 
 	if (joy) {
 
@@ -74,12 +61,11 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 
 		if (jst.button[LB_BUTTON]) {
 			speed *= 10;
-			if(!spr)
-				BASS_ChannelPlay(hSampleChannel10, false);
 			spr = true;
 		}
-		else
-			spr = false;
+		spr = false;
+
+
 		if (abs(jst.axis[LEFT_ANALOG_X]) > 0.2)
 		{
 			Scene::instance->plane->model.rotateLocal(-jst.axis[LEFT_ANALOG_X] *4* seconds_elapsed, Vector3(0, 0, 1));
@@ -145,4 +131,10 @@ void PlayerController::update(double seconds_elapsed,int numc ) {
 			useGUI = false;
 			break;
 	}
+}
+
+
+void PlayerController::onKeyPressed(SDL_KeyboardEvent event)
+{
+	
 }

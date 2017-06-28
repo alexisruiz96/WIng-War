@@ -95,7 +95,7 @@ void AIcontroller::update(double seconds_elapsed)
 		}
 	}
 
-	float angle_with_target = 1 - front.dot(target_front);
+	float angle_with_target = 1 - front.dot(ai_plane->getPosition() - target);
 	if (abs(angle_with_target) < 0.05 && distance < 400  && !isAWaypoint)
 	{
 		this->ai_plane->shoot();

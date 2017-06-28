@@ -5,10 +5,10 @@
 BulletManager* BulletManager::instance = NULL;
 
 //El handler para un sample
-HSAMPLE hSample, hSample3;
+HSAMPLE hSample, hSample3, hSample15;
 
 //El handler para un canal
-HCHANNEL hSampleChannel, hSampleChannel3;
+HCHANNEL hSampleChannel, hSampleChannel3 , hSampleChannel15;
 
 BulletManager::BulletManager()
 {
@@ -23,9 +23,11 @@ BulletManager::BulletManager()
 	//Cargamos un sample (memoria, filename, offset, length, max, flags)
 	hSample = BASS_SampleLoad(false, "data/sounds/shot.wav", 0, 0, 3, 0);
 	hSample3 = BASS_SampleLoad(false, "data/sounds/hitmarker.wav", 0, 0, 3, 0);
+	hSample15 = BASS_SampleLoad(false, "data/sounds/shot.wav", 0, 0, 3, 0);
 	//Creamos un canal para el sample
 	hSampleChannel = BASS_SampleGetChannel(hSample, false);
 	hSampleChannel3 = BASS_SampleGetChannel(hSample3, false);
+	hSampleChannel15 = BASS_SampleGetChannel(hSample15, false);
 }
 
 
@@ -143,7 +145,7 @@ void BulletManager::shoot(Vector3 pos,  Vector3 vel, float tl, float pow, Entity
 		BASS_ChannelPlay(hSampleChannel, true);
 	}
 	else {
-		BASS_ChannelSetAttribute(hSampleChannel, BASS_ATTRIB_VOL, 0.1);
-		BASS_ChannelPlay(hSampleChannel, true);
+		BASS_ChannelSetAttribute(hSampleChannel15, BASS_ATTRIB_VOL, 0.1);
+		BASS_ChannelPlay(hSampleChannel15, true);
 	}
 }

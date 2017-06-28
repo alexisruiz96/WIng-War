@@ -15,6 +15,7 @@ public:
 	bool useGUI;
 	void render(void);
 	void update(double seconds_elapsed, int numc);
+	void onKeyPressed(SDL_KeyboardEvent event);
 
 };
 
