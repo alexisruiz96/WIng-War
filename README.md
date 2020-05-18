@@ -1,5 +1,6 @@
 # Wing-War
 Game of planes
+
 Gameplay video: https://youtu.be/wUD10yfHHX0?t=6
 
 MUNDO/SCENE: En nuestro juego parseamos y cargamos 8 tipos de meshes, la isla, el cielo (se mueve con nuestra cámara),  el agua (con un shader simple para que tenga un color más realista), 3 tipos de aviones (m38 y bomber como ia, y el spitfire como player) y 2 tipos de barcos (un barco normal como enemigo, y un aircraft carrier como aliado). 
